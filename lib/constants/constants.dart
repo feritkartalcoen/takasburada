@@ -6,6 +6,7 @@ const String title = "takasburada";
 const double buttonHeight = 48;
 const double textFieldHeight = 48;
 const double buttonBorderRadius = 24;
+const double tabBorderRadius = 24;
 const double textFieldBorderRadius = 24;
 const double textFieldBorderWidth = 1;
 const double buttonElevation = 12;

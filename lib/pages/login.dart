@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/pages/tabs/login/login_tabs.dart';
 import 'package:takasburada/pages/tabs/login/sign_in.dart';
 import 'package:takasburada/pages/tabs/login/sign_up.dart';
 import 'package:takasburada/widgets/app_title.dart';
@@ -22,27 +21,24 @@ class _LoginState extends State<Login> {
           children: [
             AppTitle(),
             TabBar(
-              tabs: [
-                Tab(
-                  child: Text(
-                    "sign up",
-                    style: tabTitleTextStyle,
-                  ),
+              indicatorColor: tabColor,
+              labelStyle: tabTitleTextStyle,
+              labelColor: tabTitleTextStyle.color,
+              unselectedLabelStyle: tabTitleTextStyle,
+              unselectedLabelColor: tabTitleTextStyle.color,
+              indicatorPadding:
+                  EdgeInsets.symmetric(horizontal: containerPadding),
+              indicator: ShapeDecoration(
+                color: tabColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(tabBorderRadius),
                 ),
-                Tab(
-                  child: Text(
-                    "sign in",
-                    style: tabTitleTextStyle,
-                  ),
-                ),
-              ],
+              ),
+              tabs: tabs,
             ),
             Expanded(
               child: TabBarView(
-                children: [
-                  SignUp(),
-                  SignIn(),
-                ],
+                children: tabBarViews,
               ),
             ),
           ],
@@ -51,3 +47,17 @@ class _LoginState extends State<Login> {
     );
   }
 }
+
+List<Widget> tabs = [
+  Tab(
+    child: Text("sign up"),
+  ),
+  Tab(
+    child: Text("sign in"),
+  ),
+];
+
+List<Widget> tabBarViews = [
+  SignUp(),
+  SignIn(),
+];

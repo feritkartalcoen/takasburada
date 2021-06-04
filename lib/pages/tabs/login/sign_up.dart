@@ -10,18 +10,12 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: containerPadding,
-      ),
       width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: ListView(
+        padding: EdgeInsets.all(
+          containerPadding,
+        ),
         children: [
-          SizedBox(
-            height: containerPadding,
-          ),
           Row(
             children: [
               Expanded(
@@ -62,7 +56,9 @@ class SignUp extends StatelessWidget {
           ),
           PrimaryColoredButton(
             text: "continue",
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, "/home");
+            },
           ),
           SizedBox(
             height: containerPadding,

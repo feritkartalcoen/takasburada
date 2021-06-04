@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takasburada/pages/home.dart';
 import 'package:takasburada/pages/login.dart';
 
 class App extends StatelessWidget {
@@ -10,6 +11,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/": (context) => Login(),
+        "/home": (context) => Home(),
       },
     );
   }
