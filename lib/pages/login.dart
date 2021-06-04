@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/tabs/login/login_tabs.dart';
+import 'package:takasburada/pages/tabs/login/sign_in.dart';
+import 'package:takasburada/pages/tabs/login/sign_up.dart';
 import 'package:takasburada/widgets/app_title.dart';
 
 class Login extends StatefulWidget {
@@ -13,20 +15,36 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        body: Column(
           children: [
             AppTitle(),
-            SizedBox(
-              height: containerPadding,
+            TabBar(
+              tabs: [
+                Tab(
+                  child: Text(
+                    "sign up",
+                    style: tabTitleTextStyle,
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "sign in",
+                    style: tabTitleTextStyle,
+                  ),
+                ),
+              ],
             ),
-            LoginTabs(),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  SignUp(),
+                  SignIn(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

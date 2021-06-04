@@ -19,6 +19,9 @@ class SignIn extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(
+            height: containerPadding,
+          ),
           BorderedTextField(
             hint: "username or email",
           ),

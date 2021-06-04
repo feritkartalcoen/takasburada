@@ -19,6 +19,9 @@ class SignUp extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(
+            height: containerPadding,
+          ),
           Row(
             children: [
               Expanded(
