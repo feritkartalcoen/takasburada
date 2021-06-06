@@ -16,32 +16,40 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        body: Column(
-          children: [
-            CustomTitle(),
-            TabBar(
-              indicatorColor: tabColor,
-              labelStyle: tabTitleTextStyle,
-              labelColor: tabTitleTextStyle.color,
-              unselectedLabelStyle: tabTitleTextStyle,
-              unselectedLabelColor: tabTitleTextStyle.color,
-              indicatorPadding:
-                  EdgeInsets.symmetric(horizontal: containerPadding),
-              indicator: ShapeDecoration(
-                color: tabColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(tabBorderRadius),
+      child: SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: containerPadding),
+                child: Hero(
+                  tag: customTitleHeroTag,
+                  child: CustomTitle(),
                 ),
               ),
-              tabs: tabs,
-            ),
-            Expanded(
-              child: TabBarView(
-                children: tabBarViews,
+              TabBar(
+                indicatorColor: tabColor,
+                labelStyle: tabTitleTextStyle,
+                labelColor: tabTitleTextStyle.color,
+                unselectedLabelStyle: tabTitleTextStyle,
+                unselectedLabelColor: tabTitleTextStyle.color,
+                indicatorPadding:
+                    EdgeInsets.symmetric(horizontal: containerPadding),
+                indicator: ShapeDecoration(
+                  color: tabColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(tabBorderRadius),
+                  ),
+                ),
+                tabs: tabs,
               ),
-            ),
-          ],
+              Expanded(
+                child: TabBarView(
+                  children: tabBarViews,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

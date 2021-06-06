@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const String title = "takasburada";
+const String customTitleHeroTag = "customTitle";
 
 const double buttonHeight = 48;
 const double textFieldHeight = 48;
@@ -11,6 +12,10 @@ const double textFieldBorderRadius = 24;
 const double textFieldBorderWidth = 1;
 const double buttonElevation = 12;
 const double containerPadding = 24;
+const double appBarHeight = 84;
+const double appBarButtonHeight = 36;
+const double appBarButtonWidth = 36;
+const double appBarButtonBorderRadius = 18;
 
 const Color primaryButtonColor = Color(0xff375675);
 const Color secondaryButtonColor = Color(0xffF7EBB9);
@@ -19,6 +24,7 @@ const Color tabColor = Color(0xffF7EBB9);
 
 TextStyle titleTextStyle = TextStyle(
   fontSize: 33,
+  height: 36 / 33,
   fontFamily: "Forte",
   color: Color(0xff375675),
   shadows: [

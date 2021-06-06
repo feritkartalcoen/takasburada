@@ -6,14 +6,14 @@ class CustomTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 96,
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      alignment: Alignment.center,
-      child: Text(
-        title,
-        style: titleTextStyle,
-        textAlign: TextAlign.center,
+    return Material(
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          title,
+          style: titleTextStyle,
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
