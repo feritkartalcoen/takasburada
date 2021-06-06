@@ -26,7 +26,7 @@ TextStyle titleTextStyle = TextStyle(
   ],
 );
 
-TextStyle CustomBackgroundedButtonTextSyle = GoogleFonts.robotoCondensed(
+TextStyle customBackgroundedButtonTextSyle = GoogleFonts.robotoCondensed(
   fontSize: 24,
   fontWeight: FontWeight.bold,
   color: Color(0xff707070),
