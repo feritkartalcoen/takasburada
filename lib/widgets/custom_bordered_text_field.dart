@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class BorderedTextField extends StatelessWidget {
+class CustomBorderedTextField extends StatelessWidget {
   final String hint;
-  const BorderedTextField({
+  const CustomBorderedTextField({
     Key? key,
     required this.hint,
   }) : super(key: key);
@@ -19,14 +19,14 @@ class BorderedTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(textFieldBorderRadius),
           borderSide: BorderSide(
-            color: borderedTextFieldBorderColor,
+            color: CustomBorderedTextFieldBorderColor,
             width: textFieldBorderWidth,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(textFieldBorderRadius),
           borderSide: BorderSide(
-            color: borderedTextFieldBorderColor,
+            color: CustomBorderedTextFieldBorderColor,
             width: textFieldBorderWidth,
           ),
         ),

@@ -12,8 +12,9 @@ const double textFieldBorderWidth = 1;
 const double buttonElevation = 12;
 const double containerPadding = 24;
 
-const Color primaryColoredButtonColor = Color(0xff375675);
-const Color borderedTextFieldBorderColor = Color(0xff375675);
+const Color primaryButtonColor = Color(0xff375675);
+const Color secondaryButtonColor = Color(0xffF7EBB9);
+const Color CustomBorderedTextFieldBorderColor = Color(0xff375675);
 const Color tabColor = Color(0xffF7EBB9);
 
 TextStyle titleTextStyle = TextStyle(
@@ -25,16 +26,22 @@ TextStyle titleTextStyle = TextStyle(
   ],
 );
 
-TextStyle backgroundedButtonTextSyle = GoogleFonts.robotoCondensed(
+TextStyle CustomBackgroundedButtonTextSyle = GoogleFonts.robotoCondensed(
   fontSize: 24,
   fontWeight: FontWeight.bold,
   color: Color(0xff707070),
 );
 
-TextStyle primaryColoredButtonTextStyle = GoogleFonts.robotoCondensed(
+TextStyle primaryButtonTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 24,
   fontWeight: FontWeight.bold,
   color: Colors.white,
+);
+
+TextStyle secondaryButtonTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 24,
+  fontWeight: FontWeight.bold,
+  color: Color(0xff707070),
 );
 
 TextStyle textFieldHintTextStyle = GoogleFonts.robotoCondensed(

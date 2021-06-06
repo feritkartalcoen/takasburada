@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class BackgroundedButton extends StatelessWidget {
+class CustomBackgroundedButton extends StatelessWidget {
   final String text;
   final String image;
   final VoidCallback onTap;
 
-  const BackgroundedButton({
+  const CustomBackgroundedButton({
     Key? key,
     required this.text,
     required this.image,
@@ -46,7 +46,7 @@ class BackgroundedButton extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 text,
-                style: backgroundedButtonTextSyle,
+                style: CustomBackgroundedButtonTextSyle,
               ),
             ),
             Positioned.fill(

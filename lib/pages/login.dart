@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/tabs/login/sign_in.dart';
 import 'package:takasburada/pages/tabs/login/sign_up.dart';
-import 'package:takasburada/widgets/app_title.dart';
+import 'package:takasburada/widgets/custom_title.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
       child: Scaffold(
         body: Column(
           children: [
-            AppTitle(),
+            CustomTitle(),
             TabBar(
               indicatorColor: tabColor,
               labelStyle: tabTitleTextStyle,

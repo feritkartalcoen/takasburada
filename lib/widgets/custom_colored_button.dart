@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class PrimaryColoredButton extends StatelessWidget {
+class CustomColoredButton extends StatelessWidget {
   final String text;
+  final bool isPrimary;
   final VoidCallback onTap;
-  const PrimaryColoredButton({
+  const CustomColoredButton({
     Key? key,
     required this.text,
     required this.onTap,
+    required this.isPrimary,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: primaryColoredButtonColor,
+      color: isPrimary ? primaryButtonColor : secondaryButtonColor,
       elevation: buttonElevation,
       borderRadius: BorderRadius.all(
         Radius.circular(buttonBorderRadius),
@@ -28,7 +30,8 @@ class PrimaryColoredButton extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             text,
-            style: primaryColoredButtonTextStyle,
+            style:
+                isPrimary ? primaryButtonTextStyle : secondaryButtonTextStyle,
           ),
         ),
         onTap: onTap,

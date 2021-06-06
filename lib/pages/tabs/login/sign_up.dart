@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/widgets/backgrounded_button.dart';
-import 'package:takasburada/widgets/bordered_text_field.dart';
-import 'package:takasburada/widgets/primary_colored_button.dart';
+import 'package:takasburada/widgets/custom_backgrounded_button.dart';
+import 'package:takasburada/widgets/custom_bordered_text_field.dart';
+import 'package:takasburada/widgets/custom_colored_button.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class SignUp extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: BorderedTextField(
+                child: CustomBorderedTextField(
                   hint: "name",
                 ),
               ),
@@ -27,7 +27,7 @@ class SignUp extends StatelessWidget {
                 width: containerPadding,
               ),
               Expanded(
-                child: BorderedTextField(
+                child: CustomBorderedTextField(
                   hint: "surname",
                 ),
               ),
@@ -36,26 +36,27 @@ class SignUp extends StatelessWidget {
           SizedBox(
             height: containerPadding,
           ),
-          BorderedTextField(
+          CustomBorderedTextField(
             hint: "username",
           ),
           SizedBox(
             height: containerPadding,
           ),
-          BorderedTextField(
+          CustomBorderedTextField(
             hint: "email",
           ),
           SizedBox(
             height: containerPadding,
           ),
-          BorderedTextField(
+          CustomBorderedTextField(
             hint: "password",
           ),
           SizedBox(
             height: containerPadding,
           ),
-          PrimaryColoredButton(
+          CustomColoredButton(
             text: "continue",
+            isPrimary: true,
             onTap: () {
               Navigator.pushNamed(context, "/home");
             },
@@ -63,7 +64,7 @@ class SignUp extends StatelessWidget {
           SizedBox(
             height: containerPadding,
           ),
-          BackgroundedButton(
+          CustomBackgroundedButton(
             text: "sign up with google",
             image: "images/google.png",
             onTap: () {},
@@ -71,7 +72,7 @@ class SignUp extends StatelessWidget {
           SizedBox(
             height: containerPadding,
           ),
-          BackgroundedButton(
+          CustomBackgroundedButton(
             text: "sign up with facebook",
             image: "images/facebook.png",
             onTap: () {},
