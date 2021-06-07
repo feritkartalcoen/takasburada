@@ -16,11 +16,20 @@ const double appBarHeight = 84;
 const double appBarButtonHeight = 36;
 const double appBarButtonWidth = 36;
 const double appBarButtonBorderRadius = 18;
+const double bottomAppBarHeight = 96;
+const double bottomNavigationBarHeight = 48;
+const double bottomNavigationBarElevation = 12;
+const double bottomNavigationBarBorderRadius = 24;
+const double floatingActionButtonWidth = 48;
+const double floatingActionButtonHeight = 48;
+const double floatingActionButtonElevation = 12;
+const double floatingActionButtonBorderRadius = 24;
 
 const Color primaryButtonColor = Color(0xff375675);
 const Color secondaryButtonColor = Color(0xffF7EBB9);
-const Color CustomBorderedTextFieldBorderColor = Color(0xff375675);
+const Color customBorderedTextFieldBorderColor = Color(0xff375675);
 const Color tabColor = Color(0xffF7EBB9);
+const Color floatingActionButtonColor = Color(0xff375675);
 
 TextStyle titleTextStyle = TextStyle(
   fontSize: 33,
@@ -67,3 +76,9 @@ TextStyle tabTitleTextStyle = GoogleFonts.robotoCondensed(
         blurRadius: 6),
   ],
 );
+
+double bottomNavigationBarItemWidth(BuildContext context) {
+  return (((MediaQuery.of(context).size.width) - 3 * containerPadding) -
+          floatingActionButtonWidth) /
+      3;
+}

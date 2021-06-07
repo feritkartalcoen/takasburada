@@ -11,12 +11,11 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       padding: EdgeInsets.all(containerPadding),
       width: double.infinity,
+      height: appBarHeight,
       alignment: Alignment.centerLeft,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: children,
       ),
     );

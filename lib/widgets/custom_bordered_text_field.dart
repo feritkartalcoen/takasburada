@@ -19,14 +19,14 @@ class CustomBorderedTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(textFieldBorderRadius),
           borderSide: BorderSide(
-            color: CustomBorderedTextFieldBorderColor,
+            color: customBorderedTextFieldBorderColor,
             width: textFieldBorderWidth,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(textFieldBorderRadius),
           borderSide: BorderSide(
-            color: CustomBorderedTextFieldBorderColor,
+            color: customBorderedTextFieldBorderColor,
             width: textFieldBorderWidth,
           ),
         ),
