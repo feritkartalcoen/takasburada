@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const String title = "takasburada";
 const String customTitleHeroTag = "customTitle";
+const String title = "takasburada";
 
-const double buttonHeight = 48;
-const double textFieldHeight = 48;
-const double buttonBorderRadius = 24;
-const double tabBorderRadius = 24;
-const double textFieldBorderRadius = 24;
-const double textFieldBorderWidth = 1;
-const double buttonElevation = 12;
-const double containerPadding = 24;
 const double appBarHeight = 84;
 const double appBarButtonHeight = 36;
 const double appBarButtonWidth = 36;
@@ -20,16 +12,31 @@ const double bottomAppBarHeight = 96;
 const double bottomNavigationBarHeight = 48;
 const double bottomNavigationBarElevation = 12;
 const double bottomNavigationBarBorderRadius = 24;
+const double buttonHeight = 48;
+const double buttonBorderRadius = 24;
+const double buttonElevation = 12;
+const double containerPadding = 24;
 const double floatingActionButtonWidth = 48;
 const double floatingActionButtonHeight = 48;
 const double floatingActionButtonElevation = 12;
 const double floatingActionButtonBorderRadius = 24;
+const double tabBarHeight = 48;
+const double tabBorderRadius = 24;
+const double tabBarIndicatorHeight = 48;
+const double tabBarIndicatorBorderRadius = 24;
+const double tabBarIndicatorElevation = 12;
+const double textFieldHeight = 48;
+const double textFieldBorderRadius = 24;
+const double textFieldBorderWidth = 1;
 
 const Color primaryButtonColor = Color(0xff375675);
 const Color secondaryButtonColor = Color(0xffF7EBB9);
 const Color customBorderedTextFieldBorderColor = Color(0xff375675);
 const Color tabColor = Color(0xffF7EBB9);
+const Color tabBarIndicatorColor = Color(0xffF7EBB9);
 const Color floatingActionButtonColor = Color(0xff375675);
+
+const int tabBarIndicatorAnimationDuration = 300;
 
 TextStyle titleTextStyle = TextStyle(
   fontSize: 33,
@@ -76,6 +83,14 @@ TextStyle tabTitleTextStyle = GoogleFonts.robotoCondensed(
         blurRadius: 6),
   ],
 );
+
+double tabBarIndicatorWidth(BuildContext context) {
+  return (MediaQuery.of(context).size.width / 2) + (containerPadding / 2);
+}
+
+double tabBarItemWidth(BuildContext context) {
+  return (MediaQuery.of(context).size.width - containerPadding) / 2;
+}
 
 double bottomNavigationBarItemWidth(BuildContext context) {
   return (((MediaQuery.of(context).size.width) - 3 * containerPadding) -

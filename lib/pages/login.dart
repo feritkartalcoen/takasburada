@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/pages/tabs/login/sign_in.dart';
-import 'package:takasburada/pages/tabs/login/sign_up.dart';
+import 'package:takasburada/providers/tab_bar_provider.dart';
+import 'package:takasburada/widgets/custom_tab_bar.dart';
+import 'package:takasburada/widgets/custom_tab_bar_views.dart';
 import 'package:takasburada/widgets/custom_title.dart';
 
-class Login extends StatefulWidget {
+class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TabBarProvider()),
+      ],
       child: SafeArea(
         child: Scaffold(
           body: Column(
@@ -27,26 +26,12 @@ class _LoginState extends State<Login> {
                   child: CustomTitle(),
                 ),
               ),
-              TabBar(
-                indicatorColor: tabColor,
-                labelStyle: tabTitleTextStyle,
-                labelColor: tabTitleTextStyle.color,
-                unselectedLabelStyle: tabTitleTextStyle,
-                unselectedLabelColor: tabTitleTextStyle.color,
-                indicatorPadding:
-                    EdgeInsets.symmetric(horizontal: containerPadding),
-                indicator: ShapeDecoration(
-                  color: tabColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(tabBorderRadius),
-                  ),
-                ),
-                tabs: tabs,
+              CustomTabBar(),
+              SizedBox(
+                height: containerPadding,
               ),
               Expanded(
-                child: TabBarView(
-                  children: tabBarViews,
-                ),
+                child: CustomTabBarViews(),
               ),
             ],
           ),
@@ -55,17 +40,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-
-List<Widget> tabs = [
-  Tab(
-    child: Text("sign up"),
-  ),
-  Tab(
-    child: Text("sign in"),
-  ),
-];
-
-List<Widget> tabBarViews = [
-  SignUp(),
-  SignIn(),
-];
