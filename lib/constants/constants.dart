@@ -12,6 +12,7 @@ const double bottomAppBarHeight = 96;
 const double bottomNavigationBarHeight = 48;
 const double bottomNavigationBarElevation = 12;
 const double bottomNavigationBarBorderRadius = 24;
+const double bottomNavigationBarIndicatorHeight = 48;
 const double buttonHeight = 48;
 const double buttonBorderRadius = 24;
 const double buttonElevation = 12;
@@ -34,9 +35,11 @@ const Color secondaryButtonColor = Color(0xffF7EBB9);
 const Color customBorderedTextFieldBorderColor = Color(0xff375675);
 const Color tabColor = Color(0xffF7EBB9);
 const Color tabBarIndicatorColor = Color(0xffF7EBB9);
+const Color bottomNavigationBarColor = Color(0xffF7EBB9);
 const Color floatingActionButtonColor = Color(0xff375675);
 
 const int tabBarIndicatorAnimationDuration = 300;
+const int bottomNavigationBarIndicatorAnimationDuration = 300;
 
 TextStyle titleTextStyle = TextStyle(
   fontSize: 33,
@@ -90,6 +93,12 @@ double tabBarIndicatorWidth(BuildContext context) {
 
 double tabBarItemWidth(BuildContext context) {
   return (MediaQuery.of(context).size.width - containerPadding) / 2;
+}
+
+double bottomNavigationBarIndicatorWidth(BuildContext context) {
+  return (((MediaQuery.of(context).size.width) - 3 * containerPadding) -
+          floatingActionButtonWidth) /
+      3;
 }
 
 double bottomNavigationBarItemWidth(BuildContext context) {

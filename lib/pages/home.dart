@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/pages/views/home/feed.dart';
+import 'package:takasburada/pages/views/home/messages.dart';
+import 'package:takasburada/pages/views/home/search.dart';
+import 'package:provider/provider.dart';
+import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
 import 'package:takasburada/widgets/custom_app_bar.dart';
 import 'package:takasburada/widgets/custom_bottom_app_bar.dart';
 import 'package:takasburada/widgets/custom_floating_action_button.dart';
@@ -26,7 +31,10 @@ class Home extends StatelessWidget {
                 CustomProfileButton(),
               ],
             ),
-            Expanded(child: SizedBox()),
+            Expanded(
+                child: bottomNavigationBarViews[context
+                    .watch<BottomNavigationBarProvider>()
+                    .bottomNavigationIndex]),
             CustomBottomAppBar(
               floatingActionButton: CustomFloatingActionButton(
                 image: "images/add.png",
@@ -39,3 +47,9 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+List<Widget> bottomNavigationBarViews = [
+  Feed(),
+  Search(),
+  Messages(),
+];
