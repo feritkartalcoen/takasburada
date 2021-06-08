@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
-  final String image;
+  final String icon;
   final VoidCallback onTap;
   const CustomFloatingActionButton({
     Key? key,
-    required this.image,
+    required this.icon,
     required this.onTap,
   }) : super(key: key);
 
@@ -22,7 +22,7 @@ class CustomFloatingActionButton extends StatelessWidget {
           width: floatingActionButtonWidth,
           height: floatingActionButtonHeight,
           alignment: Alignment.bottomCenter,
-          child: Image.asset(image),
+          child: Image.asset(icon),
         ),
         onTap: onTap,
       ),

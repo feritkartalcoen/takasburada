@@ -35,19 +35,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: icons
+                children: bottomNavigationBarItemIcons
                     .map(
-                      (icon) => Material(
+                      (bottomNavigationBarItemIcon) => Material(
                         color: Colors.transparent,
                         child: InkWell(
                           child: Container(
                             width: bottomNavigationBarItemWidth(context),
-                            child: Image.asset(icon),
+                            child: Image.asset(bottomNavigationBarItemIcon),
                           ),
                           onTap: () {
                             context
                                 .read<BottomNavigationBarProvider>()
-                                .setbottomNavigationIndex(icons.indexOf(icon));
+                                .setbottomNavigationIndex(
+                                    bottomNavigationBarItemIcons
+                                        .indexOf(bottomNavigationBarItemIcon));
                           },
                         ),
                       ),
@@ -62,7 +64,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 }
 
-List<String> icons = [
+List<String> bottomNavigationBarItemIcons = [
   "images/feed.png",
   "images/search.png",
   "images/messages.png",

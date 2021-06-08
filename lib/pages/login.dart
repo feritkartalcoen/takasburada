@@ -25,9 +25,6 @@ class Login extends StatelessWidget {
               ),
             ),
             CustomTabBar(),
-            SizedBox(
-              height: containerPadding,
-            ),
             Expanded(
               child: PageTransitionSwitcher(
                 transitionBuilder: (
@@ -39,6 +36,7 @@ class Login extends StatelessWidget {
                     animation: animation,
                     secondaryAnimation: secondaryAnimation,
                     child: child,
+                    fillColor: Colors.transparent,
                   );
                 },
                 child: tabBarViews[context.watch<TabBarProvider>().tabIndex],

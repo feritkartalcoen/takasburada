@@ -32,35 +32,39 @@ class CustomTabBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: tabTitles
+            children: tabBarItemTitles
                 .map(
-                  (tabTitle) => Material(
+                  (tabBarItemTitle) => Material(
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(tabTitle == tabTitles[0]
-                            ? tabBarIndicatorBorderRadius
-                            : 0),
-                        bottomRight: Radius.circular(tabTitle == tabTitles[0]
-                            ? tabBarIndicatorBorderRadius
-                            : 0),
-                        topLeft: Radius.circular(tabTitle == tabTitles[0]
-                            ? 0
-                            : tabBarIndicatorBorderRadius),
-                        bottomLeft: Radius.circular(tabTitle == tabTitles[0]
-                            ? 0
-                            : tabBarIndicatorBorderRadius),
+                        topRight: Radius.circular(
+                            tabBarItemTitle == tabBarItemTitles[0]
+                                ? tabBarIndicatorBorderRadius
+                                : 0),
+                        bottomRight: Radius.circular(
+                            tabBarItemTitle == tabBarItemTitles[0]
+                                ? tabBarIndicatorBorderRadius
+                                : 0),
+                        topLeft: Radius.circular(
+                            tabBarItemTitle == tabBarItemTitles[0]
+                                ? 0
+                                : tabBarIndicatorBorderRadius),
+                        bottomLeft: Radius.circular(
+                            tabBarItemTitle == tabBarItemTitles[0]
+                                ? 0
+                                : tabBarIndicatorBorderRadius),
                       ),
                       child: Container(
                         width: tabBarItemWidth(context),
                         alignment: Alignment.center,
                         child: Text(
-                          tabTitle,
+                          tabBarItemTitle,
                           style: tabTitleTextStyle,
                         ),
                       ),
                       onTap: () => context.read<TabBarProvider>().setTabIndex(
-                            tabTitles.indexOf(tabTitle),
+                            tabBarItemTitles.indexOf(tabBarItemTitle),
                           ),
                     ),
                   ),
@@ -73,7 +77,7 @@ class CustomTabBar extends StatelessWidget {
   }
 }
 
-List<String> tabTitles = [
+List<String> tabBarItemTitles = [
   "sign up",
   "sign in",
 ];

@@ -12,9 +12,7 @@ class SignIn extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: containerPadding,
-        ),
+        padding: EdgeInsets.all(containerPadding),
         children: [
           CustomBorderedTextField(
             hint: "username or email",

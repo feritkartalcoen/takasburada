@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/views/home/feed.dart';
@@ -32,12 +33,28 @@ class Home extends StatelessWidget {
               ],
             ),
             Expanded(
-                child: bottomNavigationBarViews[context
-                    .watch<BottomNavigationBarProvider>()
-                    .bottomNavigationIndex]),
+                child: PageTransitionSwitcher(
+              transitionBuilder: (
+                Widget child,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+              ) {
+                return FadeThroughTransition(
+                  animation: animation,
+                  secondaryAnimation: secondaryAnimation,
+                  child: child,
+                  fillColor: Colors.transparent,
+                );
+              },
+              child: bottomNavigationBarViews[context
+                  .watch<BottomNavigationBarProvider>()
+                  .bottomNavigationIndex],
+            )),
             CustomBottomAppBar(
               floatingActionButton: CustomFloatingActionButton(
-                image: "images/add.png",
+                icon: floatingActionButtonIcons[context
+                    .watch<BottomNavigationBarProvider>()
+                    .bottomNavigationIndex],
                 onTap: () {},
               ),
             ),
@@ -52,4 +69,10 @@ List<Widget> bottomNavigationBarViews = [
   Feed(),
   Search(),
   Messages(),
+];
+
+List<String> floatingActionButtonIcons = [
+  "images/add.png",
+  "images/check.png",
+  "images/clear.png",
 ];
