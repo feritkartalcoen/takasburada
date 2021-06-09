@@ -4,6 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 const String customTitleHeroTag = "customTitle";
 const String title = "takasburada";
 
+const double adTileElevation = 12;
+const double adTileBorderRadius = 24;
+const double adTileActionItemWidth = 60;
+const double adTileTradeIconWidth = 36;
+const double adTileTradeIconHeight = 36;
+const double adTileTradeIconBorderRadius = 18;
 const double appBarHeight = 84;
 const double appBarButtonHeight = 36;
 const double appBarButtonWidth = 36;
@@ -87,6 +93,16 @@ TextStyle tabTitleTextStyle = GoogleFonts.robotoCondensed(
   ],
 );
 
+TextStyle adProductNamesTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  color: Color(0xff707070),
+);
+
+TextStyle adPostDateTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 12,
+  color: Color(0xff707070),
+);
+
 double tabBarIndicatorWidth(BuildContext context) {
   return (MediaQuery.of(context).size.width / 2) + (containerPadding / 2);
 }
@@ -105,4 +121,16 @@ double bottomNavigationBarItemWidth(BuildContext context) {
   return (((MediaQuery.of(context).size.width) - 3 * containerPadding) -
           floatingActionButtonWidth) /
       3;
+}
+
+double adTileHeight(BuildContext context) {
+  return ((MediaQuery.of(context).size.width - 60 - 24) / 2) + 48;
+}
+
+double adTileActionItemHeight(BuildContext context) {
+  return (((MediaQuery.of(context).size.width - 60 - 24) / 2) + 48) / 3;
+}
+
+double adTileImageHeight(BuildContext context) {
+  return ((MediaQuery.of(context).size.width - 60 - 24) / 2);
 }

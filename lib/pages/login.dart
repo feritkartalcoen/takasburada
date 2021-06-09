@@ -26,26 +26,20 @@ class Login extends StatelessWidget {
             ),
             CustomTabBar(),
             Expanded(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  PageTransitionSwitcher(
-                    transitionBuilder: (
-                      Widget child,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation,
-                    ) {
-                      return FadeThroughTransition(
-                        animation: animation,
-                        secondaryAnimation: secondaryAnimation,
-                        child: child,
-                        fillColor: Colors.transparent,
-                      );
-                    },
-                    child:
-                        tabBarViews[context.watch<TabBarProvider>().tabIndex],
-                  ),
-                ],
+              child: PageTransitionSwitcher(
+                transitionBuilder: (
+                  Widget child,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                ) {
+                  return FadeThroughTransition(
+                    animation: animation,
+                    secondaryAnimation: secondaryAnimation,
+                    child: child,
+                    fillColor: Colors.transparent,
+                  );
+                },
+                child: tabBarViews[context.watch<TabBarProvider>().tabIndex],
               ),
             ),
           ],
