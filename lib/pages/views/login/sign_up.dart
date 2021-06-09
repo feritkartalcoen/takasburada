@@ -12,6 +12,7 @@ class SignUp extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: ListView(
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         padding: EdgeInsets.all(containerPadding),
         children: [
           Row(
@@ -65,7 +66,9 @@ class SignUp extends StatelessWidget {
           CustomBackgroundedButton(
             text: "sign up with google",
             image: "images/google.png",
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, "/home");
+            },
           ),
           SizedBox(
             height: containerPadding,
@@ -73,7 +76,9 @@ class SignUp extends StatelessWidget {
           CustomBackgroundedButton(
             text: "sign up with facebook",
             image: "images/facebook.png",
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, "/home");
+            },
           ),
         ],
       ),

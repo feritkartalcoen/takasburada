@@ -12,6 +12,7 @@ class SignIn extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: ListView(
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         padding: EdgeInsets.all(containerPadding),
         children: [
           CustomBorderedTextField(
@@ -29,7 +30,9 @@ class SignIn extends StatelessWidget {
           CustomColoredButton(
             text: "continue",
             isPrimary: true,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, "/home");
+            },
           ),
           SizedBox(
             height: containerPadding,
@@ -37,7 +40,9 @@ class SignIn extends StatelessWidget {
           CustomBackgroundedButton(
             text: "sign in with google",
             image: "images/google.png",
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, "/home");
+            },
           ),
           SizedBox(
             height: containerPadding,
@@ -45,7 +50,9 @@ class SignIn extends StatelessWidget {
           CustomBackgroundedButton(
             text: "sign in with facebook",
             image: "images/facebook.png",
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, "/home");
+            },
           ),
         ],
       ),
