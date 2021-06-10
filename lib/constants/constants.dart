@@ -22,6 +22,9 @@ const double bottomNavigationBarIndicatorHeight = 48;
 const double buttonHeight = 48;
 const double buttonBorderRadius = 24;
 const double buttonElevation = 12;
+const double chipHeight = 32;
+const double chipBorderRadius = 16;
+const double chipElevation = 12;
 const double containerPadding = 24;
 const double floatingActionButtonWidth = 48;
 const double floatingActionButtonHeight = 48;
@@ -101,6 +104,23 @@ TextStyle adProductNamesTextStyle = GoogleFonts.robotoCondensed(
 TextStyle adPostDateTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 12,
   color: Color(0xff707070),
+);
+
+TextStyle labelTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: Color(0xff707070),
+  shadows: [
+    Shadow(
+        color: Colors.black.withOpacity(0.16),
+        offset: Offset(0, 3),
+        blurRadius: 6),
+  ],
+);
+
+TextStyle chipTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  color: Color(0xff375675),
 );
 
 double tabBarIndicatorWidth(BuildContext context) {
