@@ -8,26 +8,23 @@ class Feed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: ListView.separated(
-        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-        itemCount: ads.length,
-        itemBuilder: (context, index) {
-          return CustomAdTile(
-            givenProductName: ads[index].givenProductName,
-            givenProductImage: ads[index].givenProductImage,
-            desiredProductName: ads[index].desiredProductName,
-            desiredProductImage: ads[index].desiredProductImage,
-            postDate: ads[index].postDate,
-          );
-        },
-        separatorBuilder: (context, index) {
-          return SizedBox(
-            height: containerPadding,
-          );
-        },
-      ),
+    return ListView.separated(
+      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      itemCount: ads.length,
+      itemBuilder: (context, index) {
+        return CustomAdTile(
+          givenProductName: ads[index].givenProductName,
+          givenProductImage: ads[index].givenProductImage,
+          desiredProductName: ads[index].desiredProductName,
+          desiredProductImage: ads[index].desiredProductImage,
+          postDate: ads[index].postDate,
+        );
+      },
+      separatorBuilder: (context, index) {
+        return SizedBox(
+          height: containerPadding,
+        );
+      },
     );
   }
 }

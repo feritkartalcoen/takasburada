@@ -30,6 +30,8 @@ const double floatingActionButtonWidth = 48;
 const double floatingActionButtonHeight = 48;
 const double floatingActionButtonElevation = 12;
 const double floatingActionButtonBorderRadius = 24;
+const double messageTileBorderRadius = 24;
+const double messageTileElevation = 12;
 const double tabBarHeight = 48;
 const double tabBorderRadius = 24;
 const double tabBarIndicatorHeight = 48;
@@ -121,6 +123,17 @@ TextStyle labelTextStyle = GoogleFonts.robotoCondensed(
 TextStyle chipTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 18,
   color: Color(0xff375675),
+);
+
+TextStyle messageTileSenderTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: Color(0xff707070),
+);
+
+TextStyle messageTileMessageTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 16,
+  color: Color(0xff707070),
 );
 
 double tabBarIndicatorWidth(BuildContext context) {
