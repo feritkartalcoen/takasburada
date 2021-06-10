@@ -55,7 +55,7 @@ class Home extends StatelessWidget {
             BottomAppBar(
               floatingActionButton: OpenContainer(
                 transitionType: ContainerTransitionType.fadeThrough,
-                openBuilder: (context, onTap) => Create(),
+                openBuilder: (context, onTap) => Create(onTap: onTap),
                 closedBuilder: (context, onTap) => FloatingActionButton(
                   icon: floatingActionButtonIcons[context
                       .watch<BottomNavigationBarProvider>()
