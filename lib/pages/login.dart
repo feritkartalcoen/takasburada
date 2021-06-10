@@ -1,12 +1,12 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide TabBar, Title;
 import 'package:provider/provider.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/views/login/sign_in.dart';
 import 'package:takasburada/pages/views/login/sign_up.dart';
 import 'package:takasburada/providers/tab_bar_provider.dart';
-import 'package:takasburada/widgets/custom_tab_bar.dart';
-import 'package:takasburada/widgets/custom_title.dart';
+import 'package:takasburada/widgets/tab_bar.dart';
+import 'package:takasburada/widgets/title.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -21,10 +21,10 @@ class Login extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: containerPadding),
               child: Hero(
                 tag: customTitleHeroTag,
-                child: CustomTitle(),
+                child: Title(),
               ),
             ),
-            CustomTabBar(),
+            TabBar(),
             Expanded(
               child: PageTransitionSwitcher(
                 transitionBuilder: (

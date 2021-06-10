@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
-  const CustomBottomNavigationBar({Key? key}) : super(key: key);
+class BottomNavigationBar extends StatelessWidget {
+  const BottomNavigationBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

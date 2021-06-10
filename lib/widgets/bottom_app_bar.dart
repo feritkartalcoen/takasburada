@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BottomNavigationBar;
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/widgets/custom_bottom_navigation_bar.dart';
+import 'package:takasburada/widgets/bottom_navigation_bar.dart';
 
-class CustomBottomAppBar extends StatelessWidget {
+class BottomAppBar extends StatelessWidget {
   final Widget floatingActionButton;
-  const CustomBottomAppBar({
+  const BottomAppBar({
     Key? key,
     required this.floatingActionButton,
   }) : super(key: key);
@@ -18,7 +18,7 @@ class CustomBottomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: CustomBottomNavigationBar(),
+            child: BottomNavigationBar(),
           ),
           SizedBox(
             width: containerPadding,

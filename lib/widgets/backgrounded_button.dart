@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomBackgroundedButton extends StatelessWidget {
+class BackgroundedButton extends StatelessWidget {
   final String text;
   final String image;
   final VoidCallback onTap;
 
-  const CustomBackgroundedButton({
+  const BackgroundedButton({
     Key? key,
     required this.text,
     required this.image,

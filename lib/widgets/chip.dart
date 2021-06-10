@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomChip extends StatelessWidget {
+class Chip extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
-  const CustomChip({
+  const Chip({
     Key? key,
     required this.text,
     required this.onTap,

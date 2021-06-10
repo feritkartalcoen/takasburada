@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Chip;
 import 'package:flutter/rendering.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/widgets/custom_bordered_text_field.dart';
-import 'package:takasburada/widgets/custom_chip.dart';
-import 'package:takasburada/widgets/custom_label.dart';
+import 'package:takasburada/widgets/bordered_text_field.dart';
+import 'package:takasburada/widgets/chip.dart';
+import 'package:takasburada/widgets/label.dart';
 
 class Search extends StatelessWidget {
   const Search({Key? key}) : super(key: key);
@@ -15,11 +15,11 @@ class Search extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomBorderedTextField(hint: "search"),
+          BorderedTextField(hint: "search"),
           SizedBox(
             height: containerPadding,
           ),
-          CustomLabel(label: "most searched"),
+          Label(label: "most searched"),
           SizedBox(
             height: containerPadding,
           ),
@@ -47,8 +47,8 @@ class Search extends StatelessWidget {
                           )
                           .toList()
                           .map(
-                            (mostSearchedProduct) => CustomChip(
-                                text: mostSearchedProduct, onTap: () {}),
+                            (mostSearchedProduct) =>
+                                Chip(text: mostSearchedProduct, onTap: () {}),
                           )
                           .toList(),
                     ),
@@ -70,8 +70,8 @@ class Search extends StatelessWidget {
                           )
                           .toList()
                           .map(
-                            (mostSearchedProduct) => CustomChip(
-                                text: mostSearchedProduct, onTap: () {}),
+                            (mostSearchedProduct) =>
+                                Chip(text: mostSearchedProduct, onTap: () {}),
                           )
                           .toList(),
                     ),

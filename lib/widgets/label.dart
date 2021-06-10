@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomLabel extends StatelessWidget {
+class Label extends StatelessWidget {
   final String label;
-  const CustomLabel({
+  const Label({
     Key? key,
     required this.label,
   }) : super(key: key);

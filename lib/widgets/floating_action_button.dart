@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomFloatingActionButton extends StatelessWidget {
+class FloatingActionButton extends StatelessWidget {
   final String icon;
-  final VoidCallback onTap;
-  const CustomFloatingActionButton({
+  final VoidCallback? onTap;
+  const FloatingActionButton({
     Key? key,
     required this.icon,
-    required this.onTap,
+    this.onTap,
   }) : super(key: key);
 
   @override

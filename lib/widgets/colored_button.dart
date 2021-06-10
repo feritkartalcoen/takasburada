@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomColoredButton extends StatelessWidget {
+class ColoredButton extends StatelessWidget {
   final String text;
   final bool isPrimary;
   final VoidCallback onTap;
-  const CustomColoredButton({
+  const ColoredButton({
     Key? key,
     required this.text,
     required this.onTap,

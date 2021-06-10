@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/widgets/custom_backgrounded_button.dart';
-import 'package:takasburada/widgets/custom_bordered_text_field.dart';
-import 'package:takasburada/widgets/custom_colored_button.dart';
+import 'package:takasburada/widgets/backgrounded_button.dart';
+import 'package:takasburada/widgets/bordered_text_field.dart';
+import 'package:takasburada/widgets/colored_button.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -15,19 +15,19 @@ class SignIn extends StatelessWidget {
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         padding: EdgeInsets.all(containerPadding),
         children: [
-          CustomBorderedTextField(
+          BorderedTextField(
             hint: "username or email",
           ),
           SizedBox(
             height: containerPadding,
           ),
-          CustomBorderedTextField(
+          BorderedTextField(
             hint: "password",
           ),
           SizedBox(
             height: containerPadding,
           ),
-          CustomColoredButton(
+          ColoredButton(
             text: "continue",
             isPrimary: true,
             onTap: () {
@@ -37,7 +37,7 @@ class SignIn extends StatelessWidget {
           SizedBox(
             height: containerPadding,
           ),
-          CustomBackgroundedButton(
+          BackgroundedButton(
             text: "sign in with google",
             image: "images/google.png",
             onTap: () {
@@ -47,7 +47,7 @@ class SignIn extends StatelessWidget {
           SizedBox(
             height: containerPadding,
           ),
-          CustomBackgroundedButton(
+          BackgroundedButton(
             text: "sign in with facebook",
             image: "images/facebook.png",
             onTap: () {

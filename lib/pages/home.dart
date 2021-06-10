@@ -1,16 +1,18 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    hide AppBar, BottomAppBar, FloatingActionButton, Title;
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/pages/create.dart';
 import 'package:takasburada/pages/views/home/feed.dart';
 import 'package:takasburada/pages/views/home/messages.dart';
 import 'package:takasburada/pages/views/home/search.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' hide Create;
 import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
-import 'package:takasburada/widgets/custom_app_bar.dart';
-import 'package:takasburada/widgets/custom_bottom_app_bar.dart';
-import 'package:takasburada/widgets/custom_floating_action_button.dart';
-import 'package:takasburada/widgets/custom_profile_button.dart';
-import 'package:takasburada/widgets/custom_title.dart';
+import 'package:takasburada/widgets/app_bar.dart';
+import 'package:takasburada/widgets/bottom_app_bar.dart';
+import 'package:takasburada/widgets/floating_action_button.dart';
+import 'package:takasburada/widgets/profile_button.dart';
+import 'package:takasburada/widgets/title.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,14 +24,14 @@ class Home extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomAppBar(
+            AppBar(
               children: [
                 Hero(
                   tag: customTitleHeroTag,
-                  child: CustomTitle(),
+                  child: Title(),
                 ),
                 Expanded(child: SizedBox()),
-                CustomProfileButton(),
+                ProfileButton(),
               ],
             ),
             Expanded(
@@ -50,12 +52,22 @@ class Home extends StatelessWidget {
                   .watch<BottomNavigationBarProvider>()
                   .bottomNavigationIndex],
             )),
-            CustomBottomAppBar(
-              floatingActionButton: CustomFloatingActionButton(
-                icon: floatingActionButtonIcons[context
-                    .watch<BottomNavigationBarProvider>()
-                    .bottomNavigationIndex],
-                onTap: () {},
+            BottomAppBar(
+              floatingActionButton: OpenContainer(
+                transitionType: ContainerTransitionType.fadeThrough,
+                openBuilder: (context, onTap) => Create(),
+                closedBuilder: (context, onTap) => FloatingActionButton(
+                  icon: floatingActionButtonIcons[context
+                      .watch<BottomNavigationBarProvider>()
+                      .bottomNavigationIndex],
+                  onTap: onTap,
+                ),
+                closedShape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(floatingActionButtonBorderRadius),
+                ),
+                closedElevation: floatingActionButtonElevation,
+                closedColor: floatingActionButtonColor,
               ),
             ),
           ],

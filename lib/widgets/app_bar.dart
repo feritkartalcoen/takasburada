@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomAppBar extends StatelessWidget {
+class AppBar extends StatelessWidget {
   final List<Widget> children;
-  const CustomAppBar({
+  const AppBar({
     Key? key,
     required this.children,
   }) : super(key: key);

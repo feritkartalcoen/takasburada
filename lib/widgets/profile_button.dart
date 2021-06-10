@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomProfileButton extends StatelessWidget {
-  const CustomProfileButton({Key? key}) : super(key: key);
+class ProfileButton extends StatelessWidget {
+  const ProfileButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

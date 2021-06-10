@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/widgets/custom_ad_tile.dart';
+import 'package:takasburada/widgets/ad_tile.dart';
 
 class Feed extends StatelessWidget {
   const Feed({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class Feed extends StatelessWidget {
       physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       itemCount: ads.length,
       itemBuilder: (context, index) {
-        return CustomAdTile(
+        return AdTile(
           givenProductName: ads[index].givenProductName,
           givenProductImage: ads[index].givenProductImage,
           desiredProductName: ads[index].desiredProductName,

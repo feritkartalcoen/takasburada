@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:takasburada/providers/tab_bar_provider.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomTabBar extends StatelessWidget {
-  const CustomTabBar({Key? key}) : super(key: key);
+class TabBar extends StatelessWidget {
+  const TabBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

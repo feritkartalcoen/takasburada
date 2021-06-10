@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomMessageTile extends StatelessWidget {
+class MessageTile extends StatelessWidget {
   final String image;
   final String sender;
   final String message;
   final VoidCallback onTap;
-  const CustomMessageTile({
+  const MessageTile({
     Key? key,
     required this.image,
     required this.sender,

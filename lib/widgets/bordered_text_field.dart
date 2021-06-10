@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomBorderedTextField extends StatelessWidget {
+class BorderedTextField extends StatelessWidget {
   final String hint;
-  const CustomBorderedTextField({
+  const BorderedTextField({
     Key? key,
     required this.hint,
   }) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/classes/message.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/widgets/custom_message_tile.dart';
+import 'package:takasburada/widgets/message_tile.dart';
 
 class Messages extends StatelessWidget {
   const Messages({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class Messages extends StatelessWidget {
       padding: EdgeInsets.only(right: containerPadding),
       physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       itemCount: messages.length,
-      itemBuilder: (context, index) => CustomMessageTile(
+      itemBuilder: (context, index) => MessageTile(
         image: messages[index].image,
         sender: messages[index].sender,
         message: messages[index].message,

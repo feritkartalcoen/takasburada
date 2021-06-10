@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class CustomAdTile extends StatelessWidget {
+class AdTile extends StatelessWidget {
   final String givenProductName;
   final String givenProductImage;
   final String desiredProductName;
   final String desiredProductImage;
   final DateTime postDate;
-  const CustomAdTile({
+  const AdTile({
     Key? key,
     required this.givenProductName,
     required this.givenProductImage,
