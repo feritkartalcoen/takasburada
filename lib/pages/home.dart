@@ -3,6 +3,7 @@ import 'package:flutter/material.dart'
     hide AppBar, BottomAppBar, FloatingActionButton, Title;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/create.dart';
+import 'package:takasburada/pages/result.dart';
 import 'package:takasburada/pages/views/home/feed.dart';
 import 'package:takasburada/pages/views/home/messages.dart';
 import 'package:takasburada/pages/views/home/search.dart';
@@ -53,22 +54,38 @@ class Home extends StatelessWidget {
                   .bottomNavigationIndex],
             )),
             BottomAppBar(
-              floatingActionButton: OpenContainer(
-                transitionType: ContainerTransitionType.fadeThrough,
-                openBuilder: (context, onTap) => Create(onTap: onTap),
-                closedBuilder: (context, onTap) => FloatingActionButton(
-                  icon: floatingActionButtonIcons[context
-                      .watch<BottomNavigationBarProvider>()
-                      .bottomNavigationIndex],
-                  onTap: onTap,
-                ),
-                closedShape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(floatingActionButtonBorderRadius),
-                ),
-                closedElevation: floatingActionButtonElevation,
-                closedColor: floatingActionButtonColor,
-              ),
+              floatingActionButton: Provider.of<BottomNavigationBarProvider>(
+                              context)
+                          .bottomNavigationIndex !=
+                      2
+                  ? OpenContainer(
+                      transitionType: ContainerTransitionType.fadeThrough,
+                      openBuilder: (context, onTap) {
+                        return Provider.of<BottomNavigationBarProvider>(context)
+                                    .bottomNavigationIndex ==
+                                0
+                            ? Create(onTap: onTap)
+                            : Result(onTap: onTap);
+                      },
+                      closedBuilder: (context, onTap) => FloatingActionButton(
+                        icon: floatingActionButtonIcons[context
+                            .watch<BottomNavigationBarProvider>()
+                            .bottomNavigationIndex],
+                        onTap: onTap,
+                      ),
+                      closedShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            floatingActionButtonBorderRadius),
+                      ),
+                      closedElevation: floatingActionButtonElevation,
+                      closedColor: floatingActionButtonColor,
+                    )
+                  : FloatingActionButton(
+                      icon: floatingActionButtonIcons[context
+                          .watch<BottomNavigationBarProvider>()
+                          .bottomNavigationIndex],
+                      onTap: () {},
+                    ),
             ),
           ],
         ),

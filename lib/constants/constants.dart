@@ -45,6 +45,8 @@ const double tabBorderRadius = 24;
 const double tabBarIndicatorHeight = 48;
 const double tabBarIndicatorBorderRadius = 24;
 const double tabBarIndicatorElevation = 12;
+const double textButtonHeight = 36;
+const double textButtonBorderRadius = 18;
 const double textFieldHeight = 48;
 const double textFieldBorderRadius = 24;
 const double textFieldBorderWidth = 1;
@@ -142,6 +144,18 @@ TextStyle messageTileSenderTextStyle = GoogleFonts.robotoCondensed(
 TextStyle messageTileMessageTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 16,
   color: Color(0xff707070),
+);
+
+TextStyle textButtonTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: Color(0xff707070),
+  shadows: [
+    Shadow(
+        color: Colors.black.withOpacity(0.16),
+        offset: Offset(0, 3),
+        blurRadius: 6),
+  ],
 );
 
 double tabBarIndicatorWidth(BuildContext context) {
