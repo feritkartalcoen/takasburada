@@ -21,76 +21,74 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            AppBar(
-              children: [
-                Hero(
-                  tag: customTitleHeroTag,
-                  child: Title(),
-                ),
-                Expanded(child: SizedBox()),
-                ProfileButton(),
-              ],
-            ),
-            Expanded(
-                child: PageTransitionSwitcher(
-              transitionBuilder: (
-                Widget child,
-                Animation<double> animation,
-                Animation<double> secondaryAnimation,
-              ) {
-                return FadeThroughTransition(
-                  animation: animation,
-                  secondaryAnimation: secondaryAnimation,
-                  child: child,
-                  fillColor: Colors.transparent,
-                );
-              },
-              child: bottomNavigationBarViews[context
-                  .watch<BottomNavigationBarProvider>()
-                  .bottomNavigationIndex],
-            )),
-            BottomAppBar(
-              child: BottomNavigationBar(),
-              floatingActionButton: Provider.of<BottomNavigationBarProvider>(
-                              context)
-                          .bottomNavigationIndex !=
-                      2
-                  ? OpenContainer(
-                      transitionType: ContainerTransitionType.fadeThrough,
-                      openBuilder: (context, onTap) {
-                        return Provider.of<BottomNavigationBarProvider>(context)
-                                    .bottomNavigationIndex ==
-                                0
-                            ? Create(onTap: onTap)
-                            : Result(onTap: onTap);
-                      },
-                      closedBuilder: (context, onTap) => FloatingActionButton(
-                        icon: floatingActionButtonIcons[context
-                            .watch<BottomNavigationBarProvider>()
-                            .bottomNavigationIndex],
-                        onTap: onTap,
-                      ),
-                      closedShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            floatingActionButtonBorderRadius),
-                      ),
-                      closedElevation: elevation,
-                      closedColor: floatingActionButtonColor,
-                    )
-                  : FloatingActionButton(
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          AppBar(
+            children: [
+              Hero(
+                tag: customTitleHeroTag,
+                child: Title(),
+              ),
+              Expanded(child: SizedBox()),
+              ProfileButton(),
+            ],
+          ),
+          Expanded(
+              child: PageTransitionSwitcher(
+            transitionBuilder: (
+              Widget child,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) {
+              return FadeThroughTransition(
+                animation: animation,
+                secondaryAnimation: secondaryAnimation,
+                child: child,
+                fillColor: Colors.transparent,
+              );
+            },
+            child: bottomNavigationBarViews[context
+                .watch<BottomNavigationBarProvider>()
+                .bottomNavigationIndex],
+          )),
+          BottomAppBar(
+            child: BottomNavigationBar(),
+            floatingActionButton: Provider.of<BottomNavigationBarProvider>(
+                            context)
+                        .bottomNavigationIndex !=
+                    2
+                ? OpenContainer(
+                    transitionType: ContainerTransitionType.fadeThrough,
+                    openBuilder: (context, onTap) {
+                      return Provider.of<BottomNavigationBarProvider>(context)
+                                  .bottomNavigationIndex ==
+                              0
+                          ? Create(onTap: onTap)
+                          : Result(onTap: onTap);
+                    },
+                    closedBuilder: (context, onTap) => FloatingActionButton(
                       icon: floatingActionButtonIcons[context
                           .watch<BottomNavigationBarProvider>()
                           .bottomNavigationIndex],
-                      onTap: () {},
+                      onTap: onTap,
                     ),
-            ),
-          ],
-        ),
+                    closedShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          floatingActionButtonBorderRadius),
+                    ),
+                    closedElevation: elevation,
+                    closedColor: floatingActionButtonColor,
+                  )
+                : FloatingActionButton(
+                    icon: floatingActionButtonIcons[context
+                        .watch<BottomNavigationBarProvider>()
+                        .bottomNavigationIndex],
+                    onTap: () {},
+                  ),
+          ),
+        ],
       ),
     );
   }

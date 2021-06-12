@@ -16,62 +16,60 @@ class Create extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppBar(
-              withTitle: false,
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppBar(
+            withTitle: false,
+            children: [
+              IconButton(
+                icon: "images/back.png",
+                onTap: onTap,
+              ),
+              Expanded(child: SizedBox()),
+            ],
+          ),
+          Expanded(
+            child: ListView(
+              physics: BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              padding: EdgeInsets.symmetric(horizontal: containerPadding),
               children: [
-                IconButton(
-                  icon: "images/back.png",
-                  onTap: onTap,
+                Label(label: "what are you giving"),
+                SizedBox(height: containerPadding),
+                BorderedTextField(hint: "type here"),
+                SizedBox(height: containerPadding),
+                ColoredButton(
+                    text: "add product photo", onTap: () {}, isPrimary: true),
+                SizedBox(height: containerPadding),
+                Label(label: "what do you want"),
+                SizedBox(height: containerPadding),
+                BorderedTextField(hint: "type here"),
+                SizedBox(height: containerPadding),
+                ColoredButton(
+                    text: "add product photo", onTap: () {}, isPrimary: true),
+                SizedBox(height: containerPadding),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ImageTile(image: "images/product1.png"),
+                    ),
+                    SizedBox(width: containerPadding),
+                    Expanded(
+                      child: ImageTile(image: "images/product2.png"),
+                    ),
+                  ],
                 ),
+                SizedBox(height: containerPadding),
+                Label(label: "information"),
+                SizedBox(height: containerPadding),
+                ColoredButton(text: "complete", onTap: () {}, isPrimary: false),
+                SizedBox(height: containerPadding),
               ],
             ),
-            Expanded(
-              child: ListView(
-                physics: BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                padding: EdgeInsets.symmetric(horizontal: containerPadding),
-                children: [
-                  Label(label: "what are you giving"),
-                  SizedBox(height: containerPadding),
-                  BorderedTextField(hint: "type here"),
-                  SizedBox(height: containerPadding),
-                  ColoredButton(
-                      text: "add product photo", onTap: () {}, isPrimary: true),
-                  SizedBox(height: containerPadding),
-                  Label(label: "what do you want"),
-                  SizedBox(height: containerPadding),
-                  BorderedTextField(hint: "type here"),
-                  SizedBox(height: containerPadding),
-                  ColoredButton(
-                      text: "add product photo", onTap: () {}, isPrimary: true),
-                  SizedBox(height: containerPadding),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ImageTile(image: "images/product1.png"),
-                      ),
-                      SizedBox(width: containerPadding),
-                      Expanded(
-                        child: ImageTile(image: "images/product2.png"),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: containerPadding),
-                  Label(label: "information"),
-                  SizedBox(height: containerPadding),
-                  ColoredButton(
-                      text: "complete", onTap: () {}, isPrimary: false),
-                  SizedBox(height: containerPadding),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

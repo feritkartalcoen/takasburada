@@ -15,41 +15,40 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            AppBar(
-              withTitle: false,
-              children: [
-                IconButton(
-                  icon: "images/back.png",
-                  onTap: onTap,
-                ),
-                Expanded(child: SizedBox()),
-                TextButton(text: "filter", onTap: () {}),
-                TextButton(text: "sort", onTap: () {}),
-              ],
-            ),
-            Expanded(
-              child: ListView.separated(
-                physics: BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                itemCount: ads.length,
-                itemBuilder: (context, index) {
-                  return AdTile(
-                    ad: ads[index],
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: containerPadding,
-                  );
-                },
+    return Scaffold(
+      body: Column(
+        children: [
+          AppBar(
+            withTitle: false,
+            children: [
+              IconButton(
+                icon: "images/back.png",
+                onTap: onTap,
               ),
+              Expanded(child: SizedBox()),
+              TextButton(text: "filter", onTap: () {}),
+              TextButton(text: "sort", onTap: () {}),
+            ],
+          ),
+          Expanded(
+            child: ListView.separated(
+              physics: BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              padding: EdgeInsets.zero,
+              itemCount: ads.length,
+              itemBuilder: (context, index) {
+                return AdTile(
+                  ad: ads[index],
+                );
+              },
+              separatorBuilder: (context, index) {
+                return SizedBox(
+                  height: containerPadding,
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

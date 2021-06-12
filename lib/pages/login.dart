@@ -1,10 +1,11 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart' hide TabBar, Title;
+import 'package:flutter/material.dart' hide TabBar, Title, AppBar;
 import 'package:provider/provider.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/views/login/sign_in.dart';
 import 'package:takasburada/pages/views/login/sign_up.dart';
 import 'package:takasburada/providers/tab_bar_provider.dart';
+import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/tab_bar.dart';
 import 'package:takasburada/widgets/title.dart';
 
@@ -17,12 +18,13 @@ class Login extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: containerPadding),
-              child: Hero(
-                tag: customTitleHeroTag,
-                child: Title(),
-              ),
+            AppBar(
+              children: [
+                Hero(
+                  tag: customTitleHeroTag,
+                  child: Title(),
+                ),
+              ],
             ),
             TabBar(),
             Expanded(

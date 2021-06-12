@@ -23,8 +23,8 @@ class AppBar extends StatelessWidget {
       height: withTitle
           ? appBarHeight + MediaQuery.of(context).padding.top
           : appBarHeight + MediaQuery.of(context).padding.top + 12,
-      alignment: Alignment.centerLeft,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: children,
       ),
     );

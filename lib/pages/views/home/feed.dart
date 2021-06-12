@@ -10,6 +10,7 @@ class Feed extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      padding: EdgeInsets.zero,
       itemCount: ads.length,
       itemBuilder: (context, index) {
         return AdTile(
