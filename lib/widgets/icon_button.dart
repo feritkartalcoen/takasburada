@@ -15,7 +15,7 @@ class IconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: withElevation ? iconButtonElevation : 0,
+      elevation: withElevation ? elevation : 0,
       borderRadius: BorderRadius.circular(iconButtonBorderRadius),
       child: InkWell(
         borderRadius: BorderRadius.circular(iconButtonBorderRadius),

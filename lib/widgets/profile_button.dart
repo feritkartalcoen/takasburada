@@ -7,7 +7,7 @@ class ProfileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: buttonElevation,
+      elevation: elevation,
       borderRadius: BorderRadius.circular(
         appBarButtonBorderRadius,
       ),

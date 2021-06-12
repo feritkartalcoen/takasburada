@@ -19,7 +19,7 @@ class BackgroundedButton extends StatelessWidget {
       width: double.infinity,
       height: buttonHeight,
       child: Material(
-        elevation: buttonElevation,
+        elevation: elevation,
         borderRadius: BorderRadius.circular(
           buttonBorderRadius,
         ),

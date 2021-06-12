@@ -79,7 +79,7 @@ class Home extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                             floatingActionButtonBorderRadius),
                       ),
-                      closedElevation: floatingActionButtonElevation,
+                      closedElevation: elevation,
                       closedColor: floatingActionButtonColor,
                     )
                   : FloatingActionButton(

@@ -9,7 +9,7 @@ class BottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: bottomNavigationBarElevation,
+      elevation: elevation,
       borderRadius: BorderRadius.circular(bottomNavigationBarBorderRadius),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(bottomNavigationBarBorderRadius),

@@ -28,7 +28,7 @@ class AdTile extends StatelessWidget {
         children: [
           Expanded(
             child: Material(
-              elevation: adTileElevation,
+              elevation: elevation,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(adTileBorderRadius),
                 bottomRight: Radius.circular(adTileBorderRadius),
@@ -61,7 +61,7 @@ class AdTile extends StatelessWidget {
                               height: adTileImageHeight(context),
                               alignment: Alignment.center,
                               child: Material(
-                                elevation: adTileElevation,
+                                elevation: elevation,
                                 color: Color(0xffF7EBB9),
                                 borderRadius: BorderRadius.circular(
                                     adTileTradeIconBorderRadius),
@@ -121,7 +121,7 @@ class AdTile extends StatelessWidget {
             width: containerPadding,
           ),
           Material(
-            elevation: adTileElevation,
+            elevation: elevation,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(adTileBorderRadius),
               bottomLeft: Radius.circular(adTileBorderRadius),
@@ -132,7 +132,7 @@ class AdTile extends StatelessWidget {
                 bottomLeft: Radius.circular(adTileBorderRadius),
               ),
               child: Material(
-                elevation: adTileElevation,
+                elevation: elevation,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(adTileBorderRadius),
                   bottomLeft: Radius.circular(adTileBorderRadius),

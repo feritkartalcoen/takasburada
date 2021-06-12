@@ -18,7 +18,7 @@ class TabBar extends StatelessWidget {
               ? -containerPadding
               : tabBarIndicatorWidth(context),
           child: Material(
-            elevation: tabBarIndicatorElevation,
+            elevation: elevation,
             color: tabBarIndicatorColor,
             borderRadius: BorderRadius.circular(tabBarIndicatorBorderRadius),
             child: SizedBox(

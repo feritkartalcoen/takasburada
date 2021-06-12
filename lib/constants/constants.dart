@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 const String customTitleHeroTag = "customTitle";
 const String title = "takasburada";
 
-const double adTileElevation = 12;
 const double adTileBorderRadius = 24;
 const double adTileActionItemWidth = 60;
 const double adTileTradeIconWidth = 36;
@@ -16,35 +15,30 @@ const double appBarButtonWidth = 36;
 const double appBarButtonBorderRadius = 18;
 const double bottomAppBarHeight = 96;
 const double bottomNavigationBarHeight = 48;
-const double bottomNavigationBarElevation = 12;
 const double bottomNavigationBarBorderRadius = 24;
 const double bottomNavigationBarIndicatorHeight = 48;
 const double buttonHeight = 48;
 const double buttonBorderRadius = 24;
-const double buttonElevation = 12;
+const double chatTileHeight = 36;
+const double chatTileBorderRadius = 18;
 const double chipHeight = 32;
 const double chipBorderRadius = 16;
-const double chipElevation = 12;
 const double containerPadding = 24;
+const double elevation = 12;
 const double floatingActionButtonWidth = 48;
 const double floatingActionButtonHeight = 48;
-const double floatingActionButtonElevation = 12;
 const double floatingActionButtonBorderRadius = 24;
 const double iconButtonWidth = 48;
 const double iconButtonHeight = 48;
 const double iconButtonIconWidth = 24;
 const double iconButtonIconHeight = 24;
-const double iconButtonElevation = 12;
 const double iconButtonBorderRadius = 24;
 const double imageBorderRadius = 24;
-const double imageElevation = 12;
 const double messageTileBorderRadius = 24;
-const double messageTileElevation = 12;
 const double tabBarHeight = 48;
 const double tabBorderRadius = 24;
 const double tabBarIndicatorHeight = 48;
 const double tabBarIndicatorBorderRadius = 24;
-const double tabBarIndicatorElevation = 12;
 const double textButtonHeight = 36;
 const double textButtonBorderRadius = 18;
 const double textFieldHeight = 48;
@@ -92,7 +86,6 @@ TextStyle secondaryButtonTextStyle = GoogleFonts.robotoCondensed(
 
 TextStyle textFieldHintTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 18,
-  fontWeight: FontWeight.normal,
   color: Color(0xff707070),
 );
 
@@ -156,6 +149,11 @@ TextStyle textButtonTextStyle = GoogleFonts.robotoCondensed(
         offset: Offset(0, 3),
         blurRadius: 6),
   ],
+);
+
+TextStyle chatTileTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  color: Color(0xff707070),
 );
 
 double tabBarIndicatorWidth(BuildContext context) {

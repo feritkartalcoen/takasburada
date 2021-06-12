@@ -22,7 +22,7 @@ class Messages extends StatelessWidget {
           message: messages[index].message,
           onTap: onTap,
         ),
-        closedElevation: messageTileElevation,
+        closedElevation: elevation,
         closedShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(messageTileBorderRadius),

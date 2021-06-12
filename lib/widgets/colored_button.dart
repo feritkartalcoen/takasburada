@@ -16,7 +16,7 @@ class ColoredButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: isPrimary ? primaryButtonColor : secondaryButtonColor,
-      elevation: buttonElevation,
+      elevation: elevation,
       borderRadius: BorderRadius.all(
         Radius.circular(buttonBorderRadius),
       ),

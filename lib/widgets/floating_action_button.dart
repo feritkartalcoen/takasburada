@@ -24,7 +24,7 @@ class FloatingActionButton extends StatelessWidget {
                   .bottomNavigationIndex !=
               2
           ? 0
-          : floatingActionButtonElevation,
+          : elevation,
       borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
       child: InkWell(
         borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
