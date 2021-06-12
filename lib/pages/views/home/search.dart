@@ -1,6 +1,7 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart' hide Chip;
-import 'package:flutter/rendering.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/pages/result.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/chip.dart';
 import 'package:takasburada/widgets/label.dart';
@@ -47,8 +48,17 @@ class Search extends StatelessWidget {
                           )
                           .toList()
                           .map(
-                            (mostSearchedProduct) =>
-                                Chip(text: mostSearchedProduct, onTap: () {}),
+                            (mostSearchedProduct) => OpenContainer(
+                              openBuilder: (context, onTap) =>
+                                  Result(onTap: onTap),
+                              closedBuilder: (context, onTap) =>
+                                  Chip(text: mostSearchedProduct, onTap: onTap),
+                              closedElevation: elevation,
+                              closedShape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(chipBorderRadius),
+                              ),
+                            ),
                           )
                           .toList(),
                     ),
@@ -70,8 +80,17 @@ class Search extends StatelessWidget {
                           )
                           .toList()
                           .map(
-                            (mostSearchedProduct) =>
-                                Chip(text: mostSearchedProduct, onTap: () {}),
+                            (mostSearchedProduct) => OpenContainer(
+                              openBuilder: (context, onTap) =>
+                                  Result(onTap: onTap),
+                              closedBuilder: (context, onTap) =>
+                                  Chip(text: mostSearchedProduct, onTap: onTap),
+                              closedElevation: elevation,
+                              closedShape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(chipBorderRadius),
+                              ),
+                            ),
                           )
                           .toList(),
                     ),

@@ -20,60 +20,59 @@ class Chat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            AppBar(
-              withTitle: false,
-              children: [
-                IconButton(
-                  icon: "images/back.png",
-                  onTap: onTap,
-                ),
-                SizedBox(width: containerPadding),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(messages[index].sender,
-                        style: messageTileSenderTextStyle),
-                    Text("online", style: messageTileMessageTextStyle),
-                  ],
-                ),
-                Expanded(child: SizedBox()),
-                IconButton(
-                  icon: "images/media.png",
-                  withElevation: false,
-                  onTap: () {},
-                ),
-                IconButton(
-                  icon: "images/more.png",
-                  withElevation: false,
-                  onTap: () {},
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView(
-                physics: BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
+    return Scaffold(
+      body: Column(
+        children: [
+          AppBar(
+            withTitle: false,
+            children: [
+              IconButton(
+                icon: "images/back.png",
+                onTap: onTap,
+              ),
+              SizedBox(width: containerPadding),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ChatTile(text: messages[index].message),
+                  Text(messages[index].sender,
+                      style: messageTileSenderTextStyle),
+                  Text("online", style: messageTileMessageTextStyle),
                 ],
               ),
-            ),
-            BottomAppBar(
-              child: TextField(
-                hint: "type here",
-              ),
-              floatingActionButton: FloatingActionButton(
-                icon: "images/send.png",
+              Expanded(child: SizedBox()),
+              IconButton(
+                icon: "images/media.png",
+                withElevation: false,
                 onTap: () {},
               ),
+              IconButton(
+                icon: "images/more.png",
+                withElevation: false,
+                onTap: () {},
+              ),
+            ],
+          ),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(0),
+              physics: BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              children: [
+                ChatTile(text: messages[index].message),
+              ],
             ),
-          ],
-        ),
+          ),
+          BottomAppBar(
+            child: TextField(
+              hint: "type here",
+            ),
+            floatingActionButton: FloatingActionButton(
+              icon: "images/send.png",
+              onTap: () {},
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart' hide BottomNavigationBar;
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/widgets/bottom_navigation_bar.dart';
 
 class BottomAppBar extends StatelessWidget {
   final Widget child;

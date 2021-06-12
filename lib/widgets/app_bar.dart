@@ -13,9 +13,16 @@ class AppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(containerPadding),
+      padding: EdgeInsets.fromLTRB(
+        containerPadding,
+        containerPadding + MediaQuery.of(context).padding.top,
+        containerPadding,
+        containerPadding,
+      ),
       width: double.infinity,
-      height: withTitle ? appBarHeight : appBarHeight + 12,
+      height: withTitle
+          ? appBarHeight + MediaQuery.of(context).padding.top
+          : appBarHeight + MediaQuery.of(context).padding.top + 12,
       alignment: Alignment.centerLeft,
       child: Row(
         children: children,

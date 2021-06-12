@@ -13,8 +13,9 @@ class Chip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: elevation,
-      borderRadius: BorderRadius.circular(chipBorderRadius),
+      color: Colors.transparent,
+      /* elevation: elevation,
+      borderRadius: BorderRadius.circular(chipBorderRadius), */
       child: InkWell(
         borderRadius: BorderRadius.circular(chipBorderRadius),
         child: Container(
