@@ -21,7 +21,7 @@
 #.vscode/
 
 # VSCode related
-.takasburada.code-workspace
+takasburada.code-workspace
 
 # Flutter/Dart/Pub related
 **/doc/api/
