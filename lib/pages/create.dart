@@ -4,6 +4,7 @@ import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/colored_button.dart';
 import 'package:takasburada/widgets/icon_button.dart';
+import 'package:takasburada/widgets/image_tile.dart';
 import 'package:takasburada/widgets/label.dart';
 
 class Create extends StatelessWidget {
@@ -51,35 +52,11 @@ class Create extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Material(
-                          elevation: imageElevation,
-                          borderRadius:
-                              BorderRadius.circular(imageBorderRadius),
-                          child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.circular(imageBorderRadius),
-                            child: Image.asset(
-                              "images/product1.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                        child: ImageTile(image: "images/product1.png"),
                       ),
                       SizedBox(width: containerPadding),
                       Expanded(
-                        child: Material(
-                          elevation: imageElevation,
-                          borderRadius:
-                              BorderRadius.circular(imageBorderRadius),
-                          child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.circular(imageBorderRadius),
-                            child: Image.asset(
-                              "images/product2.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                        child: ImageTile(image: "images/product2.png"),
                       ),
                     ],
                   ),
