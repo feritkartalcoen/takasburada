@@ -22,6 +22,7 @@ class Create extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppBar(
+              withTitle: false,
               children: [
                 IconButton(
                   icon: "images/back.png",

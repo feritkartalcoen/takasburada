@@ -3,9 +3,11 @@ import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/widgets/bottom_navigation_bar.dart';
 
 class BottomAppBar extends StatelessWidget {
+  final Widget child;
   final Widget floatingActionButton;
   const BottomAppBar({
     Key? key,
+    required this.child,
     required this.floatingActionButton,
   }) : super(key: key);
 
@@ -18,7 +20,7 @@ class BottomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: BottomNavigationBar(),
+            child: child,
           ),
           SizedBox(
             width: containerPadding,

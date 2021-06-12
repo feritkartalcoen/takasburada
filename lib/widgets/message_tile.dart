@@ -18,7 +18,7 @@ class MessageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Material(
-        elevation: messageTileElevation,
+        color: Colors.transparent,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(messageTileBorderRadius),
           bottomRight: Radius.circular(messageTileBorderRadius),

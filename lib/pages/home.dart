@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart'
-    hide AppBar, BottomAppBar, FloatingActionButton, Title;
+    hide AppBar, BottomAppBar, FloatingActionButton, Title, BottomNavigationBar;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/create.dart';
 import 'package:takasburada/pages/result.dart';
@@ -11,6 +11,7 @@ import 'package:provider/provider.dart' hide Create;
 import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/bottom_app_bar.dart';
+import 'package:takasburada/widgets/bottom_navigation_bar.dart';
 import 'package:takasburada/widgets/floating_action_button.dart';
 import 'package:takasburada/widgets/profile_button.dart';
 import 'package:takasburada/widgets/title.dart';
@@ -54,6 +55,7 @@ class Home extends StatelessWidget {
                   .bottomNavigationIndex],
             )),
             BottomAppBar(
+              child: BottomNavigationBar(),
               floatingActionButton: Provider.of<BottomNavigationBarProvider>(
                               context)
                           .bottomNavigationIndex !=

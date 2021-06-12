@@ -20,6 +20,7 @@ class Result extends StatelessWidget {
         body: Column(
           children: [
             AppBar(
+              withTitle: false,
               children: [
                 IconButton(
                   icon: "images/back.png",

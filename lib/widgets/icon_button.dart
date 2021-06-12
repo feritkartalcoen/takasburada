@@ -4,8 +4,10 @@ import 'package:takasburada/constants/constants.dart';
 class IconButton extends StatelessWidget {
   final String icon;
   final VoidCallback? onTap;
+  final bool withElevation;
   const IconButton({
     Key? key,
+    this.withElevation = true,
     required this.icon,
     this.onTap,
   }) : super(key: key);
@@ -13,7 +15,7 @@ class IconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: iconButtonElevation,
+      elevation: withElevation ? iconButtonElevation : 0,
       borderRadius: BorderRadius.circular(iconButtonBorderRadius),
       child: InkWell(
         borderRadius: BorderRadius.circular(iconButtonBorderRadius),
