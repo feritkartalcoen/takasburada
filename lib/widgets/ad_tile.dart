@@ -108,13 +108,15 @@ class AdTile extends StatelessWidget {
                           topRight: Radius.circular(adTileBorderRadius),
                           bottomRight: Radius.circular(adTileBorderRadius),
                         ),
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            "/detail",
-                            arguments: ad,
-                          );
-                        },
+                        onTap: withActions
+                            ? () {
+                                Navigator.pushNamed(
+                                  context,
+                                  "/detail",
+                                  arguments: ad,
+                                );
+                              }
+                            : () {},
                       ),
                     ),
                   ),
