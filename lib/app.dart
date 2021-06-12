@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:takasburada/pages/detail.dart';
 import 'package:takasburada/pages/home.dart';
 import 'package:takasburada/pages/login.dart';
 import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
@@ -33,6 +34,7 @@ class App extends StatelessWidget {
         routes: {
           "/": (context) => Login(),
           "/home": (context) => Home(),
+          "/detail": (context) => Detail(),
         },
       ),
     );

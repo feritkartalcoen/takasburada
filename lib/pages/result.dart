@@ -38,11 +38,7 @@ class Result extends StatelessWidget {
                 itemCount: ads.length,
                 itemBuilder: (context, index) {
                   return AdTile(
-                    givenProductName: ads[index].givenProductName,
-                    givenProductImage: ads[index].givenProductImage,
-                    desiredProductName: ads[index].desiredProductName,
-                    desiredProductImage: ads[index].desiredProductImage,
-                    postDate: ads[index].postDate,
+                    ad: ads[index],
                   );
                 },
                 separatorBuilder: (context, index) {

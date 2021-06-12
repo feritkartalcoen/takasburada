@@ -55,7 +55,7 @@ class Chat extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.zero,
               physics: BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               children: [

@@ -27,6 +27,7 @@ class IconButton extends StatelessWidget {
             icon,
             width: iconButtonIconWidth,
             height: iconButtonIconHeight,
+            fit: BoxFit.cover,
           ),
         ),
         onTap: onTap,

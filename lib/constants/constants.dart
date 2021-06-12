@@ -9,6 +9,7 @@ const double adTileActionItemWidth = 60;
 const double adTileTradeIconWidth = 36;
 const double adTileTradeIconHeight = 36;
 const double adTileTradeIconBorderRadius = 18;
+const double adInformationTileBorderRadius = 24;
 const double appBarHeight = 84;
 const double appBarButtonHeight = 36;
 const double appBarButtonWidth = 36;
@@ -103,6 +104,7 @@ TextStyle tabTitleTextStyle = GoogleFonts.robotoCondensed(
 
 TextStyle adProductNamesTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 18,
+  fontWeight: FontWeight.bold,
   color: Color(0xff707070),
 );
 
@@ -156,6 +158,17 @@ TextStyle chatTileTextStyle = GoogleFonts.robotoCondensed(
   color: Color(0xff707070),
 );
 
+TextStyle adInformationTileTitleTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: Color(0xff707070),
+);
+
+TextStyle adInformationTileTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  color: Color(0xff707070),
+);
+
 double tabBarIndicatorWidth(BuildContext context) {
   return (MediaQuery.of(context).size.width / 2) + (containerPadding / 2);
 }
@@ -180,6 +193,10 @@ double adTileHeight(BuildContext context) {
   return ((MediaQuery.of(context).size.width - 60 - 24) / 2) + 48;
 }
 
+double adTileHeightWithoutActions(BuildContext context) {
+  return ((MediaQuery.of(context).size.width - 24) / 2) + 48;
+}
+
 double adTileActionItemHeight(BuildContext context) {
   return (((MediaQuery.of(context).size.width - 60 - 24) / 2) + 48) / 3;
 }
@@ -187,3 +204,12 @@ double adTileActionItemHeight(BuildContext context) {
 double adTileImageHeight(BuildContext context) {
   return ((MediaQuery.of(context).size.width - 60 - 24) / 2);
 }
+
+double adTileImageHeightWithoutActions(BuildContext context) {
+  return ((MediaQuery.of(context).size.width - 24) / 2);
+}
+
+const String loremIpsumParagraph =
+    'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+    'tempor incididunt ut labore et dolore magna aliqua. vulputate dignissim '
+    'suspendisse in est.';
