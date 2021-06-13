@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/pages/detail.dart';
 
 class AdTile extends StatelessWidget {
   final Ad ad;
@@ -110,10 +111,11 @@ class AdTile extends StatelessWidget {
                         ),
                         onTap: withActions
                             ? () {
-                                Navigator.pushNamed(
+                                Navigator.push(
                                   context,
-                                  "/detail",
-                                  arguments: ad,
+                                  MaterialPageRoute(
+                                    builder: (context) => Detail(ad: ad),
+                                  ),
                                 );
                               }
                             : () {},

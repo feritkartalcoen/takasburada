@@ -1,4 +1,4 @@
-package com.example.takasburada
+package com.feritkartalcoen.takasburada
 
 import io.flutter.embedding.android.FlutterActivity
 

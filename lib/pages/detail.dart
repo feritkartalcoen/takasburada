@@ -7,11 +7,14 @@ import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/icon_button.dart';
 
 class Detail extends StatelessWidget {
-  const Detail({Key? key}) : super(key: key);
+  final Ad ad;
+  const Detail({
+    Key? key,
+    required this.ad,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final ad = ModalRoute.of(context)!.settings.arguments as Ad;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
