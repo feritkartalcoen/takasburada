@@ -60,7 +60,6 @@ class Home extends StatelessWidget {
                         .bottomNavigationIndex !=
                     2
                 ? OpenContainer(
-                    transitionType: ContainerTransitionType.fadeThrough,
                     openBuilder: (context, onTap) {
                       return Provider.of<BottomNavigationBarProvider>(context)
                                   .bottomNavigationIndex ==
