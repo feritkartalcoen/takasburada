@@ -46,7 +46,7 @@ class BackgroundedButton extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 text,
-                style: customBackgroundedButtonTextSyle,
+                style: backgroundedButtonTextSyle,
               ),
             ),
             Positioned.fill(

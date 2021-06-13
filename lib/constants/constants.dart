@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const String customTitleHeroTag = "customTitle";
-const String title = "takasburada";
+const String title = "takas burada";
 
 const double adTileBorderRadius = 24;
 const double adTileActionItemWidth = 60;
@@ -61,13 +61,20 @@ TextStyle titleTextStyle = TextStyle(
   fontSize: 33,
   height: 36 / 33,
   fontFamily: "Forte",
-  color: Color(0xff375675),
   shadows: [
     Shadow(color: Colors.black, offset: Offset.zero, blurRadius: 33),
   ],
 );
 
-TextStyle customBackgroundedButtonTextSyle = GoogleFonts.robotoCondensed(
+TextStyle titleFirstTextStyle = TextStyle(
+  color: Color(0xff375675),
+);
+
+TextStyle titleSecondTextStyle = TextStyle(
+  color: Color(0xffF7EBB9),
+);
+
+TextStyle backgroundedButtonTextSyle = GoogleFonts.robotoCondensed(
   fontSize: 24,
   fontWeight: FontWeight.bold,
   color: Color(0xff707070),
