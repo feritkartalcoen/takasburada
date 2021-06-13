@@ -32,7 +32,9 @@ class Home extends StatelessWidget {
                 child: Title(),
               ),
               Expanded(child: SizedBox()),
-              ProfileButton(),
+              ProfileButton(
+                onTap: () {},
+              ),
             ],
           ),
           Expanded(

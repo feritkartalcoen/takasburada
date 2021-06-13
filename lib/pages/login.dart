@@ -14,38 +14,36 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            AppBar(
-              children: [
-                Hero(
-                  tag: customTitleHeroTag,
-                  child: Title(),
-                ),
-              ],
-            ),
-            TabBar(),
-            Expanded(
-              child: PageTransitionSwitcher(
-                transitionBuilder: (
-                  Widget child,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                ) {
-                  return FadeThroughTransition(
-                    animation: animation,
-                    secondaryAnimation: secondaryAnimation,
-                    child: child,
-                    fillColor: Colors.transparent,
-                  );
-                },
-                child: tabBarViews[context.watch<TabBarProvider>().tabIndex],
+    return Scaffold(
+      body: Column(
+        children: [
+          AppBar(
+            children: [
+              Hero(
+                tag: customTitleHeroTag,
+                child: Title(),
               ),
+            ],
+          ),
+          TabBar(),
+          Expanded(
+            child: PageTransitionSwitcher(
+              transitionBuilder: (
+                Widget child,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+              ) {
+                return FadeThroughTransition(
+                  animation: animation,
+                  secondaryAnimation: secondaryAnimation,
+                  child: child,
+                  fillColor: Colors.transparent,
+                );
+              },
+              child: tabBarViews[context.watch<TabBarProvider>().tabIndex],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

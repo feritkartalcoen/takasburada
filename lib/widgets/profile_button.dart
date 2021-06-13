@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
 class ProfileButton extends StatelessWidget {
-  const ProfileButton({Key? key}) : super(key: key);
+  final VoidCallback? onTap;
+  const ProfileButton({
+    Key? key,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class ProfileButton extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
-                onTap: () {},
+                onTap: onTap,
               ),
             ),
           ),
