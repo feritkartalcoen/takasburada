@@ -1,0 +1,4 @@
+enum Condition {
+  likeNew,
+  used,
+}

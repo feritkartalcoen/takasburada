@@ -1,24 +1,13 @@
 class Message {
-  String image;
-  String sender;
-  String message;
+  String? id;
+  String? userId;
+  String? text;
+  DateTime? date;
 
   Message({
-    required this.image,
-    required this.sender,
-    required this.message,
+    this.id,
+    this.userId,
+    this.text,
+    this.date,
   });
 }
-
-List<Message> messages = [
-  Message(
-    image: "images/meric.png",
-    sender: "meriç kartal",
-    message: "merhaba, iyi günler.",
-  ),
-  Message(
-    image: "images/burcu.png",
-    sender: "burcu bitkin",
-    message: "teşekkürler.",
-  ),
-];

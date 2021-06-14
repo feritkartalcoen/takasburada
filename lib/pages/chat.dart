@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'
     hide AppBar, IconButton, BottomAppBar, FloatingActionButton, TextField;
-import 'package:takasburada/classes/message.dart';
+import 'package:takasburada/classes/conversation.dart';
+import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/bottom_app_bar.dart';
@@ -35,7 +36,12 @@ class Chat extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(messages[index].sender,
+                  Text(
+                      users
+                          .where(
+                              (user) => user.id == conversations[index].userId)
+                          .single
+                          .nameSurname,
                       style: messageTileSenderTextStyle),
                   Text("online", style: messageTileMessageTextStyle),
                 ],
@@ -59,7 +65,7 @@ class Chat extends StatelessWidget {
               physics: BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               children: [
-                ChatTile(text: messages[index].message),
+                ChatTile(text: conversations[index].messages!.last!.text!),
               ],
             ),
           ),

@@ -53,16 +53,18 @@ class Create extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: ImageTile(image: "images/product1.png"),
+                      child: ImageTile(image: "images/miBand4.png"),
                     ),
                     SizedBox(width: containerPadding),
                     Expanded(
-                      child: ImageTile(image: "images/product2.png"),
+                      child: ImageTile(image: "images/iPhone11.png"),
                     ),
                   ],
                 ),
                 SizedBox(height: containerPadding),
                 Label(label: "information"),
+                SizedBox(height: containerPadding),
+                BorderedTextField(hint: "type here"),
                 SizedBox(height: containerPadding),
                 ColoredButton(text: "complete", onTap: () {}, isPrimary: false),
                 SizedBox(height: containerPadding),

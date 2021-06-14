@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class MessageTile extends StatelessWidget {
-  final String image;
-  final String sender;
-  final String message;
-  final VoidCallback onTap;
-  const MessageTile({
+class ConversationTile extends StatelessWidget {
+  final String? image;
+  final String? sender;
+  final String? message;
+  final VoidCallback? onTap;
+  const ConversationTile({
     Key? key,
-    required this.image,
-    required this.sender,
-    required this.message,
-    required this.onTap,
+    this.image,
+    this.sender,
+    this.message,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -30,14 +30,14 @@ class MessageTile extends StatelessWidget {
           ),
           child: ListTile(
             leading: CircleAvatar(
-              foregroundImage: AssetImage(image),
+              foregroundImage: AssetImage(image!),
             ),
             title: Text(
-              sender,
+              sender!,
               style: messageTileSenderTextStyle,
             ),
             subtitle: Text(
-              message,
+              message!,
               style: messageTileMessageTextStyle,
             ),
           ),

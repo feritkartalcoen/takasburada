@@ -46,11 +46,11 @@ class AdTile extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Image.asset(ad.givenProductImage,
+                                  child: Image.asset(ad.products!.first!.photo!,
                                       fit: BoxFit.cover),
                                 ),
                                 Expanded(
-                                  child: Image.asset(ad.desiredProductImage,
+                                  child: Image.asset(ad.products!.last!.photo!,
                                       fit: BoxFit.cover),
                                 ),
                               ],
@@ -84,14 +84,12 @@ class AdTile extends StatelessWidget {
                               children: [
                                 Container(
                                   child: Text(
-                                    ad.givenProductName +
-                                        " - " +
-                                        ad.desiredProductName,
+                                    ad.title,
                                     style: adProductNamesTextStyle,
                                   ),
                                 ),
                                 Text(
-                                  "${DateTime.now().day - ad.postDate.day} ${(DateTime.now().day - ad.postDate.day) == 1 ? "day" : "days"} ago",
+                                  ad.since,
                                   style: adPostDateTextStyle,
                                 ),
                               ],
