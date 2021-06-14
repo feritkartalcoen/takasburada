@@ -4,7 +4,7 @@ import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
 
 class FloatingActionButton extends StatelessWidget {
-  final String icon;
+  final IconData icon;
   final VoidCallback? onTap;
   const FloatingActionButton({
     Key? key,
@@ -31,8 +31,8 @@ class FloatingActionButton extends StatelessWidget {
         child: Container(
           width: floatingActionButtonWidth,
           height: floatingActionButtonHeight,
-          alignment: Alignment.bottomCenter,
-          child: Image.asset(icon),
+          alignment: Alignment.center,
+          child: Icon(icon, color: floatingActionButtonIconColor),
         ),
         onTap: onTap,
       ),

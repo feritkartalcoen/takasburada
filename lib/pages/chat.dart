@@ -3,6 +3,7 @@ import 'package:flutter/material.dart'
 import 'package:takasburada/classes/conversation.dart';
 import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/bottom_app_bar.dart';
 import 'package:takasburada/widgets/chat_tile.dart';
@@ -28,7 +29,7 @@ class Chat extends StatelessWidget {
             withTitle: false,
             children: [
               IconButton(
-                icon: "images/back.png",
+                icon: CustomIcons.back,
                 onTap: onTap,
               ),
               SizedBox(width: containerPadding),
@@ -48,12 +49,12 @@ class Chat extends StatelessWidget {
               ),
               Expanded(child: SizedBox()),
               IconButton(
-                icon: "images/media.png",
+                icon: CustomIcons.media,
                 withElevation: false,
                 onTap: () {},
               ),
               IconButton(
-                icon: "images/more.png",
+                icon: CustomIcons.more,
                 withElevation: false,
                 onTap: () {},
               ),
@@ -74,7 +75,7 @@ class Chat extends StatelessWidget {
               hint: "type here",
             ),
             floatingActionButton: FloatingActionButton(
-              icon: "images/send.png",
+              icon: CustomIcons.send,
               onTap: () {},
             ),
           ),

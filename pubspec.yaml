@@ -24,3 +24,6 @@ flutter:
     - family: Forte
       fonts:
        - asset: fonts/Forte-Regular.ttf
+    - family: CustomIcons
+      fonts:
+       - asset: fonts/CustomIcons.ttf

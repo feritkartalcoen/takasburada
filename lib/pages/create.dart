@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide AppBar, IconButton;
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/colored_button.dart';
@@ -24,7 +25,7 @@ class Create extends StatelessWidget {
             withTitle: false,
             children: [
               IconButton(
-                icon: "images/back.png",
+                icon: CustomIcons.back,
                 onTap: onTap,
               ),
               Expanded(child: SizedBox()),

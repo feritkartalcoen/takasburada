@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart'
     hide AppBar, BottomAppBar, FloatingActionButton, Title, BottomNavigationBar;
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/pages/create.dart';
 import 'package:takasburada/pages/result.dart';
 import 'package:takasburada/pages/views/home/feed.dart';
@@ -56,7 +57,9 @@ class Home extends StatelessWidget {
                 .bottomNavigationIndex],
           )),
           BottomAppBar(
-            child: BottomNavigationBar(),
+            child: BottomNavigationBar(
+              icons: [CustomIcons.home, CustomIcons.search, CustomIcons.chat],
+            ),
             floatingActionButton: Provider.of<BottomNavigationBarProvider>(
                             context)
                         .bottomNavigationIndex !=
@@ -101,8 +104,8 @@ List<Widget> bottomNavigationBarViews = [
   Messages(),
 ];
 
-List<String> floatingActionButtonIcons = [
-  "images/add.png",
-  "images/check.png",
-  "images/clear.png",
+List<IconData> floatingActionButtonIcons = [
+  CustomIcons.add,
+  CustomIcons.check,
+  CustomIcons.trash,
 ];

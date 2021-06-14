@@ -4,7 +4,11 @@ import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
 
 class BottomNavigationBar extends StatelessWidget {
-  const BottomNavigationBar({Key? key}) : super(key: key);
+  final List<IconData?>? icons;
+  const BottomNavigationBar({
+    Key? key,
+    this.icons,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +39,23 @@ class BottomNavigationBar extends StatelessWidget {
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: bottomNavigationBarItemIcons
+                children: icons!
                     .map(
-                      (bottomNavigationBarItemIcon) => Material(
+                      (icon) => Material(
                         color: Colors.transparent,
                         child: InkWell(
                           child: Container(
                             width: bottomNavigationBarItemWidth(context),
-                            child: Image.asset(bottomNavigationBarItemIcon),
+                            child: Icon(
+                              icon,
+                              color: bottomNavigationBarIconColor,
+                            ),
                           ),
                           onTap: () {
                             context
                                 .read<BottomNavigationBarProvider>()
                                 .setbottomNavigationIndex(
-                                    bottomNavigationBarItemIcons
-                                        .indexOf(bottomNavigationBarItemIcon));
+                                    icons!.indexOf(icon!));
                           },
                         ),
                       ),
@@ -63,9 +69,3 @@ class BottomNavigationBar extends StatelessWidget {
     );
   }
 }
-
-List<String> bottomNavigationBarItemIcons = [
-  "images/feed.png",
-  "images/search.png",
-  "images/messages.png",
-];

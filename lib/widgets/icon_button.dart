@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
 class IconButton extends StatelessWidget {
-  final String icon;
+  final IconData icon;
   final VoidCallback? onTap;
   final bool withElevation;
   const IconButton({
@@ -23,11 +23,10 @@ class IconButton extends StatelessWidget {
           width: iconButtonWidth,
           height: iconButtonHeight,
           alignment: Alignment.center,
-          child: Image.asset(
+          child: Icon(
             icon,
-            width: iconButtonIconWidth,
-            height: iconButtonIconHeight,
-            fit: BoxFit.cover,
+            size: iconButtonIconSize,
+            color: iconButtonIconColor,
           ),
         ),
         onTap: onTap,

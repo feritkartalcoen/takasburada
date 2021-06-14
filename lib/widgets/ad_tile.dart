@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/pages/detail.dart';
 
 class AdTile extends StatelessWidget {
@@ -68,7 +69,8 @@ class AdTile extends StatelessWidget {
                                 child: Container(
                                   width: adTileTradeIconWidth,
                                   height: adTileTradeIconWidth,
-                                  child: Image.asset("images/arrows.png"),
+                                  child: Icon(CustomIcons.trade,
+                                      color: iconColor, size: adTileIconSize),
                                 ),
                               ),
                             ),
@@ -148,12 +150,15 @@ class AdTile extends StatelessWidget {
                       child: Container(
                         width: adTileActionItemWidth,
                         child: Column(
-                          children: customAdTileIcons
+                          children: adTileIcons
                               .map(
-                                (customAdTileIcon) => InkWell(
+                                (icon) => InkWell(
                                   child: Container(
+                                    width: adTileActionItemWidth,
                                     height: adTileActionItemHeight(context),
-                                    child: Image.asset(customAdTileIcon),
+                                    child: Icon(icon,
+                                        color: adTileActionsIconColor,
+                                        size: adTileActionIconSize),
                                   ),
                                   onTap: () {},
                                 ),
@@ -171,8 +176,8 @@ class AdTile extends StatelessWidget {
   }
 }
 
-List<String> customAdTileIcons = [
-  "images/share.png",
-  "images/favorite.png",
-  "images/ask.png",
+List<IconData> adTileIcons = [
+  CustomIcons.share,
+  CustomIcons.favorite,
+  CustomIcons.chat,
 ];

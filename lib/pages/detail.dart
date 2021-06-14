@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide AppBar, IconButton;
 import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/widgets/ad_information_tile.dart';
 import 'package:takasburada/widgets/ad_tile.dart';
 import 'package:takasburada/widgets/app_bar.dart';
@@ -23,22 +24,22 @@ class Detail extends StatelessWidget {
             withTitle: false,
             children: [
               IconButton(
-                icon: "images/back.png",
+                icon: CustomIcons.back,
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               Expanded(child: SizedBox()),
-              ...customAdTileIcons.map(
-                (customAdTileIcon) => IconButton(
+              ...adTileIcons.map(
+                (icon) => IconButton(
                   withElevation: false,
-                  icon: customAdTileIcon,
+                  icon: icon,
                   onTap: () {},
                 ),
               ),
               IconButton(
                 withElevation: false,
-                icon: "images/more.png",
+                icon: CustomIcons.more,
                 onTap: () {},
               )
             ],
