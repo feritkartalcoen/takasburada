@@ -2,32 +2,42 @@ import 'package:takasburada/classes/message.dart';
 
 class Conversation {
   String? id;
-  String? userId;
+  String? adId;
   List<Message?>? messages;
 
   Conversation({
     this.id,
-    this.userId,
+    this.adId,
     this.messages,
   });
 }
 
 List<Conversation> conversations = [
   Conversation(
-    userId: "0",
+    adId: "ad1",
     messages: [
       Message(
-        userId: "0",
+        userId: "user1",
         text: "merhaba, iyi günler.",
         date: DateTime.parse("2012-02-27 13:27:00"),
       ),
     ],
   ),
   Conversation(
-    userId: "1",
+    adId: "ad2",
     messages: [
       Message(
-        userId: "1",
+        userId: "user2",
+        text: "saat kaçta müsaitsiniz?",
+        date: DateTime.parse("2012-02-27 13:27:00"),
+      ),
+    ],
+  ),
+  Conversation(
+    adId: "ad3",
+    messages: [
+      Message(
+        userId: "user1",
         text: "teşekkürler.",
         date: DateTime.parse("2012-02-27 13:27:00"),
       ),

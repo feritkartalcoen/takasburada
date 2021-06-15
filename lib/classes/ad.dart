@@ -29,55 +29,55 @@ class Ad {
 
 List<Ad> ads = [
   Ad(
-    id: "0",
-    userId: "0",
+    id: "ad1",
+    userId: "user1",
     products: [
       Product(
-        userId: "0",
-        name: "mi band 4",
-        photo: "images/miBand4.png",
+        adId: "ad1",
+        name: "iphone 11",
+        photo: "images/iPhone11.png",
         condition: Condition.used,
         date: DateTime.parse("2012-02-27 13:27:00"),
       ),
       Product(
-        name: "iphone 11",
-        photo: "images/iPhone11.png",
+        name: "xbox one",
+        photo: "images/xboxOne.png",
       ),
     ],
     date: DateTime.parse("2021-06-08 20:18:04"),
   ),
   Ad(
-    id: "0",
-    userId: "0",
+    id: "ad2",
+    userId: "user2",
     products: [
       Product(
-        userId: "0",
+        adId: "ad2",
         name: "mi band 4",
         photo: "images/miBand4.png",
         condition: Condition.used,
         date: DateTime.parse("2012-02-27 13:27:00"),
       ),
       Product(
-        name: "iphone 11",
-        photo: "images/iPhone11.png",
+        name: "mi watch",
+        photo: "images/miWatch.png",
       ),
     ],
     date: DateTime.parse("2021-06-07 20:18:04"),
   ),
   Ad(
-    id: "0",
-    userId: "1",
+    id: "ad3",
+    userId: "user1",
     products: [
       Product(
-        userId: "1",
-        name: "mi band 4",
-        photo: "images/miBand4.png",
+        adId: "ad3",
+        name: "laptop",
+        photo: "images/laptop.png",
         condition: Condition.used,
         date: DateTime.parse("2012-02-27 13:27:00"),
       ),
       Product(
-        name: "iphone 11",
-        photo: "images/iPhone11.png",
+        name: "desktop",
+        photo: "images/desktop.png",
       ),
     ],
     date: DateTime.parse("2021-06-06 20:18:04"),

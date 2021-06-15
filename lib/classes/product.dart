@@ -2,7 +2,7 @@ import 'package:takasburada/enums/condition.dart';
 
 class Product {
   String? id;
-  String? userId;
+  String? adId;
   String? name;
   String? photo;
   Condition? condition;
@@ -10,7 +10,7 @@ class Product {
 
   Product({
     this.id,
-    this.userId,
+    this.adId,
     this.name,
     this.photo,
     this.condition,

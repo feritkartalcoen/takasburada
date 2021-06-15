@@ -28,13 +28,13 @@ class User {
 
 List<User> users = [
   User(
-    id: "0",
+    id: "user1",
     name: "meriç",
     surname: "kartal",
     photo: "images/meric.png",
   ),
   User(
-    id: "1",
+    id: "user2",
     name: "burcu",
     surname: "bitkin",
     photo: "images/burcu.png",

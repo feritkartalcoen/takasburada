@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
 class ConversationTile extends StatelessWidget {
-  final String? image;
-  final String? sender;
+  final String? userPhoto;
+  final String? userNameSurname;
   final String? message;
+  final String? productPhoto;
   final VoidCallback? onTap;
   const ConversationTile({
     Key? key,
-    this.image,
-    this.sender,
+    this.userPhoto,
+    this.userNameSurname,
     this.message,
+    this.productPhoto,
     this.onTap,
   }) : super(key: key);
 
@@ -29,16 +31,27 @@ class ConversationTile extends StatelessWidget {
             bottomRight: Radius.circular(messageTileBorderRadius),
           ),
           child: ListTile(
-            leading: CircleAvatar(
-              foregroundImage: AssetImage(image!),
+            leading: Material(
+              elevation: elevation,
+              shape: CircleBorder(),
+              child: CircleAvatar(
+                foregroundImage: AssetImage(userPhoto!),
+              ),
             ),
             title: Text(
-              sender!,
+              userNameSurname!,
               style: messageTileSenderTextStyle,
             ),
             subtitle: Text(
               message!,
               style: messageTileMessageTextStyle,
+            ),
+            trailing: Material(
+              elevation: elevation,
+              shape: CircleBorder(),
+              child: CircleAvatar(
+                foregroundImage: AssetImage(productPhoto!),
+              ),
             ),
           ),
           onTap: onTap,

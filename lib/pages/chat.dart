@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'
     hide AppBar, IconButton, BottomAppBar, FloatingActionButton, TextField;
+import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/classes/conversation.dart';
 import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
@@ -40,7 +41,16 @@ class Chat extends StatelessWidget {
                   Text(
                       users
                           .where(
-                              (user) => user.id == conversations[index].userId)
+                            (user) =>
+                                user.id ==
+                                ads
+                                    .where(
+                                      (ad) =>
+                                          ad.id == conversations[index].adId,
+                                    )
+                                    .single
+                                    .userId,
+                          )
                           .single
                           .nameSurname,
                       style: messageTileSenderTextStyle),

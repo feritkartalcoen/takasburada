@@ -23,7 +23,7 @@ class ProfileButton extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
               child: Image.asset(
-                "images/profile.png",
+                "images/ferit.png",
                 fit: BoxFit.fill,
               ),
             ),

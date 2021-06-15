@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/classes/conversation.dart';
 import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
@@ -18,15 +19,40 @@ class Messages extends StatelessWidget {
       itemBuilder: (context, index) => OpenContainer(
         openBuilder: (context, onTap) => Chat(index: index, onTap: onTap),
         closedBuilder: (context, onTap) => ConversationTile(
-          image: users
-              .where((user) => user.id == conversations[index].userId)
+          userPhoto: users
+              .where(
+                (user) =>
+                    user.id ==
+                    ads
+                        .where((ad) => ad.id == conversations[index].adId)
+                        .single
+                        .userId,
+              )
               .single
               .photo,
-          sender: users
-              .where((user) => user.id == conversations[index].userId)
+          userNameSurname: users
+              .where(
+                (user) =>
+                    user.id ==
+                    ads
+                        .where((ad) => ad.id == conversations[index].adId)
+                        .single
+                        .userId,
+              )
               .single
               .nameSurname,
           message: conversations[index].messages?.last?.text,
+          productPhoto: ads
+              .where(
+                (ad) => ad.id == conversations[index].adId,
+              )
+              .single
+              .products!
+              .where(
+                (product) => product?.adId == conversations[index].adId,
+              )
+              .single
+              ?.photo,
           onTap: onTap,
         ),
         closedElevation: elevation,
