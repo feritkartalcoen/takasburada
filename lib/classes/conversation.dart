@@ -10,6 +10,10 @@ class Conversation {
     this.adId,
     this.messages,
   });
+
+  Message? get lastMessage {
+    return messages!.last!;
+  }
 }
 
 List<Conversation> conversations = [
@@ -30,6 +34,11 @@ List<Conversation> conversations = [
         userId: "user2",
         text: "saat kaçta müsaitsiniz?",
         date: DateTime.parse("2012-02-27 13:27:00"),
+      ),
+      Message(
+        userId: "currentUser",
+        text: "saat 19.00'da müsaitim.",
+        date: DateTime.parse("2012-02-27 13:28:00"),
       ),
     ],
   ),

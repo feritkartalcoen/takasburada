@@ -26,7 +26,15 @@ class User {
   }
 }
 
+String currentUserId = "currentUser";
+
 List<User> users = [
+  User(
+    id: "currentUser",
+    name: "ferit",
+    surname: "kartal",
+    photo: "images/ferit.png",
+  ),
   User(
     id: "user1",
     name: "meriç",

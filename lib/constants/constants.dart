@@ -166,9 +166,14 @@ TextStyle textButtonTextStyle = GoogleFonts.robotoCondensed(
   ],
 );
 
-TextStyle chatTileTextStyle = GoogleFonts.robotoCondensed(
+TextStyle chatTileReceivedTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 18,
   color: Color(0xff707070),
+);
+
+TextStyle chatTileSentTextStyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  color: Color(0xff375675),
 );
 
 TextStyle adInformationTileTitleTextStyle = GoogleFonts.robotoCondensed(

@@ -41,7 +41,9 @@ class Messages extends StatelessWidget {
               )
               .single
               .nameSurname,
-          message: conversations[index].messages?.last?.text,
+          message: conversations[index].lastMessage!.userId == currentUserId
+              ? "you: " + conversations[index].lastMessage!.text!
+              : conversations[index].lastMessage!.text,
           productPhoto: ads
               .where(
                 (ad) => ad.id == conversations[index].adId,
@@ -49,10 +51,10 @@ class Messages extends StatelessWidget {
               .single
               .products!
               .where(
-                (product) => product?.adId == conversations[index].adId,
+                (product) => product!.adId == conversations[index].adId,
               )
-              .single
-              ?.photo,
+              .single!
+              .photo,
           onTap: onTap,
         ),
         closedElevation: elevation,

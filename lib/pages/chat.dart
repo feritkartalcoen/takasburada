@@ -71,13 +71,19 @@ class Chat extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: ListView(
+            child: ListView.separated(
               padding: EdgeInsets.zero,
               physics: BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
-              children: [
-                ChatTile(text: conversations[index].messages!.last!.text!),
-              ],
+              itemCount: conversations[index].messages!.length,
+              itemBuilder: (context, messageIndex) => ChatTile(
+                text: conversations[index].messages![messageIndex]!.text!,
+                isReceived:
+                    conversations[index].messages![messageIndex]!.userId !=
+                        currentUserId,
+              ),
+              separatorBuilder: (context, index) =>
+                  SizedBox(height: containerPadding / 2),
             ),
           ),
           BottomAppBar(
