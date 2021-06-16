@@ -143,13 +143,13 @@ TextStyle chipTextStyle = GoogleFonts.robotoCondensed(
   color: Color(0xff375675),
 );
 
-TextStyle messageTileSenderTextStyle = GoogleFonts.robotoCondensed(
+TextStyle listTileTitleTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 18,
   fontWeight: FontWeight.bold,
   color: Color(0xff707070),
 );
 
-TextStyle messageTileMessageTextStyle = GoogleFonts.robotoCondensed(
+TextStyle listTileSubtitleTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 16,
   color: Color(0xff707070),
 );
@@ -228,6 +228,4 @@ double adTileImageHeightWithoutActions(BuildContext context) {
 }
 
 const String loremIpsumParagraph =
-    'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-    'tempor incididunt ut labore et dolore magna aliqua. vulputate dignissim '
-    'suspendisse in est.';
+    "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. vulputate dignissim suspendisse in est.";

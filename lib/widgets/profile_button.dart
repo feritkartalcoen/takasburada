@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
 
 class ProfileButton extends StatelessWidget {
@@ -23,7 +24,7 @@ class ProfileButton extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
               child: Image.asset(
-                "images/ferit.png",
+                users.where((user) => user.id == currentUserId).single.photo!,
                 fit: BoxFit.fill,
               ),
             ),

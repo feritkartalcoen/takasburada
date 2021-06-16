@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart' hide AppBar, IconButton;
 import 'package:takasburada/classes/ad.dart';
+import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/widgets/ad_information_tile.dart';
 import 'package:takasburada/widgets/ad_tile.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/icon_button.dart';
+import 'package:takasburada/widgets/location_tile.dart';
+import 'package:takasburada/widgets/profile_tile.dart';
 
 class Detail extends StatelessWidget {
   final Ad ad;
@@ -37,22 +40,32 @@ class Detail extends StatelessWidget {
                   onTap: () {},
                 ),
               ),
-              IconButton(
-                withElevation: false,
-                icon: CustomIcons.more,
-                onTap: () {},
-              )
             ],
           ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.only(
+                top: 8,
+                bottom: containerPadding,
+              ),
               physics: BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               children: [
+                ProfileTile(
+                  userPhoto:
+                      users.where((user) => user.id == ad.userId).single.photo!,
+                  userNameSurname: users
+                      .where((user) => user.id == ad.userId)
+                      .single
+                      .nameSurname,
+                  onTap: () {},
+                ),
+                SizedBox(height: containerPadding),
                 AdTile(ad: ad, withActions: false),
                 SizedBox(height: containerPadding),
                 AdInformationTile(information: loremIpsumParagraph),
+                SizedBox(height: containerPadding),
+                LocationTile(location: ad.location, onTap: () {}),
               ],
             ),
           ),

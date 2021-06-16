@@ -1,35 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class ConversationTile extends StatelessWidget {
+class ProfileTile extends StatelessWidget {
   final String? userPhoto;
   final String? userNameSurname;
-  final String? message;
-  final String? productPhoto;
   final VoidCallback? onTap;
-  const ConversationTile({
+  const ProfileTile({
     Key? key,
     this.userPhoto,
     this.userNameSurname,
-    this.message,
-    this.productPhoto,
     this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: containerPadding),
       child: Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(messageTileBorderRadius),
-          bottomRight: Radius.circular(messageTileBorderRadius),
-        ),
+        elevation: elevation,
+        borderRadius: BorderRadius.circular(adTileBorderRadius),
         child: InkWell(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(messageTileBorderRadius),
-            bottomRight: Radius.circular(messageTileBorderRadius),
-          ),
+          borderRadius: BorderRadius.circular(adTileBorderRadius),
           child: ListTile(
             leading: Material(
               elevation: elevation,
@@ -43,15 +34,8 @@ class ConversationTile extends StatelessWidget {
               style: listTileTitleTextStyle,
             ),
             subtitle: Text(
-              message!,
+              "tap here to view profile",
               style: listTileSubtitleTextStyle,
-            ),
-            trailing: Material(
-              elevation: elevation,
-              shape: CircleBorder(),
-              child: CircleAvatar(
-                foregroundImage: AssetImage(productPhoto!),
-              ),
             ),
           ),
           onTap: onTap,

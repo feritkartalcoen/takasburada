@@ -1,3 +1,4 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:takasburada/classes/product.dart';
 import 'package:takasburada/enums/condition.dart';
 
@@ -6,12 +7,14 @@ class Ad {
   String? userId;
   List<Product?>? products;
   DateTime? date;
+  LatLng? location;
 
   Ad({
     this.id,
     this.userId,
     this.products,
     this.date,
+    this.location,
   });
 
   String get title {
@@ -45,6 +48,7 @@ List<Ad> ads = [
       ),
     ],
     date: DateTime.parse("2021-06-08 20:18:04"),
+    location: LatLng(41.03164021874129, 28.77476303368779),
   ),
   Ad(
     id: "ad2",
@@ -63,6 +67,7 @@ List<Ad> ads = [
       ),
     ],
     date: DateTime.parse("2021-06-07 20:18:04"),
+    location: LatLng(41.03860041259107, 28.78763542687631),
   ),
   Ad(
     id: "ad3",
@@ -81,5 +86,6 @@ List<Ad> ads = [
       ),
     ],
     date: DateTime.parse("2021-06-06 20:18:04"),
+    location: LatLng(41.03164021874129, 28.77476303368779),
   ),
 ];

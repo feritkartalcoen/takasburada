@@ -53,8 +53,8 @@ class Chat extends StatelessWidget {
                           )
                           .single
                           .nameSurname,
-                      style: messageTileSenderTextStyle),
-                  Text("online", style: messageTileMessageTextStyle),
+                      style: listTileTitleTextStyle),
+                  Text("online", style: listTileSubtitleTextStyle),
                 ],
               ),
               Expanded(child: SizedBox()),
