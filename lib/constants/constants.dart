@@ -37,6 +37,7 @@ const double iconButtonIconSize = 24;
 const double iconButtonBorderRadius = 24;
 const double imageBorderRadius = 24;
 const double messageTileBorderRadius = 24;
+const double snackBarBorderRadius = 24;
 const double tabBarHeight = 48;
 const double tabBorderRadius = 24;
 const double tabBarIndicatorHeight = 48;
@@ -175,6 +176,12 @@ TextStyle adInformationTileTitleTextStyle = GoogleFonts.robotoCondensed(
 
 TextStyle adInformationTileTextStyle = GoogleFonts.robotoCondensed(
   fontSize: 18,
+  color: Color(0xff707070),
+);
+
+TextStyle snackBarTextSyle = GoogleFonts.robotoCondensed(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
   color: Color(0xff707070),
 );
 

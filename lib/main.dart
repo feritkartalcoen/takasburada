@@ -1,11 +1,12 @@
 import 'package:animations/animations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:takasburada/pages/home.dart';
 import 'package:takasburada/pages/login.dart';
-import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
-import 'package:takasburada/providers/tab_bar_provider.dart';
-import 'package:takasburada/services/authentication.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,30 +14,27 @@ void main() async {
   runApp(App());
 }
 
-class App extends StatefulWidget {
-  App({Key? key}) : super(key: key);
-
-  @override
-  _AppState createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  Authentication authentication = Authentication();
-
-  @override
-  void initState() {
-    super.initState();
-    authentication.listenUserChanges();
-  }
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => TabBarProvider()),
-        ChangeNotifierProvider(create: (_) => BottomNavigationBarProvider()),
+        Provider<providers.Authentication>(
+          create: (_) => providers.Authentication(
+            firebaseAuth: FirebaseAuth.instance,
+            firebaseFirestore: FirebaseFirestore.instance,
+          ),
+        ),
+        StreamProvider(
+          create: (context) => context.read<providers.Authentication>().userChanges,
+          initialData: null,
+        ),
+        ChangeNotifierProvider(create: (_) => providers.TabBar()),
+        ChangeNotifierProvider(create: (_) => providers.BottomNavigationBar()),
       ],
-      child: MaterialApp(
+      builder: (context, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
           pageTransitionsTheme: PageTransitionsTheme(
@@ -50,7 +48,7 @@ class _AppState extends State<App> {
             },
           ),
         ),
-        home: Login(),
+        home: context.watch<providers.Authentication>().user == null ? Login() : Home(),
       ),
     );
   }

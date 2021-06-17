@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:takasburada/providers/tab_bar_provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 import 'package:takasburada/constants/constants.dart';
 
 class TabBar extends StatelessWidget {
@@ -14,7 +14,7 @@ class TabBar extends StatelessWidget {
         AnimatedPositioned(
           duration: Duration(milliseconds: tabBarIndicatorAnimationDuration),
           curve: Curves.ease,
-          left: context.watch<TabBarProvider>().tabIndex == 0 ? -containerPadding : tabBarIndicatorWidth(context),
+          left: context.watch<providers.TabBar>().tabIndex == 0 ? -containerPadding : tabBarIndicatorWidth(context),
           child: Material(
             elevation: elevation,
             color: tabBarIndicatorColor,
@@ -49,7 +49,7 @@ class TabBar extends StatelessWidget {
                           style: tabTitleTextStyle,
                         ),
                       ),
-                      onTap: () => context.read<TabBarProvider>().setTabIndex(
+                      onTap: () => context.read<providers.TabBar>().setTabIndex(
                             tabBarItemTitles.indexOf(tabBarItemTitle),
                           ),
                     ),

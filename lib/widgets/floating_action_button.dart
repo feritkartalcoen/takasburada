@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 
 class FloatingActionButton extends StatelessWidget {
   final IconData icon;
@@ -15,8 +15,8 @@ class FloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Provider.of<BottomNavigationBarProvider>(context).bottomNavigationIndex != 2 ? Colors.transparent : floatingActionButtonColor,
-      elevation: Provider.of<BottomNavigationBarProvider>(context).bottomNavigationIndex != 2 ? 0 : elevation,
+      color: Provider.of<providers.BottomNavigationBar>(context).bottomNavigationIndex != 2 ? Colors.transparent : floatingActionButtonColor,
+      elevation: Provider.of<providers.BottomNavigationBar>(context).bottomNavigationIndex != 2 ? 0 : elevation,
       borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
       child: InkWell(
         borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),

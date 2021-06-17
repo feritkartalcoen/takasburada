@@ -1,25 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide SnackBar;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/home.dart';
-import 'package:takasburada/services/authentication.dart';
 import 'package:takasburada/widgets/backgrounded_button.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/colored_button.dart';
+import 'package:provider/provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUp extends StatelessWidget {
+  SignUp({Key? key}) : super(key: key);
 
-  @override
-  _SignUpState createState() => _SignUpState();
-}
-
-class _SignUpState extends State<SignUp> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController surnameController = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  Authentication authentication = Authentication();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +45,6 @@ class _SignUpState extends State<SignUp> {
           height: containerPadding,
         ),
         BorderedTextField(
-          hint: "username",
-          textEditingController: usernameController,
-        ),
-        SizedBox(
-          height: containerPadding,
-        ),
-        BorderedTextField(
           hint: "email",
           textEditingController: emailController,
         ),
@@ -74,21 +62,25 @@ class _SignUpState extends State<SignUp> {
           text: "continue",
           isPrimary: true,
           onTap: () {
-            authentication
-                .createUserAndSignInWithEmailAndPassword(
-                    nameController.text,
-                    surnameController.text,
-                    usernameController.text,
-                    emailController.text,
-                    passwordController.text)
-                .then(
-                  (value) => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(),
-                    ),
+            context
+                .read<providers.Authentication>()
+                .signUp(
+                  name: nameController.text,
+                  surname: surnameController.text,
+                  email: emailController.text,
+                  password: passwordController.text,
+                )
+                .then((value) {
+              print(value);
+              if (value == "signed up") {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Home(),
                   ),
                 );
+              }
+            });
           },
         ),
         SizedBox(

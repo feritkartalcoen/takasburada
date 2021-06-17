@@ -4,7 +4,6 @@ class User {
   String? id;
   String? name;
   String? surname;
-  String? username;
   String? email;
   String? password;
   String? photo;
@@ -14,7 +13,6 @@ class User {
     this.id,
     this.name,
     this.surname,
-    this.username,
     this.email,
     this.password,
     this.photo,

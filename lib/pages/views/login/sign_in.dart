@@ -1,22 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide SnackBar;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/home.dart';
-import 'package:takasburada/services/authentication.dart';
 import 'package:takasburada/widgets/backgrounded_button.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/colored_button.dart';
+import 'package:provider/provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignIn extends StatelessWidget {
+  SignIn({Key? key}) : super(key: key);
 
-  @override
-  _SignInState createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  Authentication authentication = Authentication();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +37,23 @@ class _SignInState extends State<SignIn> {
           text: "continue",
           isPrimary: true,
           onTap: () {
-            authentication
-                .signInWithEmailAndPassword(
-                    emailController.text, passwordController.text)
-                .then(
-                  (value) => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(),
-                    ),
+            context
+                .read<providers.Authentication>()
+                .signIn(
+                  email: emailController.text,
+                  password: passwordController.text,
+                )
+                .then((value) {
+              print(value);
+              if (value == "signed in") {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Home(),
                   ),
                 );
+              }
+            });
           },
         ),
         SizedBox(

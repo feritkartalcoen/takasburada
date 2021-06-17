@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:takasburada/constants/constants.dart';
-import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 
 class BottomNavigationBar extends StatelessWidget {
   final List<IconData?>? icons;
@@ -25,7 +25,7 @@ class BottomNavigationBar extends StatelessWidget {
               AnimatedPositioned(
                 duration: Duration(milliseconds: bottomNavigationBarIndicatorAnimationDuration),
                 curve: Curves.ease,
-                left: context.watch<BottomNavigationBarProvider>().bottomNavigationIndex * bottomNavigationBarIndicatorWidth(context),
+                left: context.watch<providers.BottomNavigationBar>().bottomNavigationIndex * bottomNavigationBarIndicatorWidth(context),
                 child: Container(
                   color: bottomNavigationBarColor,
                   width: bottomNavigationBarIndicatorWidth(context),
@@ -46,7 +46,7 @@ class BottomNavigationBar extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              context.read<BottomNavigationBarProvider>().setbottomNavigationIndex(icons!.indexOf(icon!));
+                              context.read<providers.BottomNavigationBar>().setbottomNavigationIndex(icons!.indexOf(icon!));
                             },
                           ),
                         ))

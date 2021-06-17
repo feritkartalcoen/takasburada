@@ -4,19 +4,14 @@ import 'package:provider/provider.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/views/login/sign_in.dart';
 import 'package:takasburada/pages/views/login/sign_up.dart';
-import 'package:takasburada/providers/tab_bar_provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/tab_bar.dart';
 import 'package:takasburada/widgets/title.dart';
 
-class Login extends StatefulWidget {
+class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
-  @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +40,7 @@ class _LoginState extends State<Login> {
                   fillColor: Colors.transparent,
                 );
               },
-              child: tabBarViews[context.watch<TabBarProvider>().tabIndex],
+              child: tabBarViews[context.watch<providers.TabBar>().tabIndex],
             ),
           ),
         ],
