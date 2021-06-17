@@ -20,9 +20,7 @@ class AppBar extends StatelessWidget {
         containerPadding,
       ),
       width: double.infinity,
-      height: withTitle
-          ? appBarHeight + MediaQuery.of(context).padding.top
-          : appBarHeight + MediaQuery.of(context).padding.top + 12,
+      height: withTitle ? appBarHeight + MediaQuery.of(context).padding.top : appBarHeight + MediaQuery.of(context).padding.top + 12,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: children,

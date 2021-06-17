@@ -10,9 +10,6 @@ class Label extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: labelTextStyle,
-    );
+    return Text(label, style: labelTextStyle);
   }
 }

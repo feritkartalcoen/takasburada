@@ -12,14 +12,10 @@ class Title extends StatelessWidget {
           style: titleTextStyle,
           children: title
               .split(" ")
-              .map(
-                (text) => TextSpan(
-                  text: text,
-                  style: text == title.split(" ").first
-                      ? titleFirstTextStyle
-                      : titleSecondTextStyle,
-                ),
-              )
+              .map((text) => TextSpan(
+                    text: text,
+                    style: text == title.split(" ").first ? titleFirstTextStyle : titleSecondTextStyle,
+                  ))
               .toList(),
         ),
       ),

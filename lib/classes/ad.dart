@@ -23,10 +23,7 @@ class Ad {
 
   String get since {
     int dayCount = (DateTime.now().day - this.date!.day);
-    return dayCount.toString() +
-        " " +
-        (dayCount == 1 ? "day" : "days") +
-        " ago";
+    return dayCount.toString() + " " + (dayCount == 1 ? "day" : "days") + " ago";
   }
 }
 

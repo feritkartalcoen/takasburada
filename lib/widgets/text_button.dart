@@ -20,10 +20,7 @@ class TextButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: containerPadding / 2),
           height: textButtonHeight,
           alignment: Alignment.center,
-          child: Text(
-            text,
-            style: textButtonTextStyle,
-          ),
+          child: Text(text, style: textButtonTextStyle),
         ),
         onTap: onTap,
       ),

@@ -19,42 +19,10 @@ class Messages extends StatelessWidget {
       itemBuilder: (context, index) => OpenContainer(
         openBuilder: (context, onTap) => Chat(index: index, onTap: onTap),
         closedBuilder: (context, onTap) => ConversationTile(
-          userPhoto: users
-              .where(
-                (user) =>
-                    user.id ==
-                    ads
-                        .where((ad) => ad.id == conversations[index].adId)
-                        .single
-                        .userId,
-              )
-              .single
-              .photo,
-          userNameSurname: users
-              .where(
-                (user) =>
-                    user.id ==
-                    ads
-                        .where((ad) => ad.id == conversations[index].adId)
-                        .single
-                        .userId,
-              )
-              .single
-              .nameSurname,
-          message: conversations[index].lastMessage!.userId == currentUserId
-              ? "you: " + conversations[index].lastMessage!.text!
-              : conversations[index].lastMessage!.text,
-          productPhoto: ads
-              .where(
-                (ad) => ad.id == conversations[index].adId,
-              )
-              .single
-              .products!
-              .where(
-                (product) => product!.adId == conversations[index].adId,
-              )
-              .single!
-              .photo,
+          userPhoto: users.where((user) => user.id == ads.where((ad) => ad.id == conversations[index].adId).single.userId).single.photo,
+          userNameSurname: users.where((user) => user.id == ads.where((ad) => ad.id == conversations[index].adId).single.userId).single.nameSurname,
+          message: conversations[index].lastMessage!.userId == currentUserId ? "you: " + conversations[index].lastMessage!.text! : conversations[index].lastMessage!.text,
+          productPhoto: ads.where((ad) => ad.id == conversations[index].adId).single.products!.where((product) => product!.adId == conversations[index].adId).single!.photo,
           onTap: onTap,
         ),
         closedElevation: elevation,

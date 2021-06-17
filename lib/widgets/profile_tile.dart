@@ -29,14 +29,8 @@ class ProfileTile extends StatelessWidget {
                 foregroundImage: AssetImage(userPhoto!),
               ),
             ),
-            title: Text(
-              userNameSurname!,
-              style: listTileTitleTextStyle,
-            ),
-            subtitle: Text(
-              "tap here to view profile",
-              style: listTileSubtitleTextStyle,
-            ),
+            title: Text(userNameSurname!, style: listTileTitleTextStyle),
+            subtitle: Text("tap here to view profile", style: listTileSubtitleTextStyle),
           ),
           onTap: onTap,
         ),

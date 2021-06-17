@@ -38,14 +38,8 @@ class ConversationTile extends StatelessWidget {
                 foregroundImage: AssetImage(userPhoto!),
               ),
             ),
-            title: Text(
-              userNameSurname!,
-              style: listTileTitleTextStyle,
-            ),
-            subtitle: Text(
-              message!,
-              style: listTileSubtitleTextStyle,
-            ),
+            title: Text(userNameSurname!, style: listTileTitleTextStyle),
+            subtitle: Text(message!, style: listTileSubtitleTextStyle),
             trailing: Material(
               elevation: elevation,
               shape: CircleBorder(),

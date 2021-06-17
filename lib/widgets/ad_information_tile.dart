@@ -19,21 +19,13 @@ class AdInformationTile extends StatelessWidget {
           bottomLeft: Radius.circular(adInformationTileBorderRadius),
         ),
         child: Container(
-          padding: EdgeInsets.symmetric(
-              horizontal: containerPadding, vertical: containerPadding / 2),
+          padding: EdgeInsets.symmetric(horizontal: containerPadding, vertical: containerPadding / 2),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "information",
-                style: adInformationTileTitleTextStyle,
-              ),
+              Text("information", style: adInformationTileTitleTextStyle),
               SizedBox(height: containerPadding / 2),
-              Text(
-                information,
-                textAlign: TextAlign.justify,
-                style: adInformationTileTextStyle,
-              ),
+              Text(information, textAlign: TextAlign.justify, style: adInformationTileTextStyle),
             ],
           ),
         ),

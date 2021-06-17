@@ -7,7 +7,7 @@ import 'package:takasburada/widgets/ad_information_tile.dart';
 import 'package:takasburada/widgets/ad_tile.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/icon_button.dart';
-import 'package:takasburada/widgets/location_tile.dart';
+/* import 'package:takasburada/widgets/location_tile.dart'; */
 import 'package:takasburada/widgets/profile_tile.dart';
 
 class Detail extends StatelessWidget {
@@ -45,7 +45,7 @@ class Detail extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: EdgeInsets.only(
-                top: 8,
+                top: containerPadding / 3,
                 bottom: containerPadding,
               ),
               physics: BouncingScrollPhysics(
@@ -65,7 +65,7 @@ class Detail extends StatelessWidget {
                 SizedBox(height: containerPadding),
                 AdInformationTile(information: loremIpsumParagraph),
                 SizedBox(height: containerPadding),
-                LocationTile(location: ad.location, onTap: () {}),
+                /* LocationTile(location: ad.location, onTap: () {}), */
               ],
             ),
           ),

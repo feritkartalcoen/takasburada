@@ -28,11 +28,7 @@ class ColoredButton extends StatelessWidget {
           width: double.infinity,
           height: buttonHeight,
           alignment: Alignment.center,
-          child: Text(
-            text,
-            style:
-                isPrimary ? primaryButtonTextStyle : secondaryButtonTextStyle,
-          ),
+          child: Text(text, style: isPrimary ? primaryButtonTextStyle : secondaryButtonTextStyle),
         ),
         onTap: onTap,
       ),

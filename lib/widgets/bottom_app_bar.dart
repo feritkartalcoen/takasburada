@@ -18,12 +18,8 @@ class BottomAppBar extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
-            child: child,
-          ),
-          SizedBox(
-            width: containerPadding,
-          ),
+          Expanded(child: child),
+          SizedBox(width: containerPadding),
           floatingActionButton,
         ],
       ),

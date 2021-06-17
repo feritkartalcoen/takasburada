@@ -17,9 +17,7 @@ class AdTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: withActions
-          ? adTileHeight(context)
-          : adTileHeightWithoutActions(context),
+      height: withActions ? adTileHeight(context) : adTileHeightWithoutActions(context),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -47,30 +45,24 @@ class AdTile extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Image.asset(ad.products!.first!.photo!,
-                                      fit: BoxFit.cover),
+                                  child: Image.asset(ad.products!.first!.photo!, fit: BoxFit.cover),
                                 ),
                                 Expanded(
-                                  child: Image.asset(ad.products!.last!.photo!,
-                                      fit: BoxFit.cover),
+                                  child: Image.asset(ad.products!.last!.photo!, fit: BoxFit.cover),
                                 ),
                               ],
                             ),
                             Container(
-                              height: withActions
-                                  ? adTileImageHeight(context)
-                                  : adTileImageHeightWithoutActions(context),
+                              height: withActions ? adTileImageHeight(context) : adTileImageHeightWithoutActions(context),
                               alignment: Alignment.center,
                               child: Material(
                                 elevation: elevation,
                                 color: Color(0xffF7EBB9),
-                                borderRadius: BorderRadius.circular(
-                                    adTileTradeIconBorderRadius),
+                                borderRadius: BorderRadius.circular(adTileTradeIconBorderRadius),
                                 child: Container(
                                   width: adTileTradeIconWidth,
                                   height: adTileTradeIconWidth,
-                                  child: Icon(CustomIcons.trade,
-                                      color: iconColor, size: adTileIconSize),
+                                  child: Icon(CustomIcons.trade, color: iconColor, size: adTileIconSize),
                                 ),
                               ),
                             ),
@@ -78,22 +70,15 @@ class AdTile extends StatelessWidget {
                         ),
                         Expanded(
                           child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: containerPadding),
+                            padding: EdgeInsets.symmetric(horizontal: containerPadding),
                             alignment: Alignment.center,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  child: Text(
-                                    ad.title,
-                                    style: adProductNamesTextStyle,
-                                  ),
+                                  child: Text(ad.title, style: adProductNamesTextStyle),
                                 ),
-                                Text(
-                                  ad.since,
-                                  style: adPostDateTextStyle,
-                                ),
+                                Text(ad.since, style: adPostDateTextStyle),
                               ],
                             ),
                           ),
@@ -151,18 +136,13 @@ class AdTile extends StatelessWidget {
                         width: adTileActionItemWidth,
                         child: Column(
                           children: adTileIcons
-                              .map(
-                                (icon) => InkWell(
+                              .map((icon) => InkWell(
                                   child: Container(
                                     width: adTileActionItemWidth,
                                     height: adTileActionItemHeight(context),
-                                    child: Icon(icon,
-                                        color: adTileActionsIconColor,
-                                        size: adTileActionIconSize),
+                                    child: Icon(icon, color: adTileActionsIconColor, size: adTileActionIconSize),
                                   ),
-                                  onTap: () {},
-                                ),
-                              )
+                                  onTap: () {}))
                               .toList(),
                         ),
                       ),

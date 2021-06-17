@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart'
-    hide AppBar, IconButton, BottomAppBar, FloatingActionButton, TextField;
+import 'package:flutter/material.dart' hide AppBar, IconButton, BottomAppBar, FloatingActionButton, TextField;
 import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/classes/conversation.dart';
 import 'package:takasburada/classes/user.dart';
@@ -38,22 +37,7 @@ class Chat extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      users
-                          .where(
-                            (user) =>
-                                user.id ==
-                                ads
-                                    .where(
-                                      (ad) =>
-                                          ad.id == conversations[index].adId,
-                                    )
-                                    .single
-                                    .userId,
-                          )
-                          .single
-                          .nameSurname,
-                      style: listTileTitleTextStyle),
+                  Text(users.where((user) => user.id == ads.where((ad) => ad.id == conversations[index].adId).single.userId).single.nameSurname, style: listTileTitleTextStyle),
                   Text("online", style: listTileSubtitleTextStyle),
                 ],
               ),
@@ -73,17 +57,13 @@ class Chat extends StatelessWidget {
           Expanded(
             child: ListView.separated(
               padding: EdgeInsets.zero,
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: conversations[index].messages!.length,
               itemBuilder: (context, messageIndex) => ChatTile(
                 text: conversations[index].messages![messageIndex]!.text!,
-                isReceived:
-                    conversations[index].messages![messageIndex]!.userId !=
-                        currentUserId,
+                isReceived: conversations[index].messages![messageIndex]!.userId != currentUserId,
               ),
-              separatorBuilder: (context, index) =>
-                  SizedBox(height: containerPadding / 2),
+              separatorBuilder: (context, index) => SizedBox(height: containerPadding / 2),
             ),
           ),
           BottomAppBar(

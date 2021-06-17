@@ -63,8 +63,7 @@ class _LocationTileState extends State<LocationTile> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(24),
-              child:
-                  isPageTransitionAnimationCompleted ? googleMap : SizedBox(),
+              child: isPageTransitionAnimationCompleted ? googleMap : SizedBox(),
             ),
             Positioned.fill(
               child: Material(

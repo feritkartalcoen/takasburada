@@ -3,14 +3,17 @@ import 'package:takasburada/constants/constants.dart';
 
 class BorderedTextField extends StatelessWidget {
   final String hint;
+  final TextEditingController? textEditingController;
   const BorderedTextField({
     Key? key,
     required this.hint,
+    this.textEditingController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: textEditingController,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: textFieldHintTextStyle,

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:takasburada/pages/login.dart';
 import 'package:takasburada/providers/bottom_navigation_bar_provider.dart';
 import 'package:takasburada/providers/tab_bar_provider.dart';
+import 'package:takasburada/services/authentication.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,8 +13,21 @@ void main() async {
   runApp(App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   App({Key? key}) : super(key: key);
+
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  Authentication authentication = Authentication();
+
+  @override
+  void initState() {
+    super.initState();
+    authentication.listenUserChanges();
+  }
 
   @override
   Widget build(BuildContext context) {

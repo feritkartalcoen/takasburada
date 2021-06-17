@@ -25,8 +25,7 @@ class Search extends StatelessWidget {
             height: containerPadding,
           ),
           SingleChildScrollView(
-            physics:
-                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             child: Container(
@@ -39,24 +38,15 @@ class Search extends StatelessWidget {
                     child: Wrap(
                       spacing: containerPadding,
                       children: mostSearchedProducts
-                          .where(
-                            (mostSearchedProduct) =>
-                                mostSearchedProducts
-                                        .indexOf(mostSearchedProduct) %
-                                    2 ==
-                                0,
-                          )
+                          .where((mostSearchedProduct) => mostSearchedProducts.indexOf(mostSearchedProduct) % 2 == 0)
                           .toList()
                           .map(
                             (mostSearchedProduct) => OpenContainer(
-                              openBuilder: (context, onTap) =>
-                                  Result(onTap: onTap),
-                              closedBuilder: (context, onTap) =>
-                                  Chip(text: mostSearchedProduct, onTap: onTap),
+                              openBuilder: (context, onTap) => Result(onTap: onTap),
+                              closedBuilder: (context, onTap) => Chip(text: mostSearchedProduct, onTap: onTap),
                               closedElevation: elevation,
                               closedShape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(chipBorderRadius),
+                                borderRadius: BorderRadius.circular(chipBorderRadius),
                               ),
                             ),
                           )
@@ -71,24 +61,15 @@ class Search extends StatelessWidget {
                     child: Wrap(
                       spacing: containerPadding,
                       children: mostSearchedProducts
-                          .where(
-                            (mostSearchedProduct) =>
-                                mostSearchedProducts
-                                        .indexOf(mostSearchedProduct) %
-                                    2 ==
-                                1,
-                          )
+                          .where((mostSearchedProduct) => mostSearchedProducts.indexOf(mostSearchedProduct) % 2 == 1)
                           .toList()
                           .map(
                             (mostSearchedProduct) => OpenContainer(
-                              openBuilder: (context, onTap) =>
-                                  Result(onTap: onTap),
-                              closedBuilder: (context, onTap) =>
-                                  Chip(text: mostSearchedProduct, onTap: onTap),
+                              openBuilder: (context, onTap) => Result(onTap: onTap),
+                              closedBuilder: (context, onTap) => Chip(text: mostSearchedProduct, onTap: onTap),
                               closedElevation: elevation,
                               closedShape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(chipBorderRadius),
+                                borderRadius: BorderRadius.circular(chipBorderRadius),
                               ),
                             ),
                           )

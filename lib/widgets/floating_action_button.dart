@@ -15,16 +15,8 @@ class FloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Provider.of<BottomNavigationBarProvider>(context)
-                  .bottomNavigationIndex !=
-              2
-          ? Colors.transparent
-          : floatingActionButtonColor,
-      elevation: Provider.of<BottomNavigationBarProvider>(context)
-                  .bottomNavigationIndex !=
-              2
-          ? 0
-          : elevation,
+      color: Provider.of<BottomNavigationBarProvider>(context).bottomNavigationIndex != 2 ? Colors.transparent : floatingActionButtonColor,
+      elevation: Provider.of<BottomNavigationBarProvider>(context).bottomNavigationIndex != 2 ? 0 : elevation,
       borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
       child: InkWell(
         borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),

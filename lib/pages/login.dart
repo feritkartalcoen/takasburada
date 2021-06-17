@@ -9,9 +9,14 @@ import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/tab_bar.dart';
 import 'package:takasburada/widgets/title.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +25,7 @@ class Login extends StatelessWidget {
           AppBar(
             children: [
               Hero(
-                tag: customTitleHeroTag,
+                tag: titleHeroTag,
                 child: Title(),
               ),
             ],

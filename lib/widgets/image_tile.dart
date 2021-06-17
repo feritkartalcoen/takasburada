@@ -15,10 +15,7 @@ class ImageTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(imageBorderRadius),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(imageBorderRadius),
-        child: Image.asset(
-          image,
-          fit: BoxFit.cover,
-        ),
+        child: Image.asset(image, fit: BoxFit.cover),
       ),
     );
   }

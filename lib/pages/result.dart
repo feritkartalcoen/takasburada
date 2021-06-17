@@ -22,10 +22,7 @@ class Result extends StatelessWidget {
           AppBar(
             withTitle: false,
             children: [
-              IconButton(
-                icon: CustomIcons.back,
-                onTap: onTap,
-              ),
+              IconButton(icon: CustomIcons.back, onTap: onTap),
               Expanded(child: SizedBox()),
               TextButton(text: "filter", onTap: () {}),
               TextButton(text: "sort", onTap: () {}),
@@ -33,19 +30,14 @@ class Result extends StatelessWidget {
           ),
           Expanded(
             child: ListView.separated(
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               padding: EdgeInsets.zero,
               itemCount: ads.length,
               itemBuilder: (context, index) {
-                return AdTile(
-                  ad: ads[index],
-                );
+                return AdTile(ad: ads[index]);
               },
               separatorBuilder: (context, index) {
-                return SizedBox(
-                  height: containerPadding,
-                );
+                return SizedBox(height: containerPadding);
               },
             ),
           ),

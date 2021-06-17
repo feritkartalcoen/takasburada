@@ -14,18 +14,13 @@ class Chip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      /* elevation: elevation,
-      borderRadius: BorderRadius.circular(chipBorderRadius), */
       child: InkWell(
         borderRadius: BorderRadius.circular(chipBorderRadius),
         child: Container(
           height: chipHeight,
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(horizontal: containerPadding),
-          child: Text(
-            text,
-            style: chipTextStyle,
-          ),
+          child: Text(text, style: chipTextStyle),
         ),
         onTap: onTap,
       ),

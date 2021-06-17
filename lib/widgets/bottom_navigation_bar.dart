@@ -23,14 +23,9 @@ class BottomNavigationBar extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               AnimatedPositioned(
-                duration: Duration(
-                    milliseconds:
-                        bottomNavigationBarIndicatorAnimationDuration),
+                duration: Duration(milliseconds: bottomNavigationBarIndicatorAnimationDuration),
                 curve: Curves.ease,
-                left: context
-                        .watch<BottomNavigationBarProvider>()
-                        .bottomNavigationIndex *
-                    bottomNavigationBarIndicatorWidth(context),
+                left: context.watch<BottomNavigationBarProvider>().bottomNavigationIndex * bottomNavigationBarIndicatorWidth(context),
                 child: Container(
                   color: bottomNavigationBarColor,
                   width: bottomNavigationBarIndicatorWidth(context),
@@ -40,26 +35,21 @@ class BottomNavigationBar extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: icons!
-                    .map(
-                      (icon) => Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          child: Container(
-                            width: bottomNavigationBarItemWidth(context),
-                            child: Icon(
-                              icon,
-                              color: bottomNavigationBarIconColor,
+                    .map((icon) => Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            child: Container(
+                              width: bottomNavigationBarItemWidth(context),
+                              child: Icon(
+                                icon,
+                                color: bottomNavigationBarIconColor,
+                              ),
                             ),
+                            onTap: () {
+                              context.read<BottomNavigationBarProvider>().setbottomNavigationIndex(icons!.indexOf(icon!));
+                            },
                           ),
-                          onTap: () {
-                            context
-                                .read<BottomNavigationBarProvider>()
-                                .setbottomNavigationIndex(
-                                    icons!.indexOf(icon!));
-                          },
-                        ),
-                      ),
-                    )
+                        ))
                     .toList(),
               ),
             ],

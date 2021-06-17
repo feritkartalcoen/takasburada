@@ -33,23 +33,20 @@ class Create extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               padding: EdgeInsets.symmetric(horizontal: containerPadding),
               children: [
                 Label(label: "what are you giving"),
                 SizedBox(height: containerPadding),
                 BorderedTextField(hint: "type here"),
                 SizedBox(height: containerPadding),
-                ColoredButton(
-                    text: "add product photo", onTap: () {}, isPrimary: true),
+                ColoredButton(text: "add product photo", onTap: () {}, isPrimary: true),
                 SizedBox(height: containerPadding),
                 Label(label: "what do you want"),
                 SizedBox(height: containerPadding),
                 BorderedTextField(hint: "type here"),
                 SizedBox(height: containerPadding),
-                ColoredButton(
-                    text: "add product photo", onTap: () {}, isPrimary: true),
+                ColoredButton(text: "add product photo", onTap: () {}, isPrimary: true),
                 SizedBox(height: containerPadding),
                 Row(
                   children: [
