@@ -3,11 +3,5 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 package="com.feritkartalcoen.takasburada">
     <uses-permission android:name="android.permission.INTERNET"/>
-    <application
-    android:usesCleartextTraffic="true"
-    tools:targetApi="m">
-        <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBvJCnw10rQi38vaShxqgH8QR1_0SHrLic"/>
-    </application>
+    <application android:usesCleartextTraffic="true"></application>
 </manifest>

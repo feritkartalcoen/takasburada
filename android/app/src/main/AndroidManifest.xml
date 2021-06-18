@@ -8,8 +8,7 @@ package="com.feritkartalcoen.takasburada">
     android:fullBackupContent="true"
     android:icon="@mipmap/ic_launcher"
     android:label="takasburada"
-    android:usesCleartextTraffic="true"
-    tools:targetApi="m">
+    android:usesCleartextTraffic="true">
         <activity
         android:name=".MainActivity"
         android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -31,8 +30,5 @@ package="com.feritkartalcoen.takasburada">
         <meta-data
         android:name="flutterEmbedding"
         android:value="2"/>
-        <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBvJCnw10rQi38vaShxqgH8QR1_0SHrLic"/>
     </application>
 </manifest>
