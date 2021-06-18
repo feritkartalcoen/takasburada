@@ -1,5 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart' hide AppBar, BottomAppBar, FloatingActionButton, Title, BottomNavigationBar;
+import 'package:flutter/material.dart' hide AppBar, BottomAppBar, FloatingActionButton, Title, BottomNavigationBar, SnackBar;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/pages/create.dart';
@@ -15,6 +15,7 @@ import 'package:takasburada/widgets/bottom_app_bar.dart';
 import 'package:takasburada/widgets/bottom_navigation_bar.dart';
 import 'package:takasburada/widgets/floating_action_button.dart';
 import 'package:takasburada/widgets/profile_button.dart';
+import 'package:takasburada/widgets/snack_bar.dart';
 import 'package:takasburada/widgets/title.dart';
 
 class Home extends StatelessWidget {
@@ -37,6 +38,7 @@ class Home extends StatelessWidget {
                 onTap: () {
                   context.read<providers.Authentication>().signOut().then((value) {
                     print("signed out");
+                    SnackBar.show(context, "signed out");
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

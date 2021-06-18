@@ -6,6 +6,7 @@ import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/colored_button.dart';
 import 'package:provider/provider.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
+import 'package:takasburada/widgets/snack_bar.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
@@ -72,6 +73,7 @@ class SignUp extends StatelessWidget {
                 )
                 .then((value) {
               print(value);
+              SnackBar.show(context, value);
               if (value == "signed up") {
                 Navigator.pushReplacement(
                   context,
