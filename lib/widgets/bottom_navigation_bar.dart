@@ -46,7 +46,7 @@ class BottomNavigationBar extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              context.read<providers.BottomNavigationBar>().setbottomNavigationIndex(icons!.indexOf(icon!));
+                              context.read<providers.BottomNavigationBar>().bottomNavigationIndex = icons!.indexOf(icon!);
                             },
                           ),
                         ))

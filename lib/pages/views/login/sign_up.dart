@@ -27,6 +27,7 @@ class SignUp extends StatelessWidget {
           children: [
             Expanded(
               child: BorderedTextField(
+                textInputType: TextInputType.text,
                 hint: "name",
                 textEditingController: nameController,
               ),
@@ -36,6 +37,7 @@ class SignUp extends StatelessWidget {
             ),
             Expanded(
               child: BorderedTextField(
+                textInputType: TextInputType.text,
                 hint: "surname",
                 textEditingController: surnameController,
               ),
@@ -46,6 +48,7 @@ class SignUp extends StatelessWidget {
           height: containerPadding,
         ),
         BorderedTextField(
+          textInputType: TextInputType.emailAddress,
           hint: "email",
           textEditingController: emailController,
         ),
@@ -53,8 +56,45 @@ class SignUp extends StatelessWidget {
           height: containerPadding,
         ),
         BorderedTextField(
+          textInputType: TextInputType.visiblePassword,
           hint: "password",
           textEditingController: passwordController,
+        ),
+        SizedBox(
+          height: containerPadding,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: ColoredButton(
+                text: "add${context.watch<providers.ImageOrVideo>().file.path == "" ? " " : " another "}photo",
+                onTap: () {
+                  context.read<providers.ImageOrVideo>().selectImage().then(
+                    (value) {
+                      print(value);
+                      SnackBar.show(context, value);
+                    },
+                  );
+                },
+                isPrimary: true,
+              ),
+            ),
+            if (context.watch<providers.ImageOrVideo>().file.path != "") SizedBox(width: containerPadding),
+            if (context.watch<providers.ImageOrVideo>().file.path != "")
+              Material(
+                elevation: elevation,
+                borderRadius: BorderRadius.circular(buttonBorderRadius),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(buttonBorderRadius),
+                  child: Image.file(
+                    context.watch<providers.ImageOrVideo>().file,
+                    width: buttonHeight,
+                    height: buttonHeight,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+          ],
         ),
         SizedBox(
           height: containerPadding,
@@ -70,6 +110,7 @@ class SignUp extends StatelessWidget {
                   surname: surnameController.text,
                   email: emailController.text,
                   password: passwordController.text,
+                  photo: context.read<providers.ImageOrVideo>().file,
                 )
                 .then((value) {
               print(value);

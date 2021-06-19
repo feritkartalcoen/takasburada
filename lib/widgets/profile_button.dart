@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 
 class ProfileButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -23,9 +24,16 @@ class ProfileButton extends StatelessWidget {
             height: appBarButtonHeight,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
-              child: Image.asset(
-                users.where((user) => user.id == currentUserId).single.photo!,
-                fit: BoxFit.fill,
+              child: FutureBuilder<String>(
+                future: context.read<providers.Authentication>().userPhoto,
+                builder: (context, snapshot) {
+                  return snapshot.connectionState == ConnectionState.done
+                      ? Image.network(
+                          snapshot.data!,
+                          fit: BoxFit.fill,
+                        )
+                      : CircularProgressIndicator();
+                },
               ),
             ),
           ),

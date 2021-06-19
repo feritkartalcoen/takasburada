@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class Authentication {
   final FirebaseAuth firebaseAuth;
   final FirebaseFirestore firebaseFirestore;
+  final FirebaseStorage firebaseStorage;
 
   Authentication({
     required this.firebaseAuth,
     required this.firebaseFirestore,
+    required this.firebaseStorage,
   });
 
   Stream<User?> get userChanges => firebaseAuth.userChanges();
@@ -19,8 +24,9 @@ class Authentication {
     required String surname,
     required String email,
     required String password,
+    required File photo,
   }) async {
-    if (name != "" && surname != "") {
+    if (name != "" && surname != "" && email != "" && password != "" && photo.path != "") {
       try {
         UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
         try {
@@ -30,30 +36,42 @@ class Authentication {
                 "email": email,
                 "password": password,
               }));
-          return "signed up";
-        } catch (e) {
-          return e.toString();
+          try {
+            await firebaseStorage.ref("userPhotos/${userCredential.user!.uid}.png").putFile(photo);
+            return "signed up";
+          } on FirebaseException catch (e) {
+            return e.message!;
+          }
+        } on FirebaseException catch (e) {
+          return e.message!;
         }
       } on FirebaseAuthException catch (e) {
         return e.message!;
       }
     }
-    return "name and surname required";
+    return "please complete all fields";
   }
 
   Future<String> signIn({
     required String email,
     required String password,
   }) async {
-    try {
-      await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      return "signed in";
-    } on FirebaseAuthException catch (e) {
-      return e.message!;
+    if (email != "" && password != "") {
+      try {
+        await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+        return "signed in";
+      } on FirebaseAuthException catch (e) {
+        return e.message!;
+      }
     }
+    return "please complete all fields";
   }
 
   Future<void> signOut() async {
     await firebaseAuth.signOut();
+  }
+
+  Future<String> get userPhoto async {
+    return await firebaseStorage.ref("userPhotos/${firebaseAuth.currentUser!.uid}.png").getDownloadURL();
   }
 }

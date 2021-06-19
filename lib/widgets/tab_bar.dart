@@ -49,9 +49,7 @@ class TabBar extends StatelessWidget {
                           style: tabTitleTextStyle,
                         ),
                       ),
-                      onTap: () => context.read<providers.TabBar>().setTabIndex(
-                            tabBarItemTitles.indexOf(tabBarItemTitle),
-                          ),
+                      onTap: () => context.read<providers.TabBar>().tabIndex = tabBarItemTitles.indexOf(tabBarItemTitle),
                     ),
                   ),
                 )

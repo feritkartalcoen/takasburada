@@ -58,6 +58,7 @@ const Color iconColor = Color(0xff707070);
 const Color iconButtonIconColor = Color(0xff707070);
 const Color primaryButtonColor = Color(0xff375675);
 const Color secondaryButtonColor = Color(0xffF7EBB9);
+const Color snackBarColor = Color(0xffF7EBB9);
 const Color tabColor = Color(0xffF7EBB9);
 const Color tabBarIndicatorColor = Color(0xffF7EBB9);
 

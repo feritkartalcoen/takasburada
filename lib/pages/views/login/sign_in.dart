@@ -21,6 +21,7 @@ class SignIn extends StatelessWidget {
       padding: EdgeInsets.all(containerPadding),
       children: [
         BorderedTextField(
+          textInputType: TextInputType.emailAddress,
           textEditingController: emailController,
           hint: "email",
         ),
@@ -28,6 +29,7 @@ class SignIn extends StatelessWidget {
           height: containerPadding,
         ),
         BorderedTextField(
+          textInputType: TextInputType.visiblePassword,
           textEditingController: passwordController,
           hint: "password",
         ),
