@@ -30,4 +30,8 @@ class ImageOrVideo with ChangeNotifier {
   }
 
   File get file => _file;
+
+  resetFile() {
+    _file = File("");
+  }
 }

@@ -114,6 +114,11 @@ class SignUp extends StatelessWidget {
                 )
                 .then((value) {
               print(value);
+              nameController.clear();
+              surnameController.clear();
+              emailController.clear();
+              passwordController.clear();
+              context.read<providers.ImageOrVideo>().resetFile();
               SnackBar.show(context, value);
               if (value == "signed up") {
                 Navigator.pushReplacement(
