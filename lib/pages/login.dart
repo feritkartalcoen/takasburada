@@ -40,7 +40,7 @@ class Login extends StatelessWidget {
                   fillColor: Colors.transparent,
                 );
               },
-              child: tabBarViews[context.watch<providers.TabBar>().tabIndex],
+              child: tabBarViews[context.watch<providers.IndexProvider>().tabIndex],
             ),
           ),
         ],

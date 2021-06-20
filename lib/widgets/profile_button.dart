@@ -21,10 +21,15 @@ class _ProfileButtonState extends State<ProfileButton> {
   @override
   void initState() {
     super.initState();
-    context.read<providers.Authentication>().userPhoto.then(
+    context
+        .read<providers.FirebaseProvider>()
+        .getUser(
+          context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid,
+        )
+        .then(
       (value) {
         setState(() {
-          userPhoto = value;
+          userPhoto = value.photo;
         });
       },
     );

@@ -25,7 +25,7 @@ class BottomNavigationBar extends StatelessWidget {
               AnimatedPositioned(
                 duration: Duration(milliseconds: bottomNavigationBarIndicatorAnimationDuration),
                 curve: Curves.ease,
-                left: context.watch<providers.BottomNavigationBar>().bottomNavigationIndex * bottomNavigationBarIndicatorWidth(context),
+                left: context.watch<providers.IndexProvider>().bottomNavigationIndex * bottomNavigationBarIndicatorWidth(context),
                 child: Container(
                   color: bottomNavigationBarColor,
                   width: bottomNavigationBarIndicatorWidth(context),
@@ -46,7 +46,7 @@ class BottomNavigationBar extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              context.read<providers.BottomNavigationBar>().bottomNavigationIndex = icons!.indexOf(icon!);
+                              context.read<providers.IndexProvider>().bottomNavigationIndex = icons!.indexOf(icon!);
                             },
                           ),
                         ))

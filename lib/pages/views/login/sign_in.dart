@@ -41,7 +41,7 @@ class SignIn extends StatelessWidget {
           isPrimary: true,
           onTap: () {
             context
-                .read<providers.Authentication>()
+                .read<providers.FirebaseProvider>()
                 .signIn(
                   email: emailController.text,
                   password: passwordController.text,

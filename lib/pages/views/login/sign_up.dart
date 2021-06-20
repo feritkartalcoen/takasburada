@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart' hide SnackBar;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/home.dart';
@@ -8,9 +10,15 @@ import 'package:provider/provider.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
 import 'package:takasburada/widgets/snack_bar.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   SignUp({Key? key}) : super(key: key);
 
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  File? photo;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
@@ -67,27 +75,34 @@ class SignUp extends StatelessWidget {
           children: [
             Expanded(
               child: ColoredButton(
-                text: "add${context.watch<providers.ImageOrVideo>().file.path == "" ? " " : " another "}photo",
+                text: "add${photo == null ? " " : " another "}photo",
                 onTap: () {
-                  context.read<providers.ImageOrVideo>().selectImage().then(
+                  context.read<providers.ImageProvider>().selectImage().then(
                     (value) {
-                      print(value);
-                      SnackBar.show(context, value);
+                      if (value == null) {
+                        print("no image selected");
+                      } else {
+                        setState(() {
+                          photo = value;
+                        });
+                        print("image selected");
+                      }
+                      SnackBar.show(context, value == null ? "no image selected" : "image selected");
                     },
                   );
                 },
                 isPrimary: true,
               ),
             ),
-            if (context.watch<providers.ImageOrVideo>().file.path != "") SizedBox(width: containerPadding),
-            if (context.watch<providers.ImageOrVideo>().file.path != "")
+            if (photo != null) SizedBox(width: containerPadding),
+            if (photo != null)
               Material(
                 elevation: elevation,
                 borderRadius: BorderRadius.circular(buttonBorderRadius),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(buttonBorderRadius),
                   child: Image.file(
-                    context.watch<providers.ImageOrVideo>().file,
+                    photo!,
                     width: buttonHeight,
                     height: buttonHeight,
                     fit: BoxFit.fitWidth,
@@ -104,13 +119,13 @@ class SignUp extends StatelessWidget {
           isPrimary: true,
           onTap: () {
             context
-                .read<providers.Authentication>()
+                .read<providers.FirebaseProvider>()
                 .signUp(
                   name: nameController.text,
                   surname: surnameController.text,
                   email: emailController.text,
                   password: passwordController.text,
-                  photo: context.read<providers.ImageOrVideo>().file,
+                  photo: photo!,
                 )
                 .then((value) {
               print(value);
@@ -118,7 +133,6 @@ class SignUp extends StatelessWidget {
               surnameController.clear();
               emailController.clear();
               passwordController.clear();
-              context.read<providers.ImageOrVideo>().resetFile();
               SnackBar.show(context, value);
               if (value == "signed up") {
                 Navigator.pushReplacement(

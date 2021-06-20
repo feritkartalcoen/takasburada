@@ -1,23 +1,23 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
+import 'package:firebase_auth/firebase_auth.dart' as firebaseUser show User;
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:takasburada/classes/user.dart';
 
-class Authentication {
+class FirebaseProvider {
   final FirebaseAuth firebaseAuth;
   final FirebaseFirestore firebaseFirestore;
   final FirebaseStorage firebaseStorage;
 
-  Authentication({
+  FirebaseProvider({
     required this.firebaseAuth,
     required this.firebaseFirestore,
     required this.firebaseStorage,
   });
 
-  Stream<User?> get userChanges => firebaseAuth.userChanges();
-
-  User? get user => firebaseAuth.currentUser;
+  Stream<firebaseUser.User?> get userChanges => firebaseAuth.userChanges();
 
   Future<String> signUp({
     required String name,
@@ -30,14 +30,15 @@ class Authentication {
       try {
         UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
         try {
-          await firebaseFirestore.collection("users").doc(userCredential.user!.uid).set(({
-                "name": name,
-                "surname": surname,
-                "email": email,
-                "password": password,
-              }));
+          await firebaseStorage.ref("userPhotos/${userCredential.user!.uid}.png").putFile(photo);
           try {
-            await firebaseStorage.ref("userPhotos/${userCredential.user!.uid}.png").putFile(photo);
+            await firebaseFirestore.collection("users").doc(userCredential.user!.uid).set(({
+                  "name": name,
+                  "surname": surname,
+                  "email": email,
+                  "password": password,
+                  "photo": await firebaseStorage.ref("userPhotos/${userCredential.user!.uid}.png").getDownloadURL(),
+                }));
             return "signed up";
           } on FirebaseException catch (e) {
             return e.message!;
@@ -71,7 +72,22 @@ class Authentication {
     await firebaseAuth.signOut();
   }
 
-  Future<String> get userPhoto async {
-    return await firebaseStorage.ref("userPhotos/${firebaseAuth.currentUser!.uid}.png").getDownloadURL();
+  Future<User> getUser(String userId) async {
+    var user = User();
+    CollectionReference users = firebaseFirestore.collection("users");
+    await users.doc(userId).get().then(
+      (value) {
+        Map<String, dynamic> userData = value.data() as Map<String, dynamic>;
+        user = User(
+          id: value.id,
+          name: userData["name"],
+          surname: userData["surname"],
+          email: userData["email"],
+          password: userData["password"],
+          photo: userData["photo"],
+        );
+      },
+    );
+    return user;
   }
 }

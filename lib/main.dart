@@ -22,21 +22,20 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<providers.Authentication>(
-          create: (_) => providers.Authentication(
+        Provider<providers.FirebaseProvider>(
+          create: (_) => providers.FirebaseProvider(
             firebaseAuth: FirebaseAuth.instance,
             firebaseFirestore: FirebaseFirestore.instance,
             firebaseStorage: FirebaseStorage.instance,
           ),
         ),
         StreamProvider(
-          create: (context) => context.read<providers.Authentication>().userChanges,
+          create: (context) => context.read<providers.FirebaseProvider>().userChanges,
           initialData: null,
         ),
-        ChangeNotifierProvider(create: (_) => providers.TabBar()),
-        ChangeNotifierProvider(create: (_) => providers.BottomNavigationBar()),
-        ChangeNotifierProvider(
-          create: (_) => providers.ImageOrVideo(),
+        ChangeNotifierProvider(create: (_) => providers.IndexProvider()),
+        Provider(
+          create: (_) => providers.ImageProvider(),
         ),
       ],
       builder: (context, _) => MaterialApp(
@@ -53,7 +52,7 @@ class App extends StatelessWidget {
             },
           ),
         ),
-        home: context.watch<providers.Authentication>().user == null ? Login() : Home(),
+        home: context.watch<providers.FirebaseProvider>().firebaseAuth.currentUser == null ? Login() : Home(),
       ),
     );
   }

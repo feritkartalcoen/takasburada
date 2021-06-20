@@ -14,7 +14,7 @@ class TabBar extends StatelessWidget {
         AnimatedPositioned(
           duration: Duration(milliseconds: tabBarIndicatorAnimationDuration),
           curve: Curves.ease,
-          left: context.watch<providers.TabBar>().tabIndex == 0 ? -containerPadding : tabBarIndicatorWidth(context),
+          left: context.watch<providers.IndexProvider>().tabIndex == 0 ? -containerPadding : tabBarIndicatorWidth(context),
           child: Material(
             elevation: elevation,
             color: tabBarIndicatorColor,
@@ -49,7 +49,7 @@ class TabBar extends StatelessWidget {
                           style: tabTitleTextStyle,
                         ),
                       ),
-                      onTap: () => context.read<providers.TabBar>().tabIndex = tabBarItemTitles.indexOf(tabBarItemTitle),
+                      onTap: () => context.read<providers.IndexProvider>().tabIndex = tabBarItemTitles.indexOf(tabBarItemTitle),
                     ),
                   ),
                 )

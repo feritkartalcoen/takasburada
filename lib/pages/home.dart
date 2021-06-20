@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
               Expanded(child: SizedBox()),
               ProfileButton(
                 onTap: () {
-                  context.read<providers.Authentication>().signOut().then((value) {
+                  context.read<providers.FirebaseProvider>().signOut().then((value) {
                     print("signed out");
                     SnackBar.show(context, "signed out");
                     Navigator.pushReplacement(
@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
                 fillColor: Colors.transparent,
               );
             },
-            child: bottomNavigationBarViews[context.watch<providers.BottomNavigationBar>().bottomNavigationIndex],
+            child: bottomNavigationBarViews[context.watch<providers.IndexProvider>().bottomNavigationIndex],
           )),
           BottomAppBar(
             child: BottomNavigationBar(
@@ -74,13 +74,13 @@ class Home extends StatelessWidget {
                 CustomIcons.chat
               ],
             ),
-            floatingActionButton: Provider.of<providers.BottomNavigationBar>(context).bottomNavigationIndex != 2
+            floatingActionButton: Provider.of<providers.IndexProvider>(context).bottomNavigationIndex != 2
                 ? OpenContainer(
                     openBuilder: (context, onTap) {
-                      return Provider.of<providers.BottomNavigationBar>(context).bottomNavigationIndex == 0 ? Create(onTap: onTap) : Result(onTap: onTap);
+                      return Provider.of<providers.IndexProvider>(context).bottomNavigationIndex == 0 ? Create(onTap: onTap) : Result(onTap: onTap);
                     },
                     closedBuilder: (context, onTap) => FloatingActionButton(
-                      icon: floatingActionButtonIcons[context.watch<providers.BottomNavigationBar>().bottomNavigationIndex],
+                      icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
                       onTap: onTap,
                     ),
                     closedShape: RoundedRectangleBorder(
@@ -90,7 +90,7 @@ class Home extends StatelessWidget {
                     closedColor: floatingActionButtonColor,
                   )
                 : FloatingActionButton(
-                    icon: floatingActionButtonIcons[context.watch<providers.BottomNavigationBar>().bottomNavigationIndex],
+                    icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
                     onTap: () {},
                   ),
           ),
