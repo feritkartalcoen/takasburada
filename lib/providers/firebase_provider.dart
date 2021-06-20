@@ -90,4 +90,47 @@ class FirebaseProvider {
     );
     return user;
   }
+
+  Future<String> createAd({
+    required String givenProductName,
+    required File givenProductPhoto,
+    required String desiredProductName,
+    required File desiredProductPhoto,
+    required String information,
+  }) async {
+    if (givenProductName != "" && givenProductPhoto.path != "" && desiredProductName != "" && desiredProductPhoto.path != "" && information != "") {
+      try {
+        var ad = firebaseFirestore.collection("ads").doc();
+        await ad.set(({
+          "userId": firebaseAuth.currentUser!.uid,
+          "date": Timestamp.now(),
+          "information": information,
+        }));
+        try {
+          await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").putFile(givenProductPhoto);
+          await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").putFile(desiredProductPhoto);
+          try {
+            await ad.collection("products").doc().set(({
+                  "name": givenProductName,
+                  "photo": await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").getDownloadURL(),
+                  "isGiven": true,
+                }));
+            await ad.collection("products").doc().set(({
+                  "name": desiredProductName,
+                  "photo": await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").getDownloadURL(),
+                  "isGiven": false,
+                }));
+            return "ad created";
+          } on FirebaseException catch (e) {
+            return e.message!;
+          }
+        } on FirebaseException catch (e) {
+          return e.message!;
+        }
+      } on FirebaseException catch (e) {
+        return e.message!;
+      }
+    }
+    return "please complete all fields";
+  }
 }

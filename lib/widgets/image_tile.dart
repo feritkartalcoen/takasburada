@@ -1,11 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
 class ImageTile extends StatelessWidget {
-  final String image;
+  final String? photo;
   const ImageTile({
     Key? key,
-    required this.image,
+    this.photo,
   }) : super(key: key);
 
   @override
@@ -15,7 +17,22 @@ class ImageTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(imageBorderRadius),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(imageBorderRadius),
-        child: Image.asset(image, fit: BoxFit.cover),
+        child: photo != ""
+            ? Image.file(
+                File(photo!),
+                fit: BoxFit.cover,
+              )
+            : AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.image,
+                    size: iconButtonIconSize,
+                    color: iconButtonIconColor,
+                  ),
+                ),
+              ),
       ),
     );
   }
