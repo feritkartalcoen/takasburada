@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "748722394384",
-    "project_id": "takasburada-41597",
-    "storage_bucket": "takasburada-41597.appspot.com"
+    "project_number": "1014304175690",
+    "project_id": "takasburadaapp",
+    "storage_bucket": "takasburadaapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:748722394384:android:c4e6764c29d4dbe51a0195",
+        "mobilesdk_app_id": "1:1014304175690:android:414dce5a681de6d3e118b3",
         "android_client_info": {
           "package_name": "com.feritkartalcoen.takasburada"
         }
       },
       "oauth_client": [
         {
-          "client_id": "748722394384-9fbp31igbl6ekndc60bn8qislg4etlor.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.feritkartalcoen.takasburada",
-            "certificate_hash": "9cf5c55e7f4d2be9908768ce36aec94dbb1f18b2"
-          }
-        },
-        {
-          "client_id": "748722394384-jrqqle1gdlms10luvkgnq9ieaf4t2kd8.apps.googleusercontent.com",
+          "client_id": "1014304175690-lomtvbtmnv41o9p51as7ib7rkee5p1dc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC-ZvmqxnA-KAglhTy4BWu6B1mvZw4Dluo"
+          "current_key": "AIzaSyAtWZ8SbIF1Lp6oP6llRydWi8n24m08ubA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "748722394384-jrqqle1gdlms10luvkgnq9ieaf4t2kd8.apps.googleusercontent.com",
+              "client_id": "1014304175690-lomtvbtmnv41o9p51as7ib7rkee5p1dc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

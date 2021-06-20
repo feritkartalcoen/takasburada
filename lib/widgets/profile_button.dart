@@ -1,14 +1,34 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
 
-class ProfileButton extends StatelessWidget {
+class ProfileButton extends StatefulWidget {
   final VoidCallback? onTap;
   const ProfileButton({
     Key? key,
     this.onTap,
   }) : super(key: key);
+
+  @override
+  _ProfileButtonState createState() => _ProfileButtonState();
+}
+
+class _ProfileButtonState extends State<ProfileButton> {
+  String? userPhoto;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<providers.Authentication>().userPhoto.then(
+      (value) {
+        setState(() {
+          userPhoto = value;
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +44,12 @@ class ProfileButton extends StatelessWidget {
             height: appBarButtonHeight,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
-              child: FutureBuilder<String>(
-                future: context.read<providers.Authentication>().userPhoto,
-                builder: (context, snapshot) {
-                  return snapshot.connectionState == ConnectionState.done
-                      ? Image.network(
-                          snapshot.data!,
-                          fit: BoxFit.fill,
-                        )
-                      : CircularProgressIndicator();
-                },
-              ),
+              child: userPhoto != null
+                  ? CachedNetworkImage(
+                      imageUrl: userPhoto!,
+                      fit: BoxFit.fill,
+                    )
+                  : SizedBox(),
             ),
           ),
           Positioned.fill(
@@ -43,7 +58,7 @@ class ProfileButton extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
-                onTap: onTap,
+                onTap: widget.onTap,
               ),
             ),
           ),
