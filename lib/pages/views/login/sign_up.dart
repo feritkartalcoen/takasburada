@@ -18,7 +18,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  File? photo;
+  File photo = File("");
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
@@ -75,7 +75,7 @@ class _SignUpState extends State<SignUp> {
           children: [
             Expanded(
               child: ColoredButton(
-                text: "add${photo == null ? " " : " another "}photo",
+                text: "add${photo.path == "" ? " " : " another "}photo",
                 onTap: () {
                   context.read<providers.ImageProvider>().selectImage().then(
                     (value) {
@@ -94,15 +94,15 @@ class _SignUpState extends State<SignUp> {
                 isPrimary: true,
               ),
             ),
-            if (photo != null) SizedBox(width: containerPadding),
-            if (photo != null)
+            if (photo.path != "") SizedBox(width: containerPadding),
+            if (photo.path != "")
               Material(
                 elevation: elevation,
                 borderRadius: BorderRadius.circular(buttonBorderRadius),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(buttonBorderRadius),
                   child: Image.file(
-                    photo!,
+                    photo,
                     width: buttonHeight,
                     height: buttonHeight,
                     fit: BoxFit.fitWidth,
@@ -125,7 +125,7 @@ class _SignUpState extends State<SignUp> {
                   surname: surnameController.text,
                   email: emailController.text,
                   password: passwordController.text,
-                  photo: photo!,
+                  photo: photo,
                 )
                 .then((value) {
               print(value);

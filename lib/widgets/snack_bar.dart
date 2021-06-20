@@ -10,6 +10,8 @@ class SnackBar {
         backgroundColor: snackBarColor,
         action: action,
         elevation: elevation,
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.only(top: containerPadding),
         content: Text(message, style: snackBarTextSyle),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
