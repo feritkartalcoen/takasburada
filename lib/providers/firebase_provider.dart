@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:firebase_auth/firebase_auth.dart' as firebaseUser show User;
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:takasburada/classes/ad.dart' hide ads;
+import 'package:takasburada/classes/product.dart';
 import 'package:takasburada/classes/user.dart';
 
 class FirebaseProvider {
@@ -74,13 +77,13 @@ class FirebaseProvider {
 
   Future<User> getUser(String userId) async {
     var user = User();
-    CollectionReference users = firebaseFirestore.collection("users");
-    await users.doc(userId).get().then(
+    var usersReference = firebaseFirestore.collection("users");
+    await usersReference.doc(userId).get().then(
       (value) {
-        Map<String, dynamic> userData = value.data() as Map<String, dynamic>;
+        Map<String, dynamic>? userData = value.data();
         user = User(
           id: value.id,
-          name: userData["name"],
+          name: userData!["name"],
           surname: userData["surname"],
           email: userData["email"],
           password: userData["password"],
@@ -89,6 +92,39 @@ class FirebaseProvider {
       },
     );
     return user;
+  }
+
+  Future<List<Ad>?> getAds() async {
+    List<Ad> ads = [];
+    var adsReference = firebaseFirestore.collection("ads").orderBy("date", descending: true);
+    await adsReference.get().then(
+      (adSsnapshot) {
+        adSsnapshot.docs.forEach(
+          (adDocument) {
+            var adData = adDocument.data();
+            List<Product> products = List.castFrom(adData["products"])
+                .map(
+                  (product) => Product(
+                    name: product["name"],
+                    photo: product["photo"],
+                    isGiven: product["isGiven"],
+                  ),
+                )
+                .toList();
+            ads.add(
+              Ad(
+                id: adDocument.id,
+                userId: adData["userId"],
+                products: products,
+                date: adData["date"],
+                information: adData["information"],
+              ),
+            );
+          },
+        );
+      },
+    );
+    return ads.where((ad) => ad.id != firebaseAuth.currentUser!.uid).toList();
   }
 
   Future<String> createAd({
@@ -101,29 +137,27 @@ class FirebaseProvider {
     if (givenProductName != "" && givenProductPhoto.path != "" && desiredProductName != "" && desiredProductPhoto.path != "" && information != "") {
       try {
         var ad = firebaseFirestore.collection("ads").doc();
-        await ad.set(({
-          "userId": firebaseAuth.currentUser!.uid,
-          "date": Timestamp.now(),
-          "information": information,
-        }));
+        await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").putFile(givenProductPhoto);
+        await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").putFile(desiredProductPhoto);
         try {
-          await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").putFile(givenProductPhoto);
-          await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").putFile(desiredProductPhoto);
-          try {
-            await ad.collection("products").doc().set(({
-                  "name": givenProductName,
-                  "photo": await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").getDownloadURL(),
-                  "isGiven": true,
-                }));
-            await ad.collection("products").doc().set(({
-                  "name": desiredProductName,
-                  "photo": await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").getDownloadURL(),
-                  "isGiven": false,
-                }));
-            return "ad created";
-          } on FirebaseException catch (e) {
-            return e.message!;
-          }
+          await ad.set(({
+            "userId": firebaseAuth.currentUser!.uid,
+            "products": [
+              {
+                "name": givenProductName,
+                "photo": await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").getDownloadURL(),
+                "isGiven": true,
+              },
+              {
+                "name": desiredProductName,
+                "photo": await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").getDownloadURL(),
+                "isGiven": false,
+              },
+            ],
+            "date": Timestamp.now(),
+            "information": information,
+          }));
+          return "ad created";
         } on FirebaseException catch (e) {
           return e.message!;
         }

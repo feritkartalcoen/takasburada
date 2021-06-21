@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:takasburada/classes/product.dart';
 import 'package:takasburada/enums/condition.dart';
 
@@ -5,13 +6,15 @@ class Ad {
   String? id;
   String? userId;
   List<Product?>? products;
-  DateTime? date;
+  Timestamp? date;
+  String? information;
 
   Ad({
     this.id,
     this.userId,
     this.products,
     this.date,
+    this.information,
   });
 
   String get title {
@@ -19,7 +22,7 @@ class Ad {
   }
 
   String get since {
-    int dayCount = (DateTime.now().day - this.date!.day);
+    int dayCount = (DateTime.now().day - this.date!.toDate().day);
     return dayCount.toString() + " " + (dayCount == 1 ? "day" : "days") + " ago";
   }
 }
@@ -41,7 +44,7 @@ List<Ad> ads = [
         photo: "images/xboxOne.png",
       ),
     ],
-    date: DateTime.parse("2021-06-08 20:18:04"),
+    date: Timestamp(10000, 10000),
   ),
   Ad(
     id: "ad2",
@@ -59,7 +62,7 @@ List<Ad> ads = [
         photo: "images/miWatch.png",
       ),
     ],
-    date: DateTime.parse("2021-06-07 20:18:04"),
+    date: Timestamp(10000, 10000),
   ),
   Ad(
     id: "ad3",
@@ -77,6 +80,6 @@ List<Ad> ads = [
         photo: "images/desktop.png",
       ),
     ],
-    date: DateTime.parse("2021-06-06 20:18:04"),
+    date: Timestamp(10000, 10000),
   ),
 ];

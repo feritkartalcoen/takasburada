@@ -7,6 +7,7 @@ class Product {
   String? photo;
   Condition? condition;
   DateTime? date;
+  bool? isGiven;
 
   Product({
     this.id,
@@ -15,5 +16,6 @@ class Product {
     this.photo,
     this.condition,
     this.date,
+    this.isGiven,
   });
 }

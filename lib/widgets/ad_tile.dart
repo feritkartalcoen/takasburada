@@ -1,5 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:takasburada/classes/ad.dart';
+import 'package:takasburada/classes/ad.dart' hide ads;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/pages/detail.dart';
@@ -45,10 +46,16 @@ class AdTile extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Image.asset(ad.products!.first!.photo!, fit: BoxFit.cover),
+                                  child: CachedNetworkImage(
+                                    imageUrl: ad.products!.first!.photo!,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                                 Expanded(
-                                  child: Image.asset(ad.products!.last!.photo!, fit: BoxFit.cover),
+                                  child: CachedNetworkImage(
+                                    imageUrl: ad.products!.last!.photo!,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ],
                             ),

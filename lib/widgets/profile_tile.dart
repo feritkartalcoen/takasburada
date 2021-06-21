@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
@@ -25,11 +26,13 @@ class ProfileTile extends StatelessWidget {
             leading: Material(
               elevation: elevation,
               shape: CircleBorder(),
-              child: CircleAvatar(
-                foregroundImage: AssetImage(userPhoto!),
-              ),
+              child: userPhoto != null
+                  ? CircleAvatar(
+                      foregroundImage: CachedNetworkImageProvider(userPhoto!),
+                    )
+                  : SizedBox(),
             ),
-            title: Text(userNameSurname!, style: listTileTitleTextStyle),
+            title: Text(userNameSurname != null ? userNameSurname! : "", style: listTileTitleTextStyle),
             subtitle: Text("tap here to view profile", style: listTileSubtitleTextStyle),
           ),
           onTap: onTap,
