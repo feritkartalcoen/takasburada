@@ -79,13 +79,10 @@ class _SignUpState extends State<SignUp> {
                 onTap: () {
                   context.read<providers.ImageProvider>().selectImage().then(
                     (value) {
-                      if (value == null) {
-                        print("no image selected");
-                      } else {
+                      if (value != null) {
                         setState(() {
                           photo = value;
                         });
-                        print("image selected");
                       }
                       SnackBar.show(context, value == null ? "no image selected" : "image selected");
                     },
@@ -129,12 +126,12 @@ class _SignUpState extends State<SignUp> {
                 )
                 .then((value) {
               print(value);
-              nameController.clear();
-              surnameController.clear();
-              emailController.clear();
-              passwordController.clear();
               SnackBar.show(context, value);
               if (value == "signed up") {
+                nameController.clear();
+                surnameController.clear();
+                emailController.clear();
+                passwordController.clear();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

@@ -7,6 +7,7 @@ class SnackBar {
   static show(BuildContext context, String message, {SnackBarAction? action}) {
     ScaffoldMessenger.of(context).showSnackBar(
       material.SnackBar(
+        duration: Duration(milliseconds: 800),
         backgroundColor: snackBarColor,
         action: action,
         elevation: elevation,

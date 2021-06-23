@@ -48,10 +48,10 @@ class SignIn extends StatelessWidget {
                 )
                 .then((value) {
               print(value);
-              emailController.clear();
-              passwordController.clear();
               SnackBar.show(context, value);
               if (value == "signed in") {
+                emailController.clear();
+                passwordController.clear();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

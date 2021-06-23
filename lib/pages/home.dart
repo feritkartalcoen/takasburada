@@ -6,7 +6,7 @@ import 'package:takasburada/pages/create.dart';
 import 'package:takasburada/pages/login.dart';
 import 'package:takasburada/pages/result.dart';
 import 'package:takasburada/pages/views/home/feed.dart';
-import 'package:takasburada/pages/views/home/messages.dart';
+import 'package:takasburada/pages/views/home/conversations.dart';
 import 'package:takasburada/pages/views/home/search.dart';
 import 'package:provider/provider.dart' hide Create;
 import 'package:takasburada/providers/providers.dart' as providers;
@@ -103,7 +103,7 @@ class Home extends StatelessWidget {
 List<Widget> bottomNavigationBarViews = [
   Feed(),
   Search(),
-  Messages(),
+  Conversations(),
 ];
 
 List<IconData> floatingActionButtonIcons = [

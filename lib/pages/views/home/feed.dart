@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide RefreshIndicator;
 import 'package:takasburada/classes/ad.dart' hide ads;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/widgets/ad_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
+import 'package:takasburada/widgets/refresh_indicator.dart';
 
 class Feed extends StatefulWidget {
   const Feed({Key? key}) : super(key: key);

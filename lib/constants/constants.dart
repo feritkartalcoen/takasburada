@@ -37,6 +37,8 @@ const double iconButtonIconSize = 24;
 const double iconButtonBorderRadius = 24;
 const double imageBorderRadius = 24;
 const double messageTileBorderRadius = 24;
+const double refreshIndicatorDisplacement = 0;
+const double refreshIndicatorStrokeWidth = 3;
 const double snackBarBorderRadius = 24;
 const double tabBarHeight = 48;
 const double tabBorderRadius = 24;
@@ -57,8 +59,10 @@ const Color floatingActionButtonIconColor = Colors.white;
 const Color iconColor = Color(0xff707070);
 const Color iconButtonIconColor = Color(0xff707070);
 const Color primaryButtonColor = Color(0xff375675);
+const Color refreshIndicatorBackgroundColor = Color(0xff375675);
+const Color refreshIndicatorIconColor = Colors.white;
 const Color secondaryButtonColor = Color(0xffF7EBB9);
-const Color snackBarColor = Color(0xffF7EBB9);
+const Color snackBarColor = Color(0xff375675);
 const Color tabColor = Color(0xffF7EBB9);
 const Color tabBarIndicatorColor = Color(0xffF7EBB9);
 
@@ -183,7 +187,7 @@ TextStyle adInformationTileTextStyle = GoogleFonts.robotoCondensed(
 TextStyle snackBarTextSyle = GoogleFonts.robotoCondensed(
   fontSize: 18,
   fontWeight: FontWeight.bold,
-  color: Color(0xff707070),
+  color: Colors.white,
 );
 
 double tabBarIndicatorWidth(BuildContext context) {

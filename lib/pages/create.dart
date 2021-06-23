@@ -145,17 +145,13 @@ class _CreateState extends State<Create> {
                         .then(
                       (value) {
                         print(value);
-                        /* givenProductNameController.clear();
-                        desiredProductNameController.clear();
-                        informationController.clear();
-                        setState(() {
-                          givenProductPhoto = File("");
-                          desiredProductPhoto = File("");
-                        }); */
                         SnackBar.show(context, value);
-                        /* if (value == "ad created") {
-                          
-                        } */
+                        if (value == "ad created") {
+                          givenProductNameController.clear();
+                          desiredProductNameController.clear();
+                          informationController.clear();
+                          Navigator.pop(context);
+                        }
                       },
                     );
                   },

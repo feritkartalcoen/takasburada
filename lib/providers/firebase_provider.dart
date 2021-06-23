@@ -124,7 +124,7 @@ class FirebaseProvider {
         );
       },
     );
-    return ads.where((ad) => ad.id != firebaseAuth.currentUser!.uid).toList();
+    return ads.where((ad) => ad.userId != firebaseAuth.currentUser!.uid).toList();
   }
 
   Future<String> createAd({
