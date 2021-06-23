@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:takasburada/classes/product.dart';
-import 'package:takasburada/enums/condition.dart';
 
 class Ad {
   String? id;
@@ -27,7 +26,7 @@ class Ad {
   }
 }
 
-List<Ad> ads = [
+/* List<Ad> ads = [
   Ad(
     id: "ad1",
     userId: "user1",
@@ -83,3 +82,4 @@ List<Ad> ads = [
     date: Timestamp(10000, 10000),
   ),
 ];
+ */

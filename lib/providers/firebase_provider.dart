@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:firebase_auth/firebase_auth.dart' as firebaseUser show User;
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:takasburada/classes/ad.dart' hide ads;
+import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/classes/product.dart';
 import 'package:takasburada/classes/user.dart';
 

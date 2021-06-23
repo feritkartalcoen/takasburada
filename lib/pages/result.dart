@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide AppBar, IconButton, TextButton;
-import 'package:takasburada/classes/ad.dart' hide ads;
+import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/widgets/ad_tile.dart';

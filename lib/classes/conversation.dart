@@ -16,7 +16,7 @@ class Conversation {
   }
 }
 
-List<Conversation> conversations = [
+/* List<Conversation> conversations = [
   Conversation(
     adId: "ad1",
     messages: [
@@ -53,3 +53,4 @@ List<Conversation> conversations = [
     ],
   ),
 ];
+ */

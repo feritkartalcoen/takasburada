@@ -11,7 +11,7 @@ import 'package:takasburada/widgets/floating_action_button.dart';
 import 'package:takasburada/widgets/icon_button.dart';
 import 'package:takasburada/widgets/text_field.dart';
 
-class Chat extends StatelessWidget {
+class Chat extends StatefulWidget {
   final int index;
   final VoidCallback? onTap;
   const Chat({
@@ -19,6 +19,41 @@ class Chat extends StatelessWidget {
     required this.index,
     this.onTap,
   }) : super(key: key);
+
+  @override
+  _ChatState createState() => _ChatState();
+}
+
+class _ChatState extends State<Chat> {
+  List<Conversation>? conversations;
+  List<Ad>? ads;
+
+  @override
+  void initState() {
+    super.initState();
+    getConversations();
+    getAds();
+  }
+
+  Future<void> getConversations() async {
+    /* context.read<providers.FirebaseProvider>().getConversations().then(
+      (value) {
+        setState(() {
+          conversations = value;
+        });
+      },
+    ); */
+  }
+
+  Future<void> getAds() async {
+    /* context.read<providers.FirebaseProvider>().getAds().then(
+      (value) {
+        setState(() {
+          ads = value;
+        });
+      },
+    ); */
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +65,14 @@ class Chat extends StatelessWidget {
             children: [
               IconButton(
                 icon: CustomIcons.back,
-                onTap: onTap,
+                onTap: widget.onTap,
               ),
               SizedBox(width: containerPadding),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(users.where((user) => user.id == ads.where((ad) => ad.id == conversations[index].adId).single.userId).single.nameSurname, style: listTileTitleTextStyle),
+                  Text(users.where((user) => user.id == ads!.where((ad) => ad.id == conversations![widget.index].adId).single.userId).single.nameSurname, style: listTileTitleTextStyle),
                   Text("online", style: listTileSubtitleTextStyle),
                 ],
               ),
@@ -58,10 +93,10 @@ class Chat extends StatelessWidget {
             child: ListView.separated(
               padding: EdgeInsets.zero,
               physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              itemCount: conversations[index].messages!.length,
+              itemCount: conversations![widget.index].messages!.length,
               itemBuilder: (context, messageIndex) => ChatTile(
-                text: conversations[index].messages![messageIndex]!.text!,
-                isReceived: conversations[index].messages![messageIndex]!.userId != currentUserId,
+                text: conversations![widget.index].messages![messageIndex]!.text!,
+                isReceived: conversations![widget.index].messages![messageIndex]!.userId != currentUserId,
               ),
               separatorBuilder: (context, index) => SizedBox(height: containerPadding / 2),
             ),

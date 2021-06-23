@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide RefreshIndicator;
-import 'package:takasburada/classes/ad.dart' hide ads;
+import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/widgets/ad_tile.dart';
 import 'package:provider/provider.dart';
