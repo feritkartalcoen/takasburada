@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class AppBar extends StatelessWidget {
+class AppBar extends StatelessWidget with PreferredSizeWidget {
   final List<Widget> children;
   final bool withTitle;
   const AppBar({
@@ -26,5 +26,10 @@ class AppBar extends StatelessWidget {
         children: children,
       ),
     );
+  }
+
+  @override
+  Size get preferredSize {
+    return Size.fromHeight(withTitle ? appBarHeight : appBarHeight + 12);
   }
 }

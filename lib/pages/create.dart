@@ -34,132 +34,125 @@ class _CreateState extends State<Create> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: AppBar(
+        withTitle: false,
         children: [
-          AppBar(
-            withTitle: false,
+          IconButton(
+            icon: CustomIcons.back,
+            onTap: widget.onTap,
+          ),
+          Expanded(child: SizedBox()),
+        ],
+      ),
+      body: ListView(
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        padding: EdgeInsets.symmetric(horizontal: containerPadding),
+        children: [
+          Label(label: "what are you giving"),
+          SizedBox(height: containerPadding),
+          BorderedTextField(
+            textEditingController: givenProductNameController,
+            hint: "type here",
+          ),
+          SizedBox(height: containerPadding),
+          ColoredButton(
+            text: "add product photo",
+            onTap: () {
+              context.read<providers.ImageProvider>().selectImage().then(
+                (photo) {
+                  if (photo == null) {
+                    print("no image selected");
+                  } else {
+                    setState(() {
+                      givenProductPhoto = photo;
+                    });
+                    print("image selected");
+                  }
+                  SnackBar.show(context, photo == null ? "no image selected" : "image selected");
+                },
+              );
+            },
+            isPrimary: true,
+          ),
+          SizedBox(height: containerPadding),
+          Label(label: "what do you want"),
+          SizedBox(height: containerPadding),
+          BorderedTextField(
+            textEditingController: desiredProductNameController,
+            hint: "type here",
+          ),
+          SizedBox(height: containerPadding),
+          ColoredButton(
+            text: "add product photo",
+            onTap: () {
+              context.read<providers.ImageProvider>().selectImage().then(
+                (photo) {
+                  if (photo == null) {
+                    print("no image selected");
+                  } else {
+                    setState(() {
+                      desiredProductPhoto = photo;
+                    });
+                    print("image selected");
+                  }
+                  SnackBar.show(context, photo == null ? "no image selected" : "image selected");
+                },
+              );
+            },
+            isPrimary: true,
+          ),
+          SizedBox(height: containerPadding),
+          Row(
             children: [
-              IconButton(
-                icon: CustomIcons.back,
-                onTap: widget.onTap,
+              Expanded(
+                child: ImageTile(
+                  photo: givenProductPhoto.path,
+                ),
               ),
-              Expanded(child: SizedBox()),
+              SizedBox(width: containerPadding),
+              Expanded(
+                child: ImageTile(
+                  photo: desiredProductPhoto.path,
+                ),
+              ),
             ],
           ),
-          Expanded(
-            child: ListView(
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              padding: EdgeInsets.symmetric(horizontal: containerPadding),
-              children: [
-                Label(label: "what are you giving"),
-                SizedBox(height: containerPadding),
-                BorderedTextField(
-                  textEditingController: givenProductNameController,
-                  hint: "type here",
-                ),
-                SizedBox(height: containerPadding),
-                ColoredButton(
-                  text: "add product photo",
-                  onTap: () {
-                    context.read<providers.ImageProvider>().selectImage().then(
-                      (value) {
-                        if (value == null) {
-                          print("no image selected");
-                        } else {
-                          setState(() {
-                            givenProductPhoto = value;
-                          });
-                          print("image selected");
-                        }
-                        SnackBar.show(context, value == null ? "no image selected" : "image selected");
-                      },
-                    );
-                  },
-                  isPrimary: true,
-                ),
-                SizedBox(height: containerPadding),
-                Label(label: "what do you want"),
-                SizedBox(height: containerPadding),
-                BorderedTextField(
-                  textEditingController: desiredProductNameController,
-                  hint: "type here",
-                ),
-                SizedBox(height: containerPadding),
-                ColoredButton(
-                  text: "add product photo",
-                  onTap: () {
-                    context.read<providers.ImageProvider>().selectImage().then(
-                      (value) {
-                        if (value == null) {
-                          print("no image selected");
-                        } else {
-                          setState(() {
-                            desiredProductPhoto = value;
-                          });
-                          print("image selected");
-                        }
-                        SnackBar.show(context, value == null ? "no image selected" : "image selected");
-                      },
-                    );
-                  },
-                  isPrimary: true,
-                ),
-                SizedBox(height: containerPadding),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ImageTile(
-                        photo: givenProductPhoto.path,
-                      ),
-                    ),
-                    SizedBox(width: containerPadding),
-                    Expanded(
-                      child: ImageTile(
-                        photo: desiredProductPhoto.path,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: containerPadding),
-                Label(label: "information"),
-                SizedBox(height: containerPadding),
-                BorderedTextField(
-                  textEditingController: informationController,
-                  hint: "type here",
-                ),
-                SizedBox(height: containerPadding),
-                ColoredButton(
-                  text: "complete",
-                  isPrimary: false,
-                  onTap: () {
-                    context
-                        .read<providers.FirebaseProvider>()
-                        .createAd(
-                          givenProductName: givenProductNameController.text,
-                          givenProductPhoto: givenProductPhoto,
-                          desiredProductName: desiredProductNameController.text,
-                          desiredProductPhoto: desiredProductPhoto,
-                          information: informationController.text,
-                        )
-                        .then(
-                      (value) {
-                        print(value);
-                        SnackBar.show(context, value);
-                        if (value == "ad created") {
-                          givenProductNameController.clear();
-                          desiredProductNameController.clear();
-                          informationController.clear();
-                          Navigator.pop(context);
-                        }
-                      },
-                    );
-                  },
-                ),
-                SizedBox(height: containerPadding),
-              ],
-            ),
+          SizedBox(height: containerPadding),
+          Label(label: "information"),
+          SizedBox(height: containerPadding),
+          BorderedTextField(
+            textEditingController: informationController,
+            hint: "type here",
           ),
+          SizedBox(height: containerPadding),
+          ColoredButton(
+            text: "complete",
+            isPrimary: false,
+            onTap: () {
+              context
+                  .read<providers.FirebaseProvider>()
+                  .createAd(
+                    givenProductName: givenProductNameController.text,
+                    givenProductPhoto: givenProductPhoto,
+                    desiredProductName: desiredProductNameController.text,
+                    desiredProductPhoto: desiredProductPhoto,
+                    information: informationController.text,
+                  )
+                  .then(
+                (result) {
+                  print(result);
+                  SnackBar.show(context, result);
+                  if (result == "ad created") {
+                    givenProductNameController.clear();
+                    desiredProductNameController.clear();
+                    informationController.clear();
+                    Navigator.pop(context);
+                  }
+                },
+              );
+            },
+          ),
+          SizedBox(height: containerPadding),
         ],
       ),
     );

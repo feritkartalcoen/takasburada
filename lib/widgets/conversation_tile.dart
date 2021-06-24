@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
@@ -22,20 +23,20 @@ class ConversationTile extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(messageTileBorderRadius),
-          bottomRight: Radius.circular(messageTileBorderRadius),
+          topRight: Radius.circular(conversationTileBorderRadius),
+          bottomRight: Radius.circular(conversationTileBorderRadius),
         ),
         child: InkWell(
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(messageTileBorderRadius),
-            bottomRight: Radius.circular(messageTileBorderRadius),
+            topRight: Radius.circular(conversationTileBorderRadius),
+            bottomRight: Radius.circular(conversationTileBorderRadius),
           ),
           child: ListTile(
             leading: Material(
               elevation: elevation,
               shape: CircleBorder(),
               child: CircleAvatar(
-                foregroundImage: AssetImage(userPhoto!),
+                foregroundImage: CachedNetworkImageProvider(userPhoto!),
               ),
             ),
             title: Text(userNameSurname!, style: listTileTitleTextStyle),
@@ -44,7 +45,7 @@ class ConversationTile extends StatelessWidget {
               elevation: elevation,
               shape: CircleBorder(),
               child: CircleAvatar(
-                foregroundImage: AssetImage(productPhoto!),
+                foregroundImage: CachedNetworkImageProvider(productPhoto!),
               ),
             ),
           ),

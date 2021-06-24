@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
 
-class ChatTile extends StatelessWidget {
+class MessageTile extends StatelessWidget {
   final String text;
   final bool isReceived;
-  const ChatTile({
+  const MessageTile({
     Key? key,
     required this.text,
     required this.isReceived,
@@ -19,10 +19,10 @@ class ChatTile extends StatelessWidget {
         Material(
           elevation: elevation,
           borderRadius: BorderRadius.only(
-            topLeft: isReceived ? Radius.zero : Radius.circular(chatTileBorderRadius),
-            topRight: isReceived ? Radius.circular(chatTileBorderRadius) : Radius.zero,
-            bottomRight: isReceived ? Radius.circular(chatTileBorderRadius) : Radius.zero,
-            bottomLeft: isReceived ? Radius.zero : Radius.circular(chatTileBorderRadius),
+            topLeft: isReceived ? Radius.zero : Radius.circular(messageTileBorderRadius),
+            topRight: isReceived ? Radius.circular(messageTileBorderRadius) : Radius.zero,
+            bottomRight: isReceived ? Radius.circular(messageTileBorderRadius) : Radius.zero,
+            bottomLeft: isReceived ? Radius.zero : Radius.circular(messageTileBorderRadius),
           ),
           child: Container(
             height: 36,

@@ -24,77 +24,73 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      appBar: AppBar(
         children: [
-          AppBar(
-            children: [
-              Hero(
-                tag: titleHeroTag,
-                child: Title(),
-              ),
-              Expanded(child: SizedBox()),
-              ProfileButton(
-                onTap: () {
-                  context.read<providers.FirebaseProvider>().signOut().then((value) {
-                    print("signed out");
-                    SnackBar.show(context, "signed out");
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Login(),
-                      ),
-                    );
-                  });
-                },
-              ),
-            ],
+          Hero(
+            tag: titleHeroTag,
+            child: Title(),
           ),
-          Expanded(
-              child: PageTransitionSwitcher(
-            transitionBuilder: (
-              Widget child,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-            ) {
-              return FadeThroughTransition(
-                animation: animation,
-                secondaryAnimation: secondaryAnimation,
-                child: child,
-                fillColor: Colors.transparent,
-              );
-            },
-            child: bottomNavigationBarViews[context.watch<providers.IndexProvider>().bottomNavigationIndex],
-          )),
-          BottomAppBar(
-            child: BottomNavigationBar(
-              icons: [
-                CustomIcons.home,
-                CustomIcons.search,
-                CustomIcons.chat
-              ],
-            ),
-            floatingActionButton: Provider.of<providers.IndexProvider>(context).bottomNavigationIndex != 2
-                ? OpenContainer(
-                    openBuilder: (context, onTap) {
-                      return Provider.of<providers.IndexProvider>(context).bottomNavigationIndex == 0 ? Create(onTap: onTap) : Result(onTap: onTap);
-                    },
-                    closedBuilder: (context, onTap) => FloatingActionButton(
-                      icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
-                      onTap: onTap,
-                    ),
-                    closedShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
-                    ),
-                    closedElevation: elevation,
-                    closedColor: floatingActionButtonColor,
-                  )
-                : FloatingActionButton(
-                    icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
-                    onTap: () {},
+          Expanded(child: SizedBox()),
+          ProfileButton(
+            onTap: () {
+              context.read<providers.FirebaseProvider>().signOut().then((result) {
+                print("signed out");
+                SnackBar.show(context, "signed out");
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Login(),
                   ),
+                );
+              });
+            },
           ),
         ],
+      ),
+      body: PageTransitionSwitcher(
+        transitionBuilder: (
+          Widget child,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+        ) {
+          return FadeThroughTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: child,
+            fillColor: Colors.transparent,
+          );
+        },
+        child: bottomNavigationBarViews[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: BottomNavigationBar(
+          icons: [
+            CustomIcons.home,
+            CustomIcons.search,
+            CustomIcons.chat
+          ],
+        ),
+        floatingActionButton: Provider.of<providers.IndexProvider>(context).bottomNavigationIndex != 2
+            ? OpenContainer(
+                openBuilder: (context, onTap) {
+                  return Provider.of<providers.IndexProvider>(context).bottomNavigationIndex == 0 ? Create(onTap: onTap) : Result(onTap: onTap);
+                },
+                closedBuilder: (context, onTap) => FloatingActionButton(
+                  color: Colors.transparent,
+                  fabElevation: 0,
+                  icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+                  onTap: onTap,
+                ),
+                closedShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
+                ),
+                closedElevation: elevation,
+                closedColor: floatingActionButtonColor,
+              )
+            : FloatingActionButton(
+                icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+                onTap: () {},
+              ),
       ),
     );
   }

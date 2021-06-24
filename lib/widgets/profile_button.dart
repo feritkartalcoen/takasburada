@@ -24,12 +24,12 @@ class _ProfileButtonState extends State<ProfileButton> {
     context
         .read<providers.FirebaseProvider>()
         .getUser(
-          context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid,
+          userId: context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid,
         )
         .then(
-      (value) {
+      (user) {
         setState(() {
-          userPhoto = value.photo;
+          userPhoto = user!.photo;
         });
       },
     );

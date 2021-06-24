@@ -6,44 +6,26 @@ import 'package:provider/provider.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
 import 'package:takasburada/widgets/refresh_indicator.dart';
 
-class Feed extends StatefulWidget {
+class Feed extends StatelessWidget {
   const Feed({Key? key}) : super(key: key);
 
   @override
-  _FeedState createState() => _FeedState();
-}
-
-class _FeedState extends State<Feed> {
-  List<Ad>? ads;
-
-  @override
-  void initState() {
-    super.initState();
-    getAds();
-  }
-
-  Future<void> getAds() async {
-    context.read<providers.FirebaseProvider>().getAds().then(
-      (value) {
-        setState(() {
-          ads = value;
-        });
-      },
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
+    String currentUserId = context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid;
     return RefreshIndicator(
-      onRefresh: getAds,
-      child: ads != null
-          ? ListView.separated(
+      onRefresh: context.read<providers.FirebaseProvider>().getAds,
+      child: FutureBuilder<List<Ad>>(
+        future: context.read<providers.FirebaseProvider>().getAds(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            List<Ad> ads = snapshot.data!.where((ad) => ad.userId != currentUserId).toList();
+            return ListView.separated(
               physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               padding: EdgeInsets.zero,
-              itemCount: ads!.length,
+              itemCount: ads.length,
               itemBuilder: (context, index) {
                 return AdTile(
-                  ad: ads![index],
+                  ad: ads[index],
                 );
               },
               separatorBuilder: (context, index) {
@@ -51,8 +33,13 @@ class _FeedState extends State<Feed> {
                   height: containerPadding,
                 );
               },
-            )
-          : Container(),
+            );
+          }
+          return ListView(
+            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          );
+        },
+      ),
     );
   }
 }

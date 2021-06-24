@@ -1,116 +1,89 @@
 import 'package:flutter/material.dart' hide AppBar, IconButton, BottomAppBar, FloatingActionButton, TextField;
-import 'package:takasburada/classes/ad.dart';
 import 'package:takasburada/classes/conversation.dart';
 import 'package:takasburada/classes/user.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/bottom_app_bar.dart';
-import 'package:takasburada/widgets/chat_tile.dart';
+import 'package:takasburada/widgets/message_tile.dart';
 import 'package:takasburada/widgets/floating_action_button.dart';
 import 'package:takasburada/widgets/icon_button.dart';
 import 'package:takasburada/widgets/text_field.dart';
+import 'package:provider/provider.dart';
+import 'package:takasburada/providers/providers.dart' as providers;
 
-class Chat extends StatefulWidget {
-  final int index;
+class Chat extends StatelessWidget {
+  final Conversation conversation;
+  final String adId;
+  final String userId;
   final VoidCallback? onTap;
   const Chat({
     Key? key,
-    required this.index,
+    required this.conversation,
+    required this.adId,
+    required this.userId,
     this.onTap,
   }) : super(key: key);
 
   @override
-  _ChatState createState() => _ChatState();
-}
-
-class _ChatState extends State<Chat> {
-  List<Conversation>? conversations;
-  List<Ad>? ads;
-
-  @override
-  void initState() {
-    super.initState();
-    getConversations();
-    getAds();
-  }
-
-  Future<void> getConversations() async {
-    /* context.read<providers.FirebaseProvider>().getConversations().then(
-      (value) {
-        setState(() {
-          conversations = value;
-        });
-      },
-    ); */
-  }
-
-  Future<void> getAds() async {
-    /* context.read<providers.FirebaseProvider>().getAds().then(
-      (value) {
-        setState(() {
-          ads = value;
-        });
-      },
-    ); */
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: AppBar(
+        withTitle: false,
         children: [
-          AppBar(
-            withTitle: false,
+          IconButton(
+            icon: CustomIcons.back,
+            onTap: onTap ?? () => Navigator.pop(context),
+          ),
+          SizedBox(width: containerPadding),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                icon: CustomIcons.back,
-                onTap: widget.onTap,
+              FutureBuilder<User?>(
+                future: context.read<providers.FirebaseProvider>().getUser(userId: userId),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    User user = snapshot.data!;
+                    return Text(user.nameSurname, style: listTileTitleTextStyle);
+                  }
+                  return Text("", style: listTileTitleTextStyle);
+                },
               ),
-              SizedBox(width: containerPadding),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(users.where((user) => user.id == ads!.where((ad) => ad.id == conversations![widget.index].adId).single.userId).single.nameSurname, style: listTileTitleTextStyle),
-                  Text("online", style: listTileSubtitleTextStyle),
-                ],
-              ),
-              Expanded(child: SizedBox()),
-              IconButton(
-                icon: CustomIcons.media,
-                withElevation: false,
-                onTap: () {},
-              ),
-              IconButton(
-                icon: CustomIcons.more,
-                withElevation: false,
-                onTap: () {},
-              ),
+              Text("online", style: listTileSubtitleTextStyle),
             ],
           ),
-          Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.zero,
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              itemCount: conversations![widget.index].messages!.length,
-              itemBuilder: (context, messageIndex) => ChatTile(
-                text: conversations![widget.index].messages![messageIndex]!.text!,
-                isReceived: conversations![widget.index].messages![messageIndex]!.userId != currentUserId,
-              ),
-              separatorBuilder: (context, index) => SizedBox(height: containerPadding / 2),
-            ),
+          Expanded(child: SizedBox()),
+          IconButton(
+            icon: CustomIcons.media,
+            withElevation: false,
+            onTap: () {},
           ),
-          BottomAppBar(
-            child: TextField(
-              hint: "type here",
-            ),
-            floatingActionButton: FloatingActionButton(
-              icon: CustomIcons.send,
-              onTap: () {},
-            ),
+          IconButton(
+            icon: CustomIcons.more,
+            withElevation: false,
+            onTap: () {},
           ),
         ],
+      ),
+      body: ListView.separated(
+        padding: EdgeInsets.zero,
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        itemCount: conversation.messages!.length,
+        itemBuilder: (context, messageIndex) => MessageTile(
+          text: conversation.messages![messageIndex]!.text!,
+          isReceived: conversation.messages![messageIndex]!.userId != context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid,
+        ),
+        separatorBuilder: (context, index) => SizedBox(height: containerPadding / 2),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: TextField(
+          hint: "type here",
+        ),
+        floatingActionButton: FloatingActionButton(
+          icon: CustomIcons.send,
+          onTap: () {},
+        ),
       ),
     );
   }

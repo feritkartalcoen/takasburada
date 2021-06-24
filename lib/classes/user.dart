@@ -23,26 +23,3 @@ class User {
     return name! + " " + surname!;
   }
 }
-
-String currentUserId = "currentUser";
-
-List<User> users = [
-  User(
-    id: "currentUser",
-    name: "ferit",
-    surname: "kartal",
-    photo: "images/ferit.png",
-  ),
-  User(
-    id: "user1",
-    name: "meriç",
-    surname: "kartal",
-    photo: "images/meric.png",
-  ),
-  User(
-    id: "user2",
-    name: "burcu",
-    surname: "bitkin",
-    photo: "images/burcu.png",
-  ),
-];

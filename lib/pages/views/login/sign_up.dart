@@ -78,13 +78,13 @@ class _SignUpState extends State<SignUp> {
                 text: "add${photo.path == "" ? " " : " another "}photo",
                 onTap: () {
                   context.read<providers.ImageProvider>().selectImage().then(
-                    (value) {
-                      if (value != null) {
+                    (selectedPhoto) {
+                      if (selectedPhoto != null) {
                         setState(() {
-                          photo = value;
+                          photo = selectedPhoto;
                         });
                       }
-                      SnackBar.show(context, value == null ? "no image selected" : "image selected");
+                      SnackBar.show(context, selectedPhoto == null ? "no image selected" : "image selected");
                     },
                   );
                 },
@@ -124,10 +124,10 @@ class _SignUpState extends State<SignUp> {
                   password: passwordController.text,
                   photo: photo,
                 )
-                .then((value) {
-              print(value);
-              SnackBar.show(context, value);
-              if (value == "signed up") {
+                .then((result) {
+              print(result);
+              SnackBar.show(context, result);
+              if (result == "signed up") {
                 nameController.clear();
                 surnameController.clear();
                 emailController.clear();

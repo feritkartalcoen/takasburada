@@ -22,11 +22,10 @@ const double bottomNavigationBarBorderRadius = 24;
 const double bottomNavigationBarIndicatorHeight = 48;
 const double buttonHeight = 48;
 const double buttonBorderRadius = 24;
-const double chatTileHeight = 36;
-const double chatTileBorderRadius = 18;
 const double chipHeight = 32;
 const double chipBorderRadius = 16;
 const double containerPadding = 24;
+const double conversationTileBorderRadius = 24;
 const double elevation = 12;
 const double floatingActionButtonWidth = 48;
 const double floatingActionButtonHeight = 48;
@@ -36,7 +35,8 @@ const double iconButtonHeight = 48;
 const double iconButtonIconSize = 24;
 const double iconButtonBorderRadius = 24;
 const double imageBorderRadius = 24;
-const double messageTileBorderRadius = 24;
+const double messageTileHeight = 36;
+const double messageTileBorderRadius = 18;
 const double refreshIndicatorDisplacement = 0;
 const double refreshIndicatorStrokeWidth = 3;
 const double snackBarBorderRadius = 24;
@@ -66,8 +66,8 @@ const Color snackBarColor = Color(0xff375675);
 const Color tabColor = Color(0xffF7EBB9);
 const Color tabBarIndicatorColor = Color(0xffF7EBB9);
 
-const int tabBarIndicatorAnimationDuration = 300;
 const int bottomNavigationBarIndicatorAnimationDuration = 300;
+const int tabBarIndicatorAnimationDuration = 300;
 
 TextStyle titleTextStyle = TextStyle(
   fontSize: 33,

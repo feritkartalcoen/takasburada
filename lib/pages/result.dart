@@ -9,7 +9,7 @@ import 'package:takasburada/widgets/text_button.dart';
 import 'package:provider/provider.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
 
-class Result extends StatefulWidget {
+class Result extends StatelessWidget {
   final VoidCallback? onTap;
   const Result({
     Key? key,
@@ -17,58 +17,41 @@ class Result extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ResultState createState() => _ResultState();
-}
-
-class _ResultState extends State<Result> {
-  List<Ad>? ads;
-
-  @override
-  void initState() {
-    super.initState();
-    getAds();
-  }
-
-  Future<void> getAds() async {
-    context.read<providers.FirebaseProvider>().getAds().then(
-      (value) {
-        setState(() {
-          ads = value;
-        });
-      },
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
+    String currentUserId = context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid;
     return Scaffold(
-      body: Column(
+      appBar: AppBar(
+        withTitle: false,
         children: [
-          AppBar(
-            withTitle: false,
-            children: [
-              IconButton(icon: CustomIcons.back, onTap: widget.onTap),
-              Expanded(child: SizedBox()),
-              TextButton(text: "filter", onTap: () {}),
-              TextButton(text: "sort", onTap: () {}),
-            ],
-          ),
-          Expanded(
-            child: ads != null
-                ? ListView.separated(
-                    physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                    padding: EdgeInsets.zero,
-                    itemCount: ads!.length,
-                    itemBuilder: (context, index) {
-                      return AdTile(ad: ads![index]);
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: containerPadding);
-                    },
-                  )
-                : Container(),
-          ),
+          IconButton(icon: CustomIcons.back, onTap: onTap),
+          Expanded(child: SizedBox()),
+          TextButton(text: "filter", onTap: () {}),
+          TextButton(text: "sort", onTap: () {}),
         ],
+      ),
+      body: FutureBuilder<List<Ad>>(
+        future: context.read<providers.FirebaseProvider>().getAds(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            List<Ad> ads = snapshot.data!.where((ad) => ad.userId != currentUserId).toList();
+            return ListView.separated(
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              padding: EdgeInsets.zero,
+              itemCount: ads.length,
+              itemBuilder: (context, index) {
+                return AdTile(
+                  ad: ads[index],
+                );
+              },
+              separatorBuilder: (context, index) {
+                return SizedBox(
+                  height: containerPadding,
+                );
+              },
+            );
+          }
+          return SizedBox();
+        },
       ),
     );
   }
