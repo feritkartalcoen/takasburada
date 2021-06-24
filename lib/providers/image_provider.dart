@@ -1,6 +1,4 @@
 import 'dart:io';
-/* // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html; */
 
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -31,15 +29,4 @@ class ImageProvider {
       return null;
     }
   }
-
-  /* Future<html.File?> selectImageForWeb() async {
-    html.File? file;
-    try {
-      PickedFile? pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
-      file = html.File(pickedFile!.path.codeUnits, pickedFile.path);
-      return file;
-    } catch (e) {
-      return null;
-    }
-  } */
 }

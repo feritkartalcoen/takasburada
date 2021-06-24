@@ -19,11 +19,6 @@ class Title extends StatelessWidget {
               .toList(),
         ),
       ),
-      /* child: Text(
-        title,
-        style: titleTextStyle,
-        textAlign: TextAlign.center,
-      ), */
     );
   }
 }

@@ -17,7 +17,13 @@ class Conversations extends StatelessWidget {
   Widget build(BuildContext context) {
     String currentUserId = context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid;
     return RefreshIndicator(
-      onRefresh: context.read<providers.FirebaseProvider>().getConversations,
+      onRefresh: () async {
+        await Future.wait([
+          context.read<providers.FirebaseProvider>().getConversations(),
+          context.read<providers.FirebaseProvider>().getAds(),
+          context.read<providers.FirebaseProvider>().getUsers(),
+        ]);
+      },
       child: FutureBuilder<dynamic>(
         future: Future.wait([
           context.read<providers.FirebaseProvider>().getConversations(),
@@ -44,7 +50,6 @@ class Conversations extends StatelessWidget {
                     );
                   },
                   closedBuilder: (context, onTap) {
-                    print(conversations[index].messages);
                     int productIndex = ads.where((ad) => ad.id == conversations[index].adId).single.userId == currentUserId ? 1 : 0;
                     return ConversationTile(
                       userPhoto: users.where((user) => user.id == conversations[index].id!.split("-").where((conversationId) => conversationId != currentUserId && conversationId != conversations[index].adId).single).single.photo,
@@ -76,47 +81,5 @@ class Conversations extends StatelessWidget {
         },
       ),
     );
-    /* return RefreshIndicator(
-            onRefresh: context.read<providers.FirebaseProvider>().getConversations,
-            child: ListView.separated(
-              padding: EdgeInsets.only(right: containerPadding),
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              itemCount: conversations!.length,
-              itemBuilder: (context, index) => OpenContainer(
-                openBuilder: (context, onTap) => Chat(
-                  conversation: conversations![index],
-                  adId: conversations![index].adId!,
-                  userId: conversations[index].,
-                  onTap: onTap,
-                ),
-                closedBuilder: (context, onTap) {
-                  print(users!.single.photo);
-                  return ConversationTile(
-                    userPhoto: users!.where((user) => user.id == ads!.where((ad) => ad.id == conversations![index].adId).single.userId).single.photo,
-                    userNameSurname: users!.where((user) => user.id == ads!.where((ad) => ad.id == conversations![index].adId).single.userId).single.nameSurname,
-                    message: conversations![index].messages!.length != 0
-                        ? conversations![index].lastMessage!.userId == context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid
-                            ? "you: " + conversations![index].lastMessage!.text!
-                            : conversations![index].lastMessage!.text
-                        : "",
-                    productPhoto: ads!.where((ad) => ad.id == conversations![index].adId).single.products!.where((product) => product!.isGiven == true).single!.photo,
-                    onTap: onTap,
-                  );
-                },
-                closedElevation: elevation,
-                closedShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(messageTileBorderRadius),
-                    bottomRight: Radius.circular(messageTileBorderRadius),
-                  ),
-                ),
-              ),
-              separatorBuilder: (context, index) {
-                return SizedBox(
-                  height: containerPadding,
-                );
-              },
-            ),
-          ); */
   }
 }
