@@ -47,13 +47,13 @@ class AdTile extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: CachedNetworkImage(
-                                    imageUrl: ad.products!.first!.photo!,
+                                    imageUrl: ad.products!.where((product) => product.isGiven == true).single.photo,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                                 Expanded(
                                   child: CachedNetworkImage(
-                                    imageUrl: ad.products!.last!.photo!,
+                                    imageUrl: ad.products!.where((product) => product.isGiven == false).single.photo,
                                     fit: BoxFit.cover,
                                   ),
                                 ),

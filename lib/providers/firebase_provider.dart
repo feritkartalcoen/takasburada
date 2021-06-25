@@ -122,22 +122,29 @@ class FirebaseProvider {
           await ad.set(({
             "id": ad.id,
             "userId": firebaseAuth.currentUser!.uid,
-            "products": [
-              {
-                "name": givenProductName,
-                "photo": await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").getDownloadURL(),
-                "isGiven": true,
-              },
-              {
-                "name": desiredProductName,
-                "photo": await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").getDownloadURL(),
-                "isGiven": false,
-              },
-            ],
             "date": Timestamp.now(),
             "information": information,
           }));
-          return "ad created";
+          try {
+            var products = ad.collection("products");
+            var givenProduct = products.doc();
+            await givenProduct.set(({
+              "id": givenProduct.id,
+              "name": givenProductName,
+              "photo": await firebaseStorage.ref("productPhotos/${ad.id}-givenProductPhoto.png").getDownloadURL(),
+              "isGiven": true,
+            }));
+            var desiredProduct = products.doc();
+            await desiredProduct.set(({
+              "id": desiredProduct.id,
+              "name": desiredProductName,
+              "photo": await firebaseStorage.ref("productPhotos/${ad.id}-desiredProductPhoto.png").getDownloadURL(),
+              "isGiven": false,
+            }));
+            return "ad created";
+          } on FirebaseException catch (e) {
+            return e.message!;
+          }
         } on FirebaseException catch (e) {
           return e.message!;
         }
@@ -157,6 +164,7 @@ class FirebaseProvider {
         List<Product> products = List.castFrom(adData!["products"])
             .map(
               (product) => Product(
+                id: product["id"],
                 name: product["name"],
                 photo: product["photo"],
                 isGiven: product["isGiven"],
@@ -186,6 +194,7 @@ class FirebaseProvider {
             List<Product> products = List.castFrom(adData["products"]).map(
               (product) {
                 return Product(
+                  id: product["id"],
                   name: product["name"],
                   photo: product["photo"],
                   isGiven: product["isGiven"],

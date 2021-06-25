@@ -38,7 +38,7 @@ class Detail extends StatelessWidget {
               icon: icon,
               onTap: () {
                 if (icon == CustomIcons.chat) {
-                  context.read<providers.FirebaseProvider>().createConversation(adId: ad.id!).then(
+                  context.read<providers.FirebaseProvider>().createConversation(adId: ad.id).then(
                     (result) {
                       print(result);
                       if (result == "conversation created") {
@@ -49,8 +49,8 @@ class Detail extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) => Chat(
                                   conversation: conversations.where((conversation) => conversation.adId == ad.id).single,
-                                  adId: ad.id!,
-                                  userId: ad.userId!,
+                                  adId: ad.id,
+                                  userId: ad.userId,
                                 ),
                               ),
                             );
@@ -73,7 +73,7 @@ class Detail extends StatelessWidget {
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: [
           FutureBuilder<User?>(
-            future: context.read<providers.FirebaseProvider>().getUser(userId: ad.userId!),
+            future: context.read<providers.FirebaseProvider>().getUser(userId: ad.userId),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 User user = snapshot.data!;
@@ -89,7 +89,7 @@ class Detail extends StatelessWidget {
           SizedBox(height: containerPadding),
           AdTile(ad: ad, withActions: false),
           SizedBox(height: containerPadding),
-          AdInformationTile(information: ad.information!),
+          AdInformationTile(information: ad.information),
         ],
       ),
     );

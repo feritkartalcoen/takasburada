@@ -1,45 +1,64 @@
-import 'package:flutter/material.dart' hide RefreshIndicator;
-import 'package:takasburada/models/ad.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/models/ad.dart';
+import 'package:takasburada/models/product.dart';
+import 'package:takasburada/models/user.dart';
 import 'package:takasburada/widgets/ad_tile.dart';
-import 'package:provider/provider.dart';
-import 'package:takasburada/providers/providers.dart' as providers;
-import 'package:takasburada/widgets/refresh_indicator.dart';
 
 class Feed extends StatelessWidget {
   const Feed({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String currentUserId = context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid;
-    return RefreshIndicator(
-      onRefresh: context.read<providers.FirebaseProvider>().getAds,
-      child: FutureBuilder<List<Ad>>(
-        future: context.read<providers.FirebaseProvider>().getAds(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            List<Ad> ads = snapshot.data!.where((ad) => ad.userId != currentUserId).toList();
-            return ListView.separated(
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              padding: EdgeInsets.zero,
-              itemCount: ads.length,
-              itemBuilder: (context, index) {
-                return AdTile(
-                  ad: ads[index],
-                );
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(
-                  height: containerPadding,
-                );
-              },
-            );
-          }
-          return ListView(
-            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          );
-        },
-      ),
+    return StreamBuilder<QuerySnapshot<Ad>>(
+      stream: Ad.getAds(),
+      builder: (context, adsSnapshot) {
+        if (adsSnapshot.hasError) {
+          return SizedBox();
+        }
+        if (adsSnapshot.connectionState == ConnectionState.waiting) {
+          return SizedBox();
+        }
+        List<Ad> ads = adsSnapshot.data!.docs.map((document) => document.data()).toList().where((ad) => ad.userId != User.currentUserId).toList();
+        return ads != []
+            ? ListView.separated(
+                physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                padding: EdgeInsets.zero,
+                itemCount: ads.length,
+                itemBuilder: (context, index) {
+                  Ad ad = ads[index];
+                  return StreamBuilder<QuerySnapshot<Product>>(
+                    stream: Product.getProducts(adId: ad.id),
+                    builder: (context, productsSnapshot) {
+                      if (productsSnapshot.hasError) {
+                        return SizedBox();
+                      }
+                      if (productsSnapshot.connectionState == ConnectionState.waiting) {
+                        return SizedBox();
+                      }
+                      ad.products = productsSnapshot.data!.docs.map((document) {
+                        return Product(
+                          id: document["id"],
+                          name: document["name"],
+                          photo: document["photo"],
+                          isGiven: document["isGiven"],
+                        );
+                      }).toList();
+                      return AdTile(
+                        ad: ad,
+                      );
+                    },
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    height: containerPadding,
+                  );
+                },
+              )
+            : SizedBox();
+      },
     );
   }
 }

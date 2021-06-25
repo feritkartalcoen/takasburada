@@ -55,7 +55,7 @@ class Conversations extends StatelessWidget {
                       userPhoto: users.where((user) => user.id == conversations[index].id!.split("-").where((conversationId) => conversationId != currentUserId && conversationId != conversations[index].adId).single).single.photo,
                       userNameSurname: users.where((user) => user.id == conversations[index].id!.split("-").where((conversationId) => conversationId != currentUserId && conversationId != conversations[index].adId).single).single.nameSurname,
                       message: conversations[index].messages == [] ? conversations[index].lastMessage!.text : "",
-                      productPhoto: ads.where((ad) => ad.id == conversations[index].adId).single.products![productIndex]!.photo,
+                      productPhoto: ads.where((ad) => ad.id == conversations[index].adId).single.products![productIndex].photo,
                       onTap: onTap,
                     );
                   },
