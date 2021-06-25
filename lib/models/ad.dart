@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:takasburada/classes/product.dart';
+import 'package:takasburada/models/product.dart';
 
 class Ad {
   String? id;

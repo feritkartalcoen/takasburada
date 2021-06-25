@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide AppBar, IconButton;
-import 'package:takasburada/classes/ad.dart';
-import 'package:takasburada/classes/user.dart';
+import 'package:takasburada/models/ad.dart';
+import 'package:takasburada/models/user.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/pages/chat.dart';

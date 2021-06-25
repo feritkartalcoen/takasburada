@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide AppBar, IconButton, BottomAppBar, FloatingActionButton, TextField;
-import 'package:takasburada/classes/conversation.dart';
-import 'package:takasburada/classes/user.dart';
+import 'package:takasburada/models/conversation.dart';
+import 'package:takasburada/models/user.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/widgets/app_bar.dart';

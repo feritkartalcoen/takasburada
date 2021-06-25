@@ -1,4 +1,4 @@
-import 'package:takasburada/classes/conversation.dart';
+import 'package:takasburada/models/conversation.dart';
 
 class User {
   String? id;

@@ -1,4 +1,4 @@
-import 'package:takasburada/classes/message.dart';
+import 'package:takasburada/models/message.dart';
 
 class Conversation {
   String? id;

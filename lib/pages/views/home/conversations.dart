@@ -1,8 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart' hide RefreshIndicator;
-import 'package:takasburada/classes/ad.dart';
-import 'package:takasburada/classes/conversation.dart';
-import 'package:takasburada/classes/user.dart';
+import 'package:takasburada/models/ad.dart';
+import 'package:takasburada/models/conversation.dart';
+import 'package:takasburada/models/user.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/chat.dart';
 import 'package:takasburada/widgets/conversation_tile.dart';
