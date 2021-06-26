@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class Product {
   Product({
@@ -34,6 +37,23 @@ class Product {
         fromFirestore: (snapshot, _) => Product.fromFirestore(snapshot.data()!),
         toFirestore: (Product product, options) => product.toFirestore,
       );
+
+  static Future<String> createProduct({required String adId, required String name, required File photo, required bool isGiven}) async {
+    try {
+      await FirebaseStorage.instance.ref("productPhotos/$adId-${isGiven ? "given" : "desired"}ProductPhoto.png").putFile(photo);
+      var products = _productsReference(adId: adId);
+      var product = products.doc();
+      product.set(Product(
+        id: product.id,
+        name: name,
+        photo: await FirebaseStorage.instance.ref("productPhotos/$adId-${isGiven ? "given" : "desired"}ProductPhoto.png").getDownloadURL(),
+        isGiven: isGiven,
+      ));
+      return "product created";
+    } on FirebaseException catch (e) {
+      return e.message!;
+    }
+  }
 
   static Stream<QuerySnapshot<Product>> getProducts({required String adId}) {
     return _productsReference(adId: adId).snapshots();

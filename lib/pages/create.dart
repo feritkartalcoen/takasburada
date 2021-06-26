@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart' hide AppBar, IconButton, SnackBar;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
+import 'package:takasburada/models/ad.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/colored_button.dart';
@@ -129,16 +130,13 @@ class _CreateState extends State<Create> {
             text: "complete",
             isPrimary: false,
             onTap: () {
-              context
-                  .read<providers.FirebaseProvider>()
-                  .createAd(
-                    givenProductName: givenProductNameController.text,
-                    givenProductPhoto: givenProductPhoto,
-                    desiredProductName: desiredProductNameController.text,
-                    desiredProductPhoto: desiredProductPhoto,
-                    information: informationController.text,
-                  )
-                  .then(
+              Ad.createAd(
+                givenProductName: givenProductNameController.text,
+                givenProductPhoto: givenProductPhoto,
+                desiredProductName: desiredProductNameController.text,
+                desiredProductPhoto: desiredProductPhoto,
+                information: informationController.text,
+              ).then(
                 (result) {
                   print(result);
                   SnackBar.show(context, result);
