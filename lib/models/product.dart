@@ -55,6 +55,10 @@ class Product {
     }
   }
 
+  static Stream<DocumentSnapshot<Product>> getProduct({required String adId, required String productId}) {
+    return _productsReference(adId: adId).doc(productId).snapshots();
+  }
+
   static Stream<QuerySnapshot<Product>> getProducts({required String adId}) {
     return _productsReference(adId: adId).snapshots();
   }

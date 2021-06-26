@@ -14,9 +14,9 @@ class BottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: elevation,
-      borderRadius: BorderRadius.circular(bottomNavigationBarBorderRadius),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(bottomNavigationBarBorderRadius),
+        borderRadius: BorderRadius.circular(borderRadius),
         child: Container(
           height: bottomAppBarHeight,
           child: Stack(

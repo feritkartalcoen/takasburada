@@ -39,10 +39,10 @@ class Feed extends StatelessWidget {
                       }
                       ad.products = productsSnapshot.data!.docs.map((document) {
                         return Product(
-                          id: document["id"],
-                          name: document["name"],
-                          photo: document["photo"],
-                          isGiven: document["isGiven"],
+                          id: document.data().id,
+                          name: document.data().name,
+                          photo: document.data().photo,
+                          isGiven: document.data().isGiven,
                         );
                       }).toList();
                       return AdTile(
@@ -51,11 +51,7 @@ class Feed extends StatelessWidget {
                     },
                   );
                 },
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: containerPadding,
-                  );
-                },
+                separatorBuilder: (context, index) => SizedBox(height: containerPadding),
               )
             : SizedBox();
       },

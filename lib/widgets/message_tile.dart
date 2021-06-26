@@ -19,10 +19,10 @@ class MessageTile extends StatelessWidget {
         Material(
           elevation: elevation,
           borderRadius: BorderRadius.only(
-            topLeft: isReceived ? Radius.zero : Radius.circular(messageTileBorderRadius),
-            topRight: isReceived ? Radius.circular(messageTileBorderRadius) : Radius.zero,
-            bottomRight: isReceived ? Radius.circular(messageTileBorderRadius) : Radius.zero,
-            bottomLeft: isReceived ? Radius.zero : Radius.circular(messageTileBorderRadius),
+            topLeft: isReceived ? Radius.zero : Radius.circular(smallBorderRadius),
+            topRight: isReceived ? Radius.circular(smallBorderRadius) : Radius.zero,
+            bottomRight: isReceived ? Radius.circular(smallBorderRadius) : Radius.zero,
+            bottomLeft: isReceived ? Radius.zero : Radius.circular(smallBorderRadius),
           ),
           child: Container(
             height: 36,

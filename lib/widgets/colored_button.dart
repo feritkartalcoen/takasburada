@@ -18,11 +18,11 @@ class ColoredButton extends StatelessWidget {
       color: isPrimary ? primaryButtonColor : secondaryButtonColor,
       elevation: elevation,
       borderRadius: BorderRadius.all(
-        Radius.circular(buttonBorderRadius),
+        Radius.circular(borderRadius),
       ),
       child: InkWell(
         borderRadius: BorderRadius.all(
-          Radius.circular(buttonBorderRadius),
+          Radius.circular(borderRadius),
         ),
         child: Container(
           width: double.infinity,

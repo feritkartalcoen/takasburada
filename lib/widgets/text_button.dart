@@ -15,7 +15,7 @@ class TextButton extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(textButtonBorderRadius),
+        customBorder: StadiumBorder(),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: containerPadding / 2),
           height: textButtonHeight,

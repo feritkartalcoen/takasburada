@@ -1,69 +1,60 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart' hide SnackBar;
 import 'package:takasburada/constants/constants.dart';
-import 'package:provider/provider.dart';
-import 'package:takasburada/providers/providers.dart' as providers;
+import 'package:takasburada/models/user.dart';
+import 'package:takasburada/pages/login.dart';
+import 'package:takasburada/widgets/snack_bar.dart';
 
-class ProfileButton extends StatefulWidget {
-  final VoidCallback? onTap;
-  const ProfileButton({
-    Key? key,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  _ProfileButtonState createState() => _ProfileButtonState();
-}
-
-class _ProfileButtonState extends State<ProfileButton> {
-  String? userPhoto;
-
-  @override
-  void initState() {
-    super.initState();
-    context
-        .read<providers.FirebaseProvider>()
-        .getUser(
-          userId: context.read<providers.FirebaseProvider>().firebaseAuth.currentUser!.uid,
-        )
-        .then(
-      (user) {
-        setState(() {
-          userPhoto = user!.photo;
-        });
-      },
-    );
-  }
+class ProfileButton extends StatelessWidget {
+  const ProfileButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
       elevation: elevation,
-      borderRadius: BorderRadius.circular(
-        appBarButtonBorderRadius,
-      ),
+      shape: CircleBorder(),
       child: Stack(
         children: [
           SizedBox(
             width: appBarButtonWidth,
             height: appBarButtonHeight,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
-              child: userPhoto != null
-                  ? CachedNetworkImage(
-                      imageUrl: userPhoto!,
-                      fit: BoxFit.fill,
-                    )
-                  : SizedBox(),
+            child: ClipOval(
+              child: StreamBuilder<DocumentSnapshot<User>>(
+                stream: User.getUser(userId: User.currentUserId),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return SizedBox();
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SizedBox();
+                  }
+                  return CachedNetworkImage(
+                    imageUrl: snapshot.data!.data()!.photo,
+                    fit: BoxFit.fill,
+                  );
+                },
+              ),
             ),
           ),
           Positioned.fill(
             child: Material(
-              borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
+              shape: CircleBorder(),
               color: Colors.transparent,
               child: InkWell(
-                borderRadius: BorderRadius.circular(appBarButtonBorderRadius),
-                onTap: widget.onTap,
+                customBorder: CircleBorder(),
+                onTap: () {
+                  User.signOut().then((result) {
+                    print("signed out");
+                    SnackBar.show(context, "signed out");
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                    );
+                  });
+                },
               ),
             ),
           ),

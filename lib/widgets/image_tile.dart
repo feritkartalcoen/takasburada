@@ -14,9 +14,9 @@ class ImageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: elevation,
-      borderRadius: BorderRadius.circular(imageBorderRadius),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(imageBorderRadius),
+        borderRadius: BorderRadius.circular(borderRadius),
         child: photo != ""
             ? Image.file(
                 File(photo!),

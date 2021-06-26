@@ -11,10 +11,8 @@ import 'package:takasburada/widgets/icon_button.dart';
 import 'package:takasburada/widgets/text_button.dart';
 
 class Result extends StatelessWidget {
-  final VoidCallback? onTap;
   const Result({
     Key? key,
-    this.onTap,
   }) : super(key: key);
 
   @override
@@ -23,7 +21,11 @@ class Result extends StatelessWidget {
       appBar: AppBar(
         withTitle: false,
         children: [
-          IconButton(icon: CustomIcons.back, onTap: onTap),
+          IconButton(
+              icon: CustomIcons.back,
+              onTap: () {
+                Navigator.pop(context);
+              }),
           Expanded(child: SizedBox()),
           TextButton(text: "filter", onTap: () {}),
           TextButton(text: "sort", onTap: () {}),
@@ -78,6 +80,7 @@ class Result extends StatelessWidget {
               : SizedBox();
         },
       ),
+      resizeToAvoidBottomInset: true,
     );
   }
 }

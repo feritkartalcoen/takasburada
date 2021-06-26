@@ -1,16 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart' hide AppBar, IconButton;
 import 'package:takasburada/models/ad.dart';
+import 'package:takasburada/models/conversation.dart';
 import 'package:takasburada/models/user.dart';
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
-import 'package:takasburada/pages/chat.dart';
 import 'package:takasburada/widgets/ad_information_tile.dart';
 import 'package:takasburada/widgets/ad_tile.dart';
 import 'package:takasburada/widgets/app_bar.dart';
 import 'package:takasburada/widgets/icon_button.dart';
 import 'package:takasburada/widgets/profile_tile.dart';
-import 'package:provider/provider.dart';
-import 'package:takasburada/providers/providers.dart' as providers;
 
 class Detail extends StatelessWidget {
   final Ad ad;
@@ -38,11 +37,11 @@ class Detail extends StatelessWidget {
               icon: icon,
               onTap: () {
                 if (icon == CustomIcons.chat) {
-                  context.read<providers.FirebaseProvider>().createConversation(adId: ad.id).then(
+                  Conversation.createConversation(ad: ad).then(
                     (result) {
                       print(result);
                       if (result == "conversation created") {
-                        context.read<providers.FirebaseProvider>().getConversations().then(
+                        /* context.read<providers.FirebaseProvider>().getConversations().then(
                           (conversations) {
                             Navigator.pushReplacement(
                               context,
@@ -55,7 +54,7 @@ class Detail extends StatelessWidget {
                               ),
                             );
                           },
-                        );
+                        ); */
                       }
                     },
                   );
@@ -72,18 +71,28 @@ class Detail extends StatelessWidget {
         ),
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: [
-          FutureBuilder<User?>(
-            future: context.read<providers.FirebaseProvider>().getUser(userId: ad.userId),
+          StreamBuilder<DocumentSnapshot<User>>(
+            stream: User.getUser(userId: ad.userId),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                User user = snapshot.data!;
+              if (snapshot.hasError) {
                 return ProfileTile(
-                  userPhoto: user.photo,
-                  userNameSurname: user.nameSurname,
+                  userPhoto: null,
+                  userNameSurname: "",
                   onTap: () {},
                 );
               }
-              return SizedBox();
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return ProfileTile(
+                  userPhoto: null,
+                  userNameSurname: "",
+                  onTap: () {},
+                );
+              }
+              return ProfileTile(
+                userPhoto: snapshot.data!.data()!.photo,
+                userNameSurname: snapshot.data!.data()!.nameSurname,
+                onTap: () {},
+              );
             },
           ),
           SizedBox(height: containerPadding),
@@ -92,6 +101,7 @@ class Detail extends StatelessWidget {
           AdInformationTile(information: ad.information),
         ],
       ),
+      resizeToAvoidBottomInset: true,
     );
   }
 }

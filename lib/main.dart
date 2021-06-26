@@ -1,10 +1,8 @@
 import 'package:animations/animations.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:takasburada/models/user.dart';
 import 'package:takasburada/pages/home.dart';
 import 'package:takasburada/pages/login.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
@@ -22,15 +20,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<providers.FirebaseProvider>(
-          create: (_) => providers.FirebaseProvider(
-            firebaseAuth: FirebaseAuth.instance,
-            firebaseFirestore: FirebaseFirestore.instance,
-            firebaseStorage: FirebaseStorage.instance,
-          ),
-        ),
         StreamProvider(
-          create: (context) => context.read<providers.FirebaseProvider>().userChanges,
+          create: (context) => User.userChanges,
           initialData: null,
         ),
         ChangeNotifierProvider(create: (_) => providers.IndexProvider()),
@@ -52,7 +43,7 @@ class App extends StatelessWidget {
             },
           ),
         ),
-        home: context.watch<providers.FirebaseProvider>().firebaseAuth.currentUser == null ? Login() : Home(),
+        home: User.currentUser == null ? Login() : Home(),
       ),
     );
   }

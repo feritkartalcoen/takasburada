@@ -3,7 +3,6 @@ import 'package:flutter/material.dart' hide AppBar, BottomAppBar, FloatingAction
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/pages/create.dart';
-import 'package:takasburada/pages/login.dart';
 import 'package:takasburada/pages/result.dart';
 import 'package:takasburada/pages/views/home/feed.dart';
 import 'package:takasburada/pages/views/home/conversations.dart';
@@ -15,7 +14,6 @@ import 'package:takasburada/widgets/bottom_app_bar.dart';
 import 'package:takasburada/widgets/bottom_navigation_bar.dart';
 import 'package:takasburada/widgets/floating_action_button.dart';
 import 'package:takasburada/widgets/profile_button.dart';
-import 'package:takasburada/widgets/snack_bar.dart';
 import 'package:takasburada/widgets/title.dart';
 
 class Home extends StatelessWidget {
@@ -31,20 +29,7 @@ class Home extends StatelessWidget {
             child: Title(),
           ),
           Expanded(child: SizedBox()),
-          ProfileButton(
-            onTap: () {
-              context.read<providers.FirebaseProvider>().signOut().then((result) {
-                print("signed out");
-                SnackBar.show(context, "signed out");
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Login(),
-                  ),
-                );
-              });
-            },
-          ),
+          ProfileButton(),
         ],
       ),
       body: PageTransitionSwitcher(
@@ -70,28 +55,29 @@ class Home extends StatelessWidget {
             CustomIcons.chat
           ],
         ),
-        floatingActionButton: Provider.of<providers.IndexProvider>(context).bottomNavigationIndex != 2
-            ? OpenContainer(
-                openBuilder: (context, onTap) {
-                  return Provider.of<providers.IndexProvider>(context).bottomNavigationIndex == 0 ? Create(onTap: onTap) : Result(onTap: onTap);
-                },
-                closedBuilder: (context, onTap) => FloatingActionButton(
-                  color: Colors.transparent,
-                  fabElevation: 0,
-                  icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
-                  onTap: onTap,
+        floatingActionButton: FloatingActionButton(
+          icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+          onTap: () {
+            var index = Provider.of<providers.IndexProvider>(context, listen: false).bottomNavigationIndex;
+            if (index == 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Create(),
                 ),
-                closedShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
+              );
+            } else if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Result(),
                 ),
-                closedElevation: elevation,
-                closedColor: floatingActionButtonColor,
-              )
-            : FloatingActionButton(
-                icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
-                onTap: () {},
-              ),
+              );
+            }
+          },
+        ),
       ),
+      resizeToAvoidBottomInset: true,
     );
   }
 }

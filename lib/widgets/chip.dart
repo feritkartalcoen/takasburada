@@ -13,9 +13,10 @@ class Chip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      elevation: elevation,
+      shape: StadiumBorder(),
       child: InkWell(
-        borderRadius: BorderRadius.circular(chipBorderRadius),
+        customBorder: StadiumBorder(),
         child: Container(
           height: chipHeight,
           alignment: Alignment.center,

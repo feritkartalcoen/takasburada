@@ -65,6 +65,10 @@ class Ad {
     return "please complete all fields";
   }
 
+  static Stream<DocumentSnapshot<Ad>> getAd({required String adId}) {
+    return _adsReference().doc(adId).snapshots();
+  }
+
   static Stream<QuerySnapshot<Ad>> getAds() {
     return _adsReference().orderBy("date", descending: true).snapshots();
   }

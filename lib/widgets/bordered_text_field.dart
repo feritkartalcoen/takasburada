@@ -23,14 +23,14 @@ class BorderedTextField extends StatelessWidget {
         contentPadding: EdgeInsets.only(left: 24),
         enabled: true,
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(textFieldBorderRadius),
+          borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
             color: customBorderedTextFieldBorderColor,
             width: textFieldBorderWidth,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(textFieldBorderRadius),
+          borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
             color: customBorderedTextFieldBorderColor,
             width: textFieldBorderWidth,

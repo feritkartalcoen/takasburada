@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart' hide SnackBar;
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/models/user.dart';
 import 'package:takasburada/pages/home.dart';
 import 'package:takasburada/widgets/backgrounded_button.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
@@ -95,9 +96,9 @@ class _SignUpState extends State<SignUp> {
             if (photo.path != "")
               Material(
                 elevation: elevation,
-                borderRadius: BorderRadius.circular(buttonBorderRadius),
+                borderRadius: BorderRadius.circular(borderRadius),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(buttonBorderRadius),
+                  borderRadius: BorderRadius.circular(borderRadius),
                   child: Image.file(
                     photo,
                     width: buttonHeight,
@@ -115,16 +116,13 @@ class _SignUpState extends State<SignUp> {
           text: "continue",
           isPrimary: true,
           onTap: () {
-            context
-                .read<providers.FirebaseProvider>()
-                .signUp(
-                  name: nameController.text,
-                  surname: surnameController.text,
-                  email: emailController.text,
-                  password: passwordController.text,
-                  photo: photo,
-                )
-                .then((result) {
+            User.signUp(
+              name: nameController.text,
+              surname: surnameController.text,
+              email: emailController.text,
+              password: passwordController.text,
+              photo: photo,
+            ).then((result) {
               print(result);
               SnackBar.show(context, result);
               if (result == "signed up") {

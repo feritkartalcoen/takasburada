@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart' hide SnackBar;
 import 'package:takasburada/constants/constants.dart';
+import 'package:takasburada/models/user.dart';
 import 'package:takasburada/pages/home.dart';
 import 'package:takasburada/widgets/backgrounded_button.dart';
 import 'package:takasburada/widgets/bordered_text_field.dart';
 import 'package:takasburada/widgets/colored_button.dart';
-import 'package:provider/provider.dart';
-import 'package:takasburada/providers/providers.dart' as providers;
 import 'package:takasburada/widgets/snack_bar.dart';
 
 class SignIn extends StatelessWidget {
@@ -40,13 +39,10 @@ class SignIn extends StatelessWidget {
           text: "continue",
           isPrimary: true,
           onTap: () {
-            context
-                .read<providers.FirebaseProvider>()
-                .signIn(
-                  email: emailController.text,
-                  password: passwordController.text,
-                )
-                .then((result) {
+            User.signIn(
+              email: emailController.text,
+              password: passwordController.text,
+            ).then((result) {
               print(result);
               SnackBar.show(context, result);
               if (result == "signed in") {

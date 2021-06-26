@@ -16,8 +16,8 @@ class SnackBar {
         content: Text(message, style: snackBarTextSyle),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(snackBarBorderRadius),
-          topRight: Radius.circular(snackBarBorderRadius),
+          topLeft: Radius.circular(borderRadius),
+          topRight: Radius.circular(borderRadius),
         )),
       ),
     );

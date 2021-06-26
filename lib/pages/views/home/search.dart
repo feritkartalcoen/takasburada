@@ -1,4 +1,3 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart' hide Chip;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/pages/result.dart';
@@ -41,14 +40,16 @@ class Search extends StatelessWidget {
                           .where((mostSearchedProduct) => mostSearchedProducts.indexOf(mostSearchedProduct) % 2 == 0)
                           .toList()
                           .map(
-                            (mostSearchedProduct) => OpenContainer(
-                              openBuilder: (context, onTap) => Result(onTap: onTap),
-                              closedBuilder: (context, onTap) => Chip(text: mostSearchedProduct, onTap: onTap),
-                              closedElevation: elevation,
-                              closedShape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(chipBorderRadius),
-                              ),
-                            ),
+                            (mostSearchedProduct) => Chip(
+                                text: mostSearchedProduct,
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Result(),
+                                    ),
+                                  );
+                                }),
                           )
                           .toList(),
                     ),
@@ -64,14 +65,16 @@ class Search extends StatelessWidget {
                           .where((mostSearchedProduct) => mostSearchedProducts.indexOf(mostSearchedProduct) % 2 == 1)
                           .toList()
                           .map(
-                            (mostSearchedProduct) => OpenContainer(
-                              openBuilder: (context, onTap) => Result(onTap: onTap),
-                              closedBuilder: (context, onTap) => Chip(text: mostSearchedProduct, onTap: onTap),
-                              closedElevation: elevation,
-                              closedShape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(chipBorderRadius),
-                              ),
-                            ),
+                            (mostSearchedProduct) => Chip(
+                                text: mostSearchedProduct,
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Result(),
+                                    ),
+                                  );
+                                }),
                           )
                           .toList(),
                     ),

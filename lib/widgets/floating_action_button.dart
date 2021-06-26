@@ -19,9 +19,9 @@ class FloatingActionButton extends StatelessWidget {
     return Material(
       color: color ?? floatingActionButtonColor,
       elevation: fabElevation ?? elevation,
-      borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: InkWell(
-        borderRadius: BorderRadius.circular(floatingActionButtonBorderRadius),
+        borderRadius: BorderRadius.circular(borderRadius),
         child: Container(
           width: floatingActionButtonWidth,
           height: floatingActionButtonHeight,

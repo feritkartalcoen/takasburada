@@ -21,7 +21,7 @@ class BackgroundedButton extends StatelessWidget {
       child: Material(
         elevation: elevation,
         borderRadius: BorderRadius.circular(
-          buttonBorderRadius,
+          borderRadius,
         ),
         child: Stack(
           children: [
@@ -29,7 +29,7 @@ class BackgroundedButton extends StatelessWidget {
               opacity: 0.15,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(
-                  buttonBorderRadius,
+                  borderRadius,
                 ),
                 child: Container(
                   width: double.infinity,
@@ -52,12 +52,12 @@ class BackgroundedButton extends StatelessWidget {
             Positioned.fill(
               child: Material(
                 borderRadius: BorderRadius.circular(
-                  buttonBorderRadius,
+                  borderRadius,
                 ),
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(
-                    buttonBorderRadius,
+                    borderRadius,
                   ),
                   onTap: onTap,
                 ),

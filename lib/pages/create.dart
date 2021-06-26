@@ -15,10 +15,8 @@ import 'package:takasburada/providers/providers.dart' as providers;
 import 'package:takasburada/widgets/snack_bar.dart';
 
 class Create extends StatefulWidget {
-  final VoidCallback? onTap;
   const Create({
     Key? key,
-    this.onTap,
   }) : super(key: key);
 
   @override
@@ -40,7 +38,9 @@ class _CreateState extends State<Create> {
         children: [
           IconButton(
             icon: CustomIcons.back,
-            onTap: widget.onTap,
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
           Expanded(child: SizedBox()),
         ],
@@ -153,6 +153,7 @@ class _CreateState extends State<Create> {
           SizedBox(height: containerPadding),
         ],
       ),
+      resizeToAvoidBottomInset: true,
     );
   }
 }

@@ -18,7 +18,7 @@ class TabBar extends StatelessWidget {
           child: Material(
             elevation: elevation,
             color: tabBarIndicatorColor,
-            borderRadius: BorderRadius.circular(tabBarIndicatorBorderRadius),
+            borderRadius: BorderRadius.circular(borderRadius),
             child: SizedBox(
               width: tabBarIndicatorWidth(context),
               height: tabBarIndicatorHeight,
@@ -36,10 +36,10 @@ class TabBar extends StatelessWidget {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? tabBarIndicatorBorderRadius : 0),
-                        bottomRight: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? tabBarIndicatorBorderRadius : 0),
-                        topLeft: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? 0 : tabBarIndicatorBorderRadius),
-                        bottomLeft: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? 0 : tabBarIndicatorBorderRadius),
+                        topRight: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? borderRadius : 0),
+                        bottomRight: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? borderRadius : 0),
+                        topLeft: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? 0 : borderRadius),
+                        bottomLeft: Radius.circular(tabBarItemTitle == tabBarItemTitles[0] ? 0 : borderRadius),
                       ),
                       child: Container(
                         width: tabBarItemWidth(context),
