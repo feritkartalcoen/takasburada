@@ -32,20 +32,32 @@ class Conversation {
         toFirestore: (Conversation conversation, options) => conversation.toFirestore,
       );
 
-  static Future<String> createConversation({required Ad ad}) async {
+  static Future<String> createConversation({required Ad ad, required String text}) async {
     var conversation = _conversationsReference().doc("${ad.id}-${ad.userId}-${User.currentUserId}");
-    try {
-      await conversation.set(Conversation(
-        id: conversation.id,
-        adId: ad.id,
-      ));
-      await Message.createMessage(
-        conversationId: conversation.id,
-        text: "is the product still available?",
-      );
-      return "conversation created";
-    } on FirebaseException catch (e) {
-      return e.message!;
+    bool conversationExists = false;
+    await conversation.get().then(
+      (snapshot) {
+        if (snapshot.exists) {
+          conversationExists = true;
+        }
+      },
+    );
+    if (conversationExists) {
+      return "conversation exists";
+    } else {
+      try {
+        await conversation.set(Conversation(
+          id: conversation.id,
+          adId: ad.id,
+        ));
+        await Message.createMessage(
+          conversationId: conversation.id,
+          text: text,
+        );
+        return "conversation created";
+      } on FirebaseException catch (e) {
+        return e.message!;
+      }
     }
   }
 
@@ -55,6 +67,10 @@ class Conversation {
 
   static Stream<QuerySnapshot<Conversation>> getConversations() {
     return _conversationsReference().snapshots();
+  }
+
+  static Future<void> deleteConversation({required String conversationId}) {
+    return _conversationsReference().doc(conversationId).delete();
   }
 
   Message? get lastMessage {

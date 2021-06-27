@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
-import 'package:firebase_auth/firebase_auth.dart' as firebaseUser show User;
 import 'package:firebase_storage/firebase_storage.dart';
 
 class User {
@@ -102,14 +101,6 @@ class User {
 
   static Stream<QuerySnapshot<User>> getUsers() {
     return _usersReference.snapshots();
-  }
-
-  static Stream<firebaseUser.User?> get userChanges {
-    return FirebaseAuth.instance.userChanges();
-  }
-
-  static firebaseUser.User? get currentUser {
-    return FirebaseAuth.instance.currentUser!;
   }
 
   static String get currentUserId {

@@ -10,6 +10,7 @@ class ConversationTile extends StatelessWidget {
   final Message? message;
   final String? productPhoto;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
   const ConversationTile({
     Key? key,
     this.userPhoto,
@@ -17,6 +18,7 @@ class ConversationTile extends StatelessWidget {
     this.message,
     this.productPhoto,
     this.onTap,
+    this.onLongPress,
   }) : super(key: key);
 
   @override
@@ -56,6 +58,7 @@ class ConversationTile extends StatelessWidget {
             ),
           ),
           onTap: onTap,
+          onLongPress: onLongPress,
         ),
       ),
     );

@@ -73,6 +73,10 @@ class Ad {
     return _adsReference().orderBy("date", descending: true).snapshots();
   }
 
+  static Future<QuerySnapshot<Ad>> getAdsAsFuture() {
+    return _adsReference().orderBy("date", descending: true).get();
+  }
+
   String get title {
     return products!.where((product) => product.isGiven == true).single.name + " - " + products!.where((product) => product.isGiven == false).single.name;
   }

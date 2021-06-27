@@ -62,4 +62,8 @@ class Product {
   static Stream<QuerySnapshot<Product>> getProducts({required String adId}) {
     return _productsReference(adId: adId).snapshots();
   }
+
+  static Future<QuerySnapshot<Product>> getProductsAsFuture({required String adId}) {
+    return _productsReference(adId: adId).get();
+  }
 }

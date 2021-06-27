@@ -6,11 +6,13 @@ class TextField extends StatelessWidget {
   final TextInputType? textInputType;
   final String hint;
   final TextEditingController? textEditingController;
+  final bool autoFocus;
   const TextField({
     Key? key,
     required this.hint,
     this.textInputType,
     this.textEditingController,
+    this.autoFocus = false,
   }) : super(key: key);
 
   @override
@@ -19,6 +21,7 @@ class TextField extends StatelessWidget {
       elevation: elevation,
       borderRadius: BorderRadius.circular(borderRadius),
       child: material.TextField(
+        autofocus: autoFocus,
         controller: textEditingController,
         keyboardType: textInputType,
         decoration: InputDecoration(

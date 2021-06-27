@@ -102,6 +102,9 @@ class Conversations extends StatelessWidget {
                                         ),
                                       );
                                     },
+                                    onLongPress: () {
+                                      Conversation.deleteConversation(conversationId: conversation.id);
+                                    },
                                   );
                                 },
                               );

@@ -1,8 +1,8 @@
 import 'package:animations/animations.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:takasburada/models/user.dart';
 import 'package:takasburada/pages/home.dart';
 import 'package:takasburada/pages/login.dart';
 import 'package:takasburada/providers/providers.dart' as providers;
@@ -21,7 +21,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider(
-          create: (context) => User.userChanges,
+          create: (context) => FirebaseAuth.instance.userChanges(),
           initialData: null,
         ),
         ChangeNotifierProvider(create: (_) => providers.IndexProvider()),
@@ -29,7 +29,7 @@ class App extends StatelessWidget {
           create: (_) => providers.ImageProvider(),
         ),
       ],
-      builder: (context, _) => MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
           pageTransitionsTheme: PageTransitionsTheme(
@@ -43,7 +43,7 @@ class App extends StatelessWidget {
             },
           ),
         ),
-        home: User.currentUser == null ? Login() : Home(),
+        home: FirebaseAuth.instance.currentUser == null ? Login() : Home(),
       ),
     );
   }

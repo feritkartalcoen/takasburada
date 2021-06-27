@@ -86,9 +86,7 @@ class AdTile extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.baseline,
                                 textBaseline: TextBaseline.alphabetic,
                                 children: [
-                                  Container(
-                                    child: Text(ad.title, style: adProductNamesTextStyle),
-                                  ),
+                                  Text(ad.title, style: adProductNamesTextStyle),
                                   Text(ad.since, style: adPostDateTextStyle),
                                 ],
                               ),
