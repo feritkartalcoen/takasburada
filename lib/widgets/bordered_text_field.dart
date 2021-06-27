@@ -20,7 +20,7 @@ class BorderedTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: textFieldHintTextStyle,
-        contentPadding: EdgeInsets.only(left: 24),
+        contentPadding: EdgeInsets.only(left: containerPadding, right: containerPadding),
         enabled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),

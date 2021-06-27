@@ -1,15 +1,16 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 
 class ImageProvider {
   ImagePicker imagePicker = ImagePicker();
 
-  Future<File?> selectImage() async {
+  Future<File?> selectImage({required bool fromCamera}) async {
     File? file;
     try {
-      PickedFile? pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+      PickedFile? pickedFile = await imagePicker.getImage(source: fromCamera ? ImageSource.camera : ImageSource.gallery);
       file = File(pickedFile!.path);
       try {
         file = await ImageCropper.cropImage(
@@ -17,6 +18,10 @@ class ImageProvider {
           aspectRatioPresets: [
             CropAspectRatioPreset.square
           ],
+          androidUiSettings: AndroidUiSettings(
+            toolbarWidgetColor: Color(0xff707070),
+            activeControlsWidgetColor: Color(0xff375675),
+          ),
           compressFormat: ImageCompressFormat.png,
           compressQuality: 100,
         );

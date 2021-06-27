@@ -27,7 +27,7 @@ class TextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: textFieldHintTextStyle,
-          contentPadding: EdgeInsets.only(left: 24),
+          contentPadding: EdgeInsets.only(left: containerPadding, right: containerPadding),
           enabled: true,
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,

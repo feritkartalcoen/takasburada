@@ -69,7 +69,7 @@ class Conversation {
     return _conversationsReference().snapshots();
   }
 
-  static Future<void> deleteConversation({required String conversationId}) {
+  static Future<void> deleteConversation({required String conversationId}) async {
     return _conversationsReference().doc(conversationId).delete();
   }
 

@@ -49,71 +49,65 @@ class _CreateState extends State<Create> {
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         padding: EdgeInsets.symmetric(horizontal: containerPadding),
         children: [
-          Label(label: "what are you giving"),
-          SizedBox(height: containerPadding),
-          BorderedTextField(
-            textEditingController: givenProductNameController,
-            hint: "type here",
-          ),
-          SizedBox(height: containerPadding),
-          ColoredButton(
-            text: "add product photo",
-            onTap: () {
-              context.read<providers.ImageProvider>().selectImage().then(
-                (photo) {
-                  if (photo == null) {
-                    print("no image selected");
-                  } else {
-                    setState(() {
-                      givenProductPhoto = photo;
-                    });
-                    print("image selected");
-                  }
-                  SnackBar.show(context, photo == null ? "no image selected" : "image selected");
-                },
-              );
-            },
-            isPrimary: true,
-          ),
-          SizedBox(height: containerPadding),
-          Label(label: "what do you want"),
-          SizedBox(height: containerPadding),
-          BorderedTextField(
-            textEditingController: desiredProductNameController,
-            hint: "type here",
-          ),
-          SizedBox(height: containerPadding),
-          ColoredButton(
-            text: "add product photo",
-            onTap: () {
-              context.read<providers.ImageProvider>().selectImage().then(
-                (photo) {
-                  if (photo == null) {
-                    print("no image selected");
-                  } else {
-                    setState(() {
-                      desiredProductPhoto = photo;
-                    });
-                    print("image selected");
-                  }
-                  SnackBar.show(context, photo == null ? "no image selected" : "image selected");
-                },
-              );
-            },
-            isPrimary: true,
-          ),
-          SizedBox(height: containerPadding),
           Row(
             children: [
               Expanded(
                 child: ImageTile(
                   photo: givenProductPhoto.path,
+                  onTap: () {
+                    context.read<providers.ImageProvider>().selectImage(fromCamera: false).then(
+                      (photo) {
+                        if (photo == null) {
+                          print("no image selected");
+                        } else {
+                          setState(() {
+                            givenProductPhoto = photo;
+                          });
+                          print("image selected");
+                        }
+                        SnackBar.show(context, photo == null ? "no image selected" : "image selected");
+                      },
+                    );
+                  },
                 ),
               ),
               SizedBox(width: containerPadding),
               Expanded(
                 child: ImageTile(
                   photo: desiredProductPhoto.path,
+                  onTap: () {
+                    context.read<providers.ImageProvider>().selectImage(fromCamera: false).then(
+                      (photo) {
+                        if (photo == null) {
+                          print("no image selected");
+                        } else {
+                          setState(() {
+                            desiredProductPhoto = photo;
+                          });
+                          print("image selected");
+                        }
+                        SnackBar.show(context, photo == null ? "no image selected" : "image selected");
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: containerPadding),
+          Row(
+            children: [
+              Expanded(
+                child: BorderedTextField(
+                  textEditingController: givenProductNameController,
+                  hint: "yours",
+                ),
+              ),
+              SizedBox(width: containerPadding),
+              Expanded(
+                child: BorderedTextField(
+                  textEditingController: desiredProductNameController,
+                  hint: "desired",
                 ),
               ),
             ],
@@ -147,6 +141,18 @@ class _CreateState extends State<Create> {
                     Navigator.pop(context);
                   }
                 },
+              ).then((value) => Navigator.pop(context));
+              showDialog(
+                context: context,
+                builder: (context) => Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: Center(
+                    child: CircularProgressIndicator(
+                      color: tabBarIndicatorColor,
+                      strokeWidth: 5,
+                    ),
+                  ),
+                ),
               );
             },
           ),

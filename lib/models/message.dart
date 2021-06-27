@@ -64,4 +64,8 @@ class Message {
   static Stream<QuerySnapshot<Message>> getMessages({required String conversationId}) {
     return _messagesReference(conversationId: conversationId).orderBy("date", descending: false).snapshots();
   }
+
+  static Future<void> deleteMessages({required String conversationId}) async {
+    return _messagesReference(conversationId: conversationId).doc().delete();
+  }
 }

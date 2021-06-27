@@ -78,7 +78,7 @@ class _SignUpState extends State<SignUp> {
               child: ColoredButton(
                 text: "add${photo.path == "" ? " " : " another "}photo",
                 onTap: () {
-                  context.read<providers.ImageProvider>().selectImage().then(
+                  context.read<providers.ImageProvider>().selectImage(fromCamera: false).then(
                     (selectedPhoto) {
                       if (selectedPhoto != null) {
                         setState(() {

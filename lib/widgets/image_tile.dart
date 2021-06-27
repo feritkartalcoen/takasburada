@@ -5,9 +5,11 @@ import 'package:takasburada/constants/constants.dart';
 
 class ImageTile extends StatelessWidget {
   final String? photo;
+  final VoidCallback? onTap;
   const ImageTile({
     Key? key,
     this.photo,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -15,24 +17,28 @@ class ImageTile extends StatelessWidget {
     return Material(
       elevation: elevation,
       borderRadius: BorderRadius.circular(borderRadius),
-      child: ClipRRect(
+      child: InkWell(
         borderRadius: BorderRadius.circular(borderRadius),
-        child: photo != ""
-            ? Image.file(
-                File(photo!),
-                fit: BoxFit.cover,
-              )
-            : AspectRatio(
-                aspectRatio: 1,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Icon(
-                    Icons.image,
-                    size: iconButtonIconSize,
-                    color: iconButtonIconColor,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(borderRadius),
+          child: photo != ""
+              ? Image.file(
+                  File(photo!),
+                  fit: BoxFit.cover,
+                )
+              : AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.add_photo_alternate,
+                      size: iconButtonIconSize,
+                      color: iconButtonIconColor,
+                    ),
                   ),
                 ),
-              ),
+        ),
+        onTap: onTap ?? () {},
       ),
     );
   }

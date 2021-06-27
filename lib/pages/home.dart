@@ -32,50 +32,56 @@ class Home extends StatelessWidget {
           ProfileButton(),
         ],
       ),
-      body: PageTransitionSwitcher(
-        transitionBuilder: (
-          Widget child,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-        ) {
-          return FadeThroughTransition(
-            animation: animation,
-            secondaryAnimation: secondaryAnimation,
-            child: child,
-            fillColor: Colors.transparent,
-          );
-        },
-        child: bottomNavigationBarViews[context.watch<providers.IndexProvider>().bottomNavigationIndex],
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: BottomNavigationBar(
-          icons: [
-            CustomIcons.home,
-            CustomIcons.search,
-            CustomIcons.chat
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
-          onTap: () {
-            var index = Provider.of<providers.IndexProvider>(context, listen: false).bottomNavigationIndex;
-            if (index == 0) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Create(),
-                ),
-              );
-            } else if (index == 1) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Result(),
-                ),
-              );
-            }
-          },
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageTransitionSwitcher(
+              transitionBuilder: (
+                Widget child,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+              ) {
+                return FadeThroughTransition(
+                  animation: animation,
+                  secondaryAnimation: secondaryAnimation,
+                  child: child,
+                  fillColor: Colors.transparent,
+                );
+              },
+              child: bottomNavigationBarViews[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+            ),
+          ),
+          BottomAppBar(
+            child: BottomNavigationBar(
+              icons: [
+                CustomIcons.home,
+                CustomIcons.search,
+                CustomIcons.chat
+              ],
+            ),
+            floatingActionButton: FloatingActionButton(
+              icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+              onTap: () {
+                var index = Provider.of<providers.IndexProvider>(context, listen: false).bottomNavigationIndex;
+                if (index == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Create(),
+                    ),
+                  );
+                } else if (index == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Result(),
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
       resizeToAvoidBottomInset: true,
     );
