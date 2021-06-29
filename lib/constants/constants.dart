@@ -6,6 +6,7 @@ const String title = "takas burada";
 
 const int bottomNavigationBarIndicatorAnimationDuration = 300;
 const int tabBarIndicatorAnimationDuration = 300;
+const int snackBarAnimationDuration = 800;
 
 const double adTileActionItemWidth = 60;
 const double adTileActionIconSize = 20;
