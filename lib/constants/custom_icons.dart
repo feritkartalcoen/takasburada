@@ -1,8 +1,14 @@
 import 'package:flutter/widgets.dart';
 
+// Uygulamada kullanılan simgelerin referansları
+// burada yer almaktadır. FLutter da simgeler 
+// Font dosyasında depolanır. O yüzden eğer özel
+// simgeler kullanılacaksa bir font oluşturmak gerekir.
 class CustomIcons {
   CustomIcons._();
 
+  // CustomIcons.ttf dosyası (fonts klasörü altında)
+  // fontFamily olarak kullanılmaktadır.
   static const String fontFamily = "CustomIcons";
 
   static const IconData add = IconData(0xe800, fontFamily: fontFamily);

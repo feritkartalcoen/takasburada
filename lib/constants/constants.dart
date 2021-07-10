@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Bu dosyada uygulamada kullanılan Widget'ların
+// değerleri, stilleri verilmiştir.
+// Hiçbir widget hard kodlanmamıştır. Bu
+// dosyadaki değişkenler kullanılmaktadır.
 const String titleHeroTag = "customTitle";
 const String title = "takas burada";
 
@@ -16,6 +20,7 @@ const double adTileIconSize = 18;
 const double appBarHeight = 84;
 const double appBarButtonHeight = 36;
 const double appBarButtonWidth = 36;
+const double borderRadius = 24;
 const double bottomAppBarHeight = 96;
 const double bottomNavigationBarHeight = 48;
 const double bottomNavigationBarIndicatorHeight = 48;
@@ -36,7 +41,6 @@ const double tabBarHeight = 48;
 const double tabBarIndicatorHeight = 48;
 const double textButtonHeight = 36;
 const double textFieldHeight = 48;
-const double borderRadius = 24;
 const double textFieldBorderWidth = 1;
 
 const Color adTileActionsIconColor = Color(0xff707070);
@@ -100,7 +104,10 @@ TextStyle tabTitleTextStyle = GoogleFonts.robotoCondensed(
   fontWeight: FontWeight.bold,
   color: Color(0xff707070),
   shadows: [
-    Shadow(color: Colors.black.withOpacity(0.16), offset: Offset(0, 3), blurRadius: 6),
+    Shadow(
+        color: Colors.black.withOpacity(0.16),
+        offset: Offset(0, 3),
+        blurRadius: 6),
   ],
 );
 
@@ -120,7 +127,10 @@ TextStyle labelTextStyle = GoogleFonts.robotoCondensed(
   fontWeight: FontWeight.bold,
   color: Color(0xff707070),
   shadows: [
-    Shadow(color: Colors.black.withOpacity(0.16), offset: Offset(0, 3), blurRadius: 6),
+    Shadow(
+        color: Colors.black.withOpacity(0.16),
+        offset: Offset(0, 3),
+        blurRadius: 6),
   ],
 );
 
@@ -150,7 +160,10 @@ TextStyle textButtonTextStyle = GoogleFonts.robotoCondensed(
   fontWeight: FontWeight.bold,
   color: Color(0xff707070),
   shadows: [
-    Shadow(color: Colors.black.withOpacity(0.16), offset: Offset(0, 3), blurRadius: 6),
+    Shadow(
+        color: Colors.black.withOpacity(0.16),
+        offset: Offset(0, 3),
+        blurRadius: 6),
   ],
 );
 
@@ -190,11 +203,15 @@ double tabBarItemWidth(BuildContext context) {
 }
 
 double bottomNavigationBarIndicatorWidth(BuildContext context) {
-  return (((MediaQuery.of(context).size.width) - 3 * containerPadding) - floatingActionButtonWidth) / 3;
+  return (((MediaQuery.of(context).size.width) - 3 * containerPadding) -
+          floatingActionButtonWidth) /
+      3;
 }
 
 double bottomNavigationBarItemWidth(BuildContext context) {
-  return (((MediaQuery.of(context).size.width) - 3 * containerPadding) - floatingActionButtonWidth) / 3;
+  return (((MediaQuery.of(context).size.width) - 3 * containerPadding) -
+          floatingActionButtonWidth) /
+      3;
 }
 
 double adTileHeight(BuildContext context) {
@@ -217,4 +234,5 @@ double adTileImageHeightWithoutActions(BuildContext context) {
   return ((MediaQuery.of(context).size.width - 24) / 2);
 }
 
-const String loremIpsumParagraph = "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. vulputate dignissim suspendisse in est.";
+const String loremIpsumParagraph =
+    "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. vulputate dignissim suspendisse in est.";
