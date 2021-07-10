@@ -1,5 +1,12 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart' hide AppBar, BottomAppBar, FloatingActionButton, Title, BottomNavigationBar, SnackBar;
+import 'package:flutter/material.dart'
+    hide
+        AppBar,
+        BottomAppBar,
+        FloatingActionButton,
+        Title,
+        BottomNavigationBar,
+        SnackBar;
 import 'package:takasburada/constants/constants.dart';
 import 'package:takasburada/constants/custom_icons.dart';
 import 'package:takasburada/pages/create.dart';
@@ -29,7 +36,7 @@ class Home extends StatelessWidget {
             child: Title(),
           ),
           Expanded(child: SizedBox()),
-          ProfileButton(),
+          const ProfileButton(),
         ],
       ),
       body: Column(
@@ -48,21 +55,23 @@ class Home extends StatelessWidget {
                   fillColor: Colors.transparent,
                 );
               },
-              child: bottomNavigationBarViews[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+              child: bottomNavigationBarViews[context
+                  .watch<providers.IndexProvider>()
+                  .bottomNavigationIndex],
             ),
           ),
           BottomAppBar(
             child: BottomNavigationBar(
-              icons: [
-                CustomIcons.home,
-                CustomIcons.search,
-                CustomIcons.chat
-              ],
+              icons: [CustomIcons.home, CustomIcons.search, CustomIcons.chat],
             ),
             floatingActionButton: FloatingActionButton(
-              icon: floatingActionButtonIcons[context.watch<providers.IndexProvider>().bottomNavigationIndex],
+              icon: floatingActionButtonIcons[context
+                  .watch<providers.IndexProvider>()
+                  .bottomNavigationIndex],
               onTap: () {
-                var index = Provider.of<providers.IndexProvider>(context, listen: false).bottomNavigationIndex;
+                var index =
+                    Provider.of<providers.IndexProvider>(context, listen: false)
+                        .bottomNavigationIndex;
                 if (index == 0) {
                   Navigator.push(
                     context,
